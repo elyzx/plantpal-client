@@ -220,6 +220,7 @@ Trello Board - https://trello.com/b/SB0FF9tf
 
 ## Github
 Client-side code - https://github.com/elyzx/plantpal-client
+<br>
 Server-side code - https://github.com/elyzx/plantpal-server
 
 ## Slides
