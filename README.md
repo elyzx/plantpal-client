@@ -1,70 +1,226 @@
-# Getting Started with Create React App
+# PlantPal
+Health tracking for houseplants
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+With PlantPal, caring for your houseplants has never been easier. Keep track of your plants and their care needs, so you never forget to water them again!
 
-## Available Scripts
+## Features
+- User auth - register, sign in, sign out, email validation
+- Dashboard
+    - Number of alive plants
+    - Number of dead plants
+    - Number of snapshots
+    - Upcoming reminders
+        - for example Snake plant: Watering due in 2 days
+    - Leaderboard for how long you've kept the plant alive
+        - for example Snake plant - 7 days
+    - Weather API
+        - If temperate goes over 28 degrees, create a new notification to tell the user to check on their plants
+- Create a Plant - using a form
+    - Add a Plant Profile Pic
+    - Configure the watering schedule
+    - Set reminder frequency to add fertiliser
+- View/Update/Track your plants
+    - Add a Plant Entry
+        - For example if to upload a new photo to the Plant to track it's health/growth over time
+    - Receive a notification
+        - Based on the schedule/frequency inputted when the plant was adde
+        - View the calendar to see when a task is due
+        - When you complete a task, update the status to Complete
+- View all your plants - Plant Library
+    - Search by name
+    - Filter by status - dead or alive
 
-In the project directory, you can run:
+## Backlog
+- Ability to delete a Snapshot without deleting the plant
+- Display the Snapshots on the Scheule page, alongside the Reminders
+- Guides
+    - View blog post type guides on specific house plants with recommendations for watering schedules and general care
+- Forum
+    - View and Post on a timeline to connect with other user's and ask questions about plants
 
-### `yarn start`
+# Client
+## Routes
+- / - Landing page
+- /auth/signup - Signup form
+- /auth/login - Login form
+- /profile/:id - profile page - name, email etc
+- /profile/:id/edit - update/delete profile
+- /dashboard - Dashboard
+- /plants - all your plants
+- /plants/create - add a plant form
+- /plants/:id - plants detail page
+- /plants/:id/edit - edit plant details
+- /plants/:id/record-progress - add a post about that plant to appear on that plant details page
+- /schedule - view calendar - tasks created per watering schedule defined when create plant
+- /schedule/:id - view task details and update status - incomplete to complete
+- /schedule/:id/edit - edit task details
+- 404
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Pages
+- Home Page (public landing page)
+- Sign In Page (anon only)
+- Sign Up Page (anon only)
+- Profile Page (user only)
+- Dashboard (user only)
+- Plants (user only)
+- Plant Detail Page (user only)
+- Create Plant Form Page (user only)
+- Edit/ Delete Plant Form Page (user only)
+- Schedule Page (user only)
+- Schedule -> Task Detail Page (user only)
+- Schedule -> Edit/Delete Task Page (user only)
+- 404 Page (public page)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Components
+- LandingPage
+- Register
+- LogIn
+- Profile
+- TopNav
+- SideNav
+- Dashboard
+- PlantsList
+- PlantsDetail
+- AddPlantForm
+- EditDeletePlantForm
+- Calendar(TasksList)
+- TaskDetail
+- AddTaskForm
+- EditDeleteTaskForm
 
-### `yarn test`
+## Services
+- Auth Service
+    - auth.login(user)
+    - auth.signup(user)
+    - auth.logout()
+    - auth.profile()
+    - auth.getUser() // synchronous
+- Plant Service
+    - plants.list()
+    - plants.create(data)
+    - plants.detail(id)
+    - plants.edit(id)
+    - plants.delete(id)
+- Schedule Service
+    - schedule.list()
+    - schedule.task.details()
+    - schedule.task.edit()
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Server
+## Models
 
-### `yarn build`
+User Model
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    _id
+    Name
+    Username
+    Email Address
+    Town/City
+    Password
+    Plant ref -> _id
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Plant Model
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    _id
+    Name
+    Description
+    Plant profile picture
+    Set a reminder to water? -> Dropdown to select from 1-31 days
+    Set a reminder to add fertiliser? -> Dropdown to select from 1-12 months
+    Status -> Can be Alive or Dead, by default it's Alive
+    User ref -> _id
 
-### `yarn eject`
+Snapshots Model
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    _id
+    Date -> Autofills with date created
+    Name
+    Text
+    Option to upload a photo
+    Plant ref -> _id
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Reminders Model
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    _id
+    Name
+    Date
+    Status -> Complete or Incomplete
+    Plant ref -> _id
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## API Endpoints/Backend Routes
+- GET /auth/profile
+- POST /auth/signup
+    - body:
+        - name
+        - username 
+        - email address
+        - password
+        - town/city
+- POST /auth/log
+    - body:
+        - username
+        - password
+- POST /auth/logout
+    - body: (empty)
+- PATCH /profile/edit
+    - body:
+        - name
+        - username 
+        - email address
+        - password
+        - town/city
+- DELETE /profile
+    - body: (empty)
+- GET /plants
+    - body:
+        - name
+        - plant profile pic
+        - status
+- GET /plants/:id
+    - body:
+        - name
+        - description
+        - plant profile pic
+        - water schedule - e.g every 7 days
+        - fertiliser schedule - e.g. every 3 months
+        - status
+        - snapshots -> all snapshots logged for this plant
+            - date
+            - name
+            - text
+            - photo
+- PATCH /plants/:id/edit
+    - body:
+        - name
+        - description
+        - plant profile pic
+        - water schedule - e.g every 7 days
+        - fertiliser schedule - e.g. every 3 months
+        - status
+- DELETE /plants/:id
+    - body (empty) -> deleting the plant also deletes the snapshots
+- GET /schedule 
+    - body:
+        - name
+        - date
+        - status
+- PATCH /schedule
+    - body:
+        - name
+        - date
+        - status
 
-## Learn More
+# Links
+## Website Link
+TBD
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project Status
+Trello Board - https://trello.com/b/SB0FF9tf
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Github
+Client-side code - https://github.com/elyzx/plantpal-client
+Server-side code - https://github.com/elyzx/plantpal-server
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Slides
+TBD
