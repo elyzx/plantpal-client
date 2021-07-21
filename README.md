@@ -215,6 +215,10 @@ Reminders Model
 ## Website Link
 TBD
 
+## Wireframes
+Model / States - https://whimsical.com/module-3-plantpal-model-AAwWf1dDaKD712XyCy78P8
+Pages / Wireframes - https://whimsical.com/module-3-wireframes-FnY9a3VvQ7h3NHBbHQS9ct
+
 ## Project Status
 Trello Board - https://trello.com/b/SB0FF9tf
 
