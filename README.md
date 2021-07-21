@@ -24,7 +24,7 @@ With PlantPal, caring for your houseplants has never been easier. Keep track of 
     - Add a Plant Entry
         - For example if to upload a new photo to the Plant to track it's health/growth over time
     - Receive a notification
-        - Based on the schedule/frequency inputted when the plant was adde
+        - Based on the schedule/frequency inputted when the plant was added
         - View the calendar to see when a task is due
         - When you complete a task, update the status to Complete
 - View all your plants - Plant Library
@@ -33,7 +33,7 @@ With PlantPal, caring for your houseplants has never been easier. Keep track of 
 
 ## Backlog
 - Ability to delete a Snapshot without deleting the plant
-- Display the Snapshots on the Scheule page, alongside the Reminders
+- Display the Snapshots on the Schedule page, alongside the Reminders
 - Guides
     - View blog post type guides on specific house plants with recommendations for watering schedules and general care
 - Forum
@@ -157,7 +157,7 @@ Reminders Model
         - email address
         - password
         - town/city
-- POST /auth/log
+- POST /auth/login
     - body:
         - username
         - password
