@@ -5,15 +5,16 @@ import TopNav from './TopNav';
 import SideNav from './SideNav';
 import Footer from './Footer';
 
-function Dashboard() {
+function MyPlants() {
     return (
         <div>
             <TopNav />
             <SideNav />
-            Hello I'm the dashboard
+            Hello I'm all your plants
+            <a href="/plants/create">Add Plant</a>
             <Footer />
         </div>
     );
 };
 
-export default Dashboard;
+export default MyPlants;

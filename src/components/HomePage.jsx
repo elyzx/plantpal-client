@@ -1,25 +1,17 @@
-import logo from "../logo.svg";
-import "../App.css";
+import React from 'react'
 
 function HomePage() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    return (
+        <div>
+            Hello I'm the Homepage
+            <br />
+            I provide info about the website and why it's awesome
+            <br />
+            <a href='/signup'>Signup</a>
+            <a href='/login'>Login</a>
+            <a href='/dashboard'>Dashboard</a>
+        </div>
+    );
+};
 
 export default HomePage;

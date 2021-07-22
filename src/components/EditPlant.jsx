@@ -5,15 +5,15 @@ import TopNav from './TopNav';
 import SideNav from './SideNav';
 import Footer from './Footer';
 
-function Dashboard() {
+function EditPlant() {
     return (
         <div>
             <TopNav />
             <SideNav />
-            Hello I'm the dashboard
+            Hello I'm the edit plant form
             <Footer />
         </div>
     );
 };
 
-export default Dashboard;
+export default EditPlant;
