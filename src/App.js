@@ -1,9 +1,10 @@
-import { React } from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, withRouter } from "react-router-dom";
 import axios from 'axios';
 
 // Components
-import HomePage from "./components/HomePage";
+import HomePage from './components/HomePage';
+import TopNav from './components/TopNav';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Profile from './components/Profile';
@@ -12,8 +13,11 @@ import MyPlants from './components/MyPlants';
 import AddPlant from './components/AddPlant';
 import PlantDetails from './components/PlantDetails';
 import EditPlant from './components/EditPlant';
+import Page404 from './components/Page404';
 
 function App(props) {
+
+  const [user, setUser] = useState(null);
   
   const handleSignUp = async (event) => {
       event.preventDefault();
@@ -25,41 +29,46 @@ function App(props) {
           password: password.value,
       };
       try {
-          await axios.post('http://localhost:5005/api/signup', newUser, {withCredentials: true})
-          props.history.push('/login')
+          await axios.post('http://localhost:5005/api/signup', newUser, {withCredentials: true});
+          props.history.push('/login');
       }
       catch (err) {
-          console.log('Signup failed', err)
+          console.log('Signup failed', err);
       };
   };
 
   const handleLogIn = async (event) => {
       event.preventDefault();
-      console.log('user logged in')
       const {username, password} = event.target;
-      let loggedInUser = {
+      let myUser = {
           username: username.value,
           password: password.value,
       };
       try {
-          await axios.post('http://localhost:5005/api/signup', loggedInUser, {withCredentials: true})
-          props.history.push('/dashboard')
+          let response = await axios.post('http://localhost:5005/api/login', myUser, {withCredentials: true});
+          setUser(response.data);
+          props.history.push('/dashboard');
       }
       catch (err) {
-          console.log('Login failed', err)
-      }
+          console.log('Login failed', err);
+      };
   };
 
   return (
       <div className="App">
+        {/* Navbar */}
+        <TopNav />
+        {/* Pages */}
         <Switch>
+            {/* Public Pages */}
             <Route exact path={'/'} component={HomePage} />
             <Route path={'/signup'} render={(routeProps) => {
                 return <Signup onSignUp={handleSignUp} {...routeProps}/>
             }} />
             <Route path={'/login'} render={(routeProps) => {
-                return <Login onLogin={handleLogIn} {...routeProps}/>
+                return <Login onLogIn={handleLogIn} {...routeProps}/>
             }} />
+            {/* Protected Pages */}
             <Route path={'/profile'} render={() => {
                 return <Profile />
             }} />
@@ -78,6 +87,8 @@ function App(props) {
             <Route path={'/plants/:plantId/edit'} render={() => {
               return <EditPlant />
             }} />
+            {/* Page Not Found */}
+            <Route path={'*'} component={Page404} />
         </Switch>
     </div>
   );

@@ -8,7 +8,7 @@ function Login(props) {
             <form onSubmit={onLogIn}>
                 <div className="form-group">
                     <label htmlFor="InputUsername">Username</label>
-                    <input type="text" className="form-control" id="InputUsername" name="username" />
+                    <input name="username" type="text" className="form-control" id="username" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="InputPassword">Password</label>
