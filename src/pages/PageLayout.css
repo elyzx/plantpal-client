@@ -1,4 +1,9 @@
-.plant-button {
+.body-container {
+    display: block;
+    padding-left: 225px;
+}
+
+.blue-button {
     background: #05297A;
     text-decoration: none;
     font-family: Arial, sans-serif;

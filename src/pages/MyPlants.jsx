@@ -1,22 +1,24 @@
+// Setup
 import React from 'react';
+import {Redirect, Link} from 'react-router-dom';
 import SideNav from '../components/SideNav';
-import {Redirect} from 'react-router-dom';
 import './PageLayout.css'
 
-function Dashboard(props) {
+function MyPlants(props) {
     const {isLoggedIn, onLogOut} = props
     if (isLoggedIn === false) {
         return <Redirect to={'/login'} />
     }
     return (
-        <>
+        <> 
             <SideNav onLogOut={onLogOut} />
             <div className='body-container'>
-                <h1>Dashboard</h1>
+                <h1>My Plants</h1>
+                <Link to="/plants/create" className="blue-button">Add Plant</Link>
                 <p> Login status: {isLoggedIn.toString()}</p>
             </div>
         </>
     );
 };
 
-export default Dashboard;
+export default MyPlants;

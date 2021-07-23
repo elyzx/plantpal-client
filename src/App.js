@@ -6,19 +6,18 @@ import './App.css';
 
 // Components
 import TopNav from './components/TopNav';
-import SideNav from './components/SideNav';
 import Footer from './components/Footer';
 
 // Pages
 import LandingPage from './pages/LandingPage';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
-import Profile from './pages/auth/Profile';
+import Profile from './pages/Profile';
 import Dashboard from './pages/Dashboard';
-import MyPlants from './pages/plants/MyPlants';
-import AddPlant from './pages/plants/AddPlant';
-import PlantDetails from './pages/plants/PlantDetails';
-import EditPlant from './pages/plants/EditPlant';
+import MyPlants from './pages/MyPlants';
+import AddPlant from './pages/AddPlant';
+import PlantDetails from './pages/PlantDetails';
+import EditPlant from './pages/EditPlant';
 import Page404 from './pages/Page404';
 
 // It begins!
@@ -112,7 +111,6 @@ function App(props, state) {
         <div className="App">
             {/* Navbar */}
             <TopNav onLogOut={handleLogOut} isLoggedIn={isLoggedIn} />
-            <SideNav onLogOut={handleLogOut} isLoggedIn={isLoggedIn}/>
             <div className='container'>
             {/* Pages */}
             <Switch>
@@ -128,22 +126,22 @@ function App(props, state) {
                 }} />
                 {/* Protected Pages */}
                 <Route exact path={'/profile'} render={(routeProps) => {
-                    return <Profile user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Profile user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
-                    return <Dashboard user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Dashboard user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
-                    return <MyPlants user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <MyPlants user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/create'} render={(routeProps) => {
-                    return <AddPlant onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <AddPlant onAddPlant={handleAddPlant} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants/:plantId'} render={(routeProps) => {
-                    return <PlantDetails user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <PlantDetails user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/:plantId/edit'} render={(routeProps) => {
-                    return <EditPlant user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <EditPlant user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Page Not Found */}
                 <Route component={Page404} />

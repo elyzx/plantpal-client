@@ -1,22 +1,23 @@
 import React from 'react';
-import SideNav from '../components/SideNav';
 import {Redirect} from 'react-router-dom';
+import './auth/AuthPageLayout.css';
 import './PageLayout.css'
+import SideNav from '../components/SideNav';
 
-function Dashboard(props) {
+function Profile(props) {
     const {isLoggedIn, onLogOut} = props
     if (isLoggedIn === false) {
         return <Redirect to={'/login'} />
     }
     return (
         <>
-            <SideNav onLogOut={onLogOut} />
+            <SideNav onLogOut={onLogOut}/>
             <div className='body-container'>
-                <h1>Dashboard</h1>
+                <h1>Profile Details</h1>
                 <p> Login status: {isLoggedIn.toString()}</p>
             </div>
         </>
     );
 };
 
-export default Dashboard;
+export default Profile;

@@ -1,9 +1,9 @@
 import React from 'react';
-import SideNav from '../components/SideNav';
 import {Redirect} from 'react-router-dom';
+import SideNav from '../components/SideNav';
 import './PageLayout.css'
 
-function Dashboard(props) {
+function EditPlant(props) {
     const {isLoggedIn, onLogOut} = props
     if (isLoggedIn === false) {
         return <Redirect to={'/login'} />
@@ -12,11 +12,11 @@ function Dashboard(props) {
         <>
             <SideNav onLogOut={onLogOut} />
             <div className='body-container'>
-                <h1>Dashboard</h1>
+                <h1>Edit Plant</h1>
                 <p> Login status: {isLoggedIn.toString()}</p>
             </div>
         </>
     );
 };
 
-export default Dashboard;
+export default EditPlant;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import './Auth.css';
+import './AuthPageLayout.css';
 
 function Login(props) {
     const {onLogIn, isLoggedIn} = props

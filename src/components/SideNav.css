@@ -58,7 +58,7 @@
 }
 
 #sidenav .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper {
-    background-color: #D1F2FF;
+    background-color: #C8FACC;
     color: #000;
     border-radius: 3px;
 }
@@ -68,7 +68,7 @@
 }
 
 #sidenav .pro-sidebar-inner .pro-sidebar-layout .active {
-    background-color: #D1F2FF;
+    background-color: #C8FACC;
 }
 
 #logoutButton {
