@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 
 // Components
-import SideNav from './SideNav';
+import SideNav from '../components/SideNav';
 
 function EditPlant(props) {
     const {isLoggedIn} = props
