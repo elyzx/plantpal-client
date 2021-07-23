@@ -67,6 +67,7 @@ function App(props) {
     try{
         await axios.post('http://localhost:5005/api/plants/create', newPlant )
         updatePlatns([newPlant, ...plants])
+        props.history.push('/dashboard')
 
     }catch(err){
         console.log('create plant failed', err)

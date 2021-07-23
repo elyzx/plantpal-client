@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
 // Components
 import SideNav from './SideNav';
@@ -30,7 +29,7 @@ function AddPlant(props) {
                             <label htmlFor="InputPassword">Fertilizer Frequency</label>
                             <input name="fertiliseFreq" type="number" />
                         </div>
-                        <button type="submit" ><Link to={'/dashboard'}>Submit</Link></button>
+                        <button type="submit" >Submit</button>
                     </form>
 
 
