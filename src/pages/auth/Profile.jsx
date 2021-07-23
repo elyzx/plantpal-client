@@ -1,21 +1,18 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
+import './Auth.css';
 
-// Components
-import SideNav from '../components/SideNav';
-
-function EditPlant(props) {
+function Profile(props) {
     const {isLoggedIn} = props
     if (isLoggedIn === false) {
         return <Redirect to={'/login'} />
     }
     return (
-        <div>
-            <SideNav />
-            Hello I'm the edit plant form
+        <div className='auth-page'>
+            <h1>Profile Details</h1>
             <p> Login status: {isLoggedIn.toString()}</p>
         </div>
     );
 };
 
-export default EditPlant;
+export default Profile;

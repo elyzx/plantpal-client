@@ -8,7 +8,7 @@ function Dashboard(props) {
     }
     return (
         <div>
-            Hello I'm the dashboard
+            <h1>Dashboard</h1>
             <p> Login status: {isLoggedIn.toString()}</p>
         </div>
     );

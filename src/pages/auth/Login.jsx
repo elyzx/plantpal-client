@@ -1,5 +1,6 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
+import './Auth.css';
 
 function Login(props) {
     const {onLogIn, isLoggedIn} = props
@@ -7,8 +8,8 @@ function Login(props) {
         return <Redirect to={'/dashboard'} />
     }
     return (
-        <div>
-            Hello I'm the login form
+        <div className='auth-page'>
+            <h1>Log in to PlantPal</h1>
             <p> Login status: {isLoggedIn.toString()}</p>
             <form onSubmit={onLogIn}>
                 <div className="form-group">

@@ -1,23 +1,28 @@
+// Setup
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, withRouter } from "react-router-dom";
 import axios from 'axios';
+import './App.css';
 
 // Components
-import LandingPage from './pages/LandingPage';
 import TopNav from './components/TopNav';
 import SideNav from './components/SideNav';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import Dashboard from './pages/Dashboard';
-import MyPlants from './pages/MyPlants';
-import AddPlant from './pages/AddPlant';
-import PlantDetails from './pages/PlantDetails';
-import EditPlant from './pages/EditPlant';
-import Page404 from './pages/Page404';
 import Footer from './components/Footer';
 
-function App(props) {
+// Pages
+import LandingPage from './pages/LandingPage';
+import Signup from './pages/auth/Signup';
+import Login from './pages/auth/Login';
+import Profile from './pages/auth/Profile';
+import Dashboard from './pages/Dashboard';
+import MyPlants from './pages/plants/MyPlants';
+import AddPlant from './pages/plants/AddPlant';
+import PlantDetails from './pages/plants/PlantDetails';
+import EditPlant from './pages/plants/EditPlant';
+import Page404 from './pages/Page404';
+
+// It begins!
+function App(props, state) {
 
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -107,7 +112,8 @@ function App(props) {
         <div className="App">
             {/* Navbar */}
             <TopNav onLogOut={handleLogOut} isLoggedIn={isLoggedIn} />
-            <SideNav isLoggedIn={isLoggedIn}/>
+            <SideNav onLogOut={handleLogOut} isLoggedIn={isLoggedIn}/>
+            <div className='container'>
             {/* Pages */}
             <Switch>
                 {/* Public Pages */}
@@ -142,9 +148,10 @@ function App(props) {
                 {/* Page Not Found */}
                 <Route component={Page404} />
             </Switch>
+            </div>
             <Footer />
         </div>
     );
-}
+};
 
 export default withRouter(App);

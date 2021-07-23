@@ -1,15 +1,12 @@
 import React from 'react';
 import {Link} from  'react-router-dom';
+import './TopNav.css';
 
 function TopNav(props) {
     return (
-        <div>
-            Hello I'm the top nav.
-            If a user is not logged on, I'll show:
-            <Link to='/'>LandingPage</Link>
-            <Link to='/login'>Login</Link>
-            <Link to='/signup'>Signup</Link>
-            <button onClick={props.onLogOut}>Logout</button>
+        <div id="topnav">
+                <Link to="/login" id='loginButton'>Log In</Link>
+				<Link to="/signup" id='signupButton'>Sign Up</Link>
         </div>
     );
 };
