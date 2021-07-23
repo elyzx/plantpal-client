@@ -82,12 +82,7 @@ function App(props) {
     }
     try {
         await axios.post('http://localhost:5005/api/plants/create', newPlant )
-<<<<<<< HEAD
-        updatePlatns([newPlant, ...plants])
-        props.history.push('/dashboard')
-=======
         updatePlants([newPlant, ...plants])
->>>>>>> 50818e3baa3fd5cf9fb5cfe62b67b0a781b4468c
 
     }
     catch (err) {
