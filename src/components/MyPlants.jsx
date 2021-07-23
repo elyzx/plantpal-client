@@ -1,16 +1,17 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
+import {Link} from  'react-router-dom';
 
-// Components
-import SideNav from './SideNav';
-import Footer from './Footer';
-
-function MyPlants() {
+function MyPlants(props) {
+    const {isLoggedIn} = props
+    if (isLoggedIn === false) {
+        return <Redirect to={'/login'} />
+    }
     return (
         <div>
-            <SideNav />
             Hello I'm all your plants
-            <a href="/plants/create">Add Plant</a>
-            <Footer />
+            <p> Login status: {isLoggedIn.toString()}</p>
+            <Link to='/plants/create'>Add Plant</Link>
         </div>
     );
 };

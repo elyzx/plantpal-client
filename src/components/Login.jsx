@@ -1,10 +1,15 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 
 function Login(props) {
-    const {onLogIn} = props
+    const {onLogIn, isLoggedIn} = props
+    if (isLoggedIn) {
+        return <Redirect to={'/dashboard'} />
+    }
     return (
         <div>
             Hello I'm the login form
+            <p> Login status: {isLoggedIn.toString()}</p>
             <form onSubmit={onLogIn}>
                 <div className="form-group">
                     <label htmlFor="InputUsername">Username</label>
