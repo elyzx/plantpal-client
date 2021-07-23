@@ -18,6 +18,7 @@ import Page404 from './components/Page404';
 function App(props) {
 
   const [user, setUser] = useState(null);
+  const [plants, updatePlatns] = useState([])
   
   const handleSignUp = async (event) => {
       event.preventDefault();
@@ -54,6 +55,25 @@ function App(props) {
       };
   };
 
+  const handleAddPlant = async (event) => {
+    event.preventDefault()
+    const { name, description, waterFreq, fertiliseFreq} = event.target
+    let newPlant = {
+          name: name.value,
+          description: description.value,
+          waterFreq: waterFreq.value,
+          fertiliseFreq: fertiliseFreq.value,
+    };
+    try{
+        await axios.post('http://localhost:5005/api/plants/create', newPlant )
+        updatePlatns([newPlant, ...plants])
+
+    }catch(err){
+        console.log('create plant failed', err)
+    }
+
+  }
+
   return (
       <div className="App">
         {/* Navbar */}
@@ -78,8 +98,8 @@ function App(props) {
             <Route exact path={'/plants'} render={() => {
               return <MyPlants />
             }} />
-            <Route path={'/plants/create'} render={() => {
-              return <AddPlant />
+            <Route path={'/plants/create'} render={(routeProps) => {
+              return <AddPlant onAddPlant={handleAddPlant}  {...routeProps}/>
             }} />
             <Route path={'/plants/:plantId'} render={() => {
               return <PlantDetails />
