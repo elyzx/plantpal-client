@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route, withRouter } from "react-router-dom";
 import axios from 'axios';
 
@@ -19,9 +19,9 @@ import Footer from './components/Footer';
 
 function App(props) {
 
-  const [user, updateUser] = useState(null)
+  const [user, updateUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  
   const handleSignUp = async (event) => {
       event.preventDefault();
       const {name, username, email, password} = event.target;
