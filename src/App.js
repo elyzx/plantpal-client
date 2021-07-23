@@ -19,8 +19,9 @@ import Footer from './components/Footer';
 
 function App(props) {
 
-  const [user, updateUser] = useState(null);
+  const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [plants, updatePlants] = useState([]);
   
   const handleSignUp = async (event) => {
       event.preventDefault();
@@ -49,7 +50,7 @@ function App(props) {
       };
       try {
           let response = await axios.post('http://localhost:5005/api/login', myUser, {withCredentials: true});
-          updateUser(response.data)
+          setUser(response.data)
           setIsLoggedIn(true)
           props.history.push('/dashboard');
       }
@@ -61,7 +62,7 @@ function App(props) {
   const handleLogOut = async () => {
     try {
         await axios.post(`http://localhost:5005/api/logout`, {}, {withCredentials: true})
-        updateUser(null)
+        setUser(null)
         setIsLoggedIn(false)
         props.history.push('/')
     }
@@ -69,6 +70,25 @@ function App(props) {
         console.log('Logout failed', err)
     }
   }
+
+  const handleAddPlant = async (event) => {
+      event.preventDefault()
+      const { name, description, waterFreq, fertiliseFreq} = event.target
+      let newPlant = {
+          name: name.value,
+          description: description.value,
+          waterFreq: waterFreq.value,
+          fertiliseFreq: fertiliseFreq.value,
+    }
+    try {
+        await axios.post('http://localhost:5005/api/plants/create', newPlant )
+        updatePlants([newPlant, ...plants])
+
+    }
+    catch (err) {
+        console.log('create plant failed', err)
+    }
+}
 
   return (
       <div className="App">
@@ -97,8 +117,8 @@ function App(props) {
             <Route exact path={'/plants'} render={(routeProps) => {
               return <MyPlants user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
             }} />
-            <Route exact path={'/plants/create'} render={(routeProps) => {
-              return <AddPlant user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+            <Route path={'/plants/create'} render={(routeProps) => {
+              return <AddPlant onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
             }} />
             <Route exact path={'/plants/:plantId'} render={(routeProps) => {
               return <PlantDetails user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
