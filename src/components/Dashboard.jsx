@@ -1,15 +1,15 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 
-// Components
-import SideNav from './SideNav';
-import Footer from './Footer';
-
-function Dashboard() {
+function Dashboard(props) {
+    const {isLoggedIn} = props
+    if (isLoggedIn === false) {
+        return <Redirect to={'/login'} />
+    }
     return (
         <div>
-            <SideNav />
             Hello I'm the dashboard
-            <Footer />
+            <p> Login status: {isLoggedIn.toString()}</p>
         </div>
     );
 };

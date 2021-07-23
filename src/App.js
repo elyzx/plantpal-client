@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Switch, Route, withRouter } from "react-router-dom";
 import axios from 'axios';
 
 // Components
 import HomePage from './components/HomePage';
 import TopNav from './components/TopNav';
+import SideNav from './components/SideNav';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Profile from './components/Profile';
@@ -14,11 +15,13 @@ import AddPlant from './components/AddPlant';
 import PlantDetails from './components/PlantDetails';
 import EditPlant from './components/EditPlant';
 import Page404 from './components/Page404';
+import Footer from './components/Footer';
 
 function App(props) {
 
-  const [user, setUser] = useState(null);
-  
+  const [user, updateUser] = useState(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const handleSignUp = async (event) => {
       event.preventDefault();
       const {name, username, email, password} = event.target;
@@ -46,7 +49,8 @@ function App(props) {
       };
       try {
           let response = await axios.post('http://localhost:5005/api/login', myUser, {withCredentials: true});
-          setUser(response.data);
+          updateUser(response.data)
+          setIsLoggedIn(true)
           props.history.push('/dashboard');
       }
       catch (err) {
@@ -54,42 +58,58 @@ function App(props) {
       };
   };
 
+  const handleLogOut = async () => {
+    try {
+        await axios.post(`http://localhost:5005/api/logout`, {}, {withCredentials: true})
+        updateUser(null)
+        setIsLoggedIn(false)
+        props.history.push('/')
+    }
+    catch (err) {
+        console.log('Logout failed', err)
+    }
+  }
+
   return (
       <div className="App">
         {/* Navbar */}
-        <TopNav />
+        <TopNav onLogOut={handleLogOut} isLoggedIn={isLoggedIn} />
+        <SideNav isLoggedIn={isLoggedIn}/>
         {/* Pages */}
         <Switch>
             {/* Public Pages */}
-            <Route exact path={'/'} component={HomePage} />
+            <Route exact path={'/'} render={(routeProps) => {
+              return <HomePage user={user} isLoggedIn={isLoggedIn} {...routeProps} />
+            }} />
             <Route path={'/signup'} render={(routeProps) => {
-                return <Signup onSignUp={handleSignUp} {...routeProps}/>
+                return <Signup onSignUp={handleSignUp} isLoggedIn={isLoggedIn} {...routeProps}/>
             }} />
             <Route path={'/login'} render={(routeProps) => {
-                return <Login onLogIn={handleLogIn} {...routeProps}/>
+                return <Login onLogIn={handleLogIn} isLoggedIn={isLoggedIn} {...routeProps}/>
             }} />
             {/* Protected Pages */}
-            <Route path={'/profile'} render={() => {
-                return <Profile />
+            <Route exact path={'/profile'} render={(routeProps) => {
+                return <Profile user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
             }} />
-            <Route path={'/dashboard'} render={() => {
-                return <Dashboard />
+            <Route exact path={'/dashboard'} render={(routeProps) => {
+                return <Dashboard user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
             }} />
-            <Route exact path={'/plants'} render={() => {
-              return <MyPlants />
+            <Route exact path={'/plants'} render={(routeProps) => {
+              return <MyPlants user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
             }} />
-            <Route path={'/plants/create'} render={() => {
-              return <AddPlant />
+            <Route exact path={'/plants/create'} render={(routeProps) => {
+              return <AddPlant user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
             }} />
-            <Route path={'/plants/:plantId'} render={() => {
-              return <PlantDetails />
+            <Route exact path={'/plants/:plantId'} render={(routeProps) => {
+              return <PlantDetails user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
             }} />
-            <Route path={'/plants/:plantId/edit'} render={() => {
-              return <EditPlant />
+            <Route path={'/plants/:plantId/edit'} render={(routeProps) => {
+              return <EditPlant user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
             }} />
             {/* Page Not Found */}
-            <Route path={'*'} component={Page404} />
+            <Route component={Page404} />
         </Switch>
+        <Footer />
     </div>
   );
 }

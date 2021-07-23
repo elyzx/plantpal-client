@@ -1,12 +1,14 @@
 import React from 'react';
+import {Link} from  'react-router-dom';
 
- function SideNav() {
+ function SideNav(props) {
     return (
         <div>
             Hello I'm the side nav
-            <a href="/dashboard">Dashboard</a>
-            <a href="/plants">Plants</a>
-            <a href="/plants/create">Add Plant</a>
+            <Link to='/dashboard'>Dashboard</Link>
+            <Link to='/plants'>Plants</Link>
+            <Link to='/plants/create'>Add Plant</Link>
+            <Link to='/profile'>Profile</Link>
         </div>
     );
 };
