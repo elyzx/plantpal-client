@@ -1,10 +1,10 @@
 import React from 'react';
 
-function HomePage(props) {
+function LandingPage(props) {
     const {isLoggedIn} = props
     return (
         <div>
-            Hello I'm the Homepage
+            Hello I'm the Landing Page
             <br />
             I provide info about the website and why it's awesome
             <br />
@@ -13,4 +13,4 @@ function HomePage(props) {
     );
 };
 
-export default HomePage;
+export default LandingPage;
