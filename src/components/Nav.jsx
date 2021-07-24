@@ -78,7 +78,7 @@ function TopNav(props) {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    PlantPal
+                    <Link component={RouterLink} to='/' color='inherit'>PlantPal</Link>
                 </Typography>
                 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS}
                     anchor={'left'}
@@ -101,18 +101,20 @@ function TopNav(props) {
                                 <ListItemIcon><BarChartSharpIcon /> </ListItemIcon>
                                 <ListItemText>Dashboard</ListItemText>
                             </ListItem>
-                            <Divider />
+                            
                             <ListItem button component={RouterLink} to='/plants'>
                                 <ListItemIcon><LocalFloristSharpIcon /> </ListItemIcon>
                                 <ListItemText>Plants</ListItemText>
                             </ListItem>
+                            
                             <ListItem button component={RouterLink} to='/schedule'>
                                 <ListItemIcon><FormatListBulletedSharpIcon /> </ListItemIcon>
                                 <ListItemText>Reminders</ListItemText>
                             </ListItem>
+                            
                             <ListItem button component={RouterLink} to='/guides'>
                                 <ListItemIcon><LibraryBooksSharpIcon /> </ListItemIcon>
-                                <ListItemText>Reminders</ListItemText>
+                                <ListItemText>Guides</ListItemText>
                             </ListItem>
                             <Divider />
                             <ListItem button component={RouterLink} to='/profile'>
@@ -148,7 +150,7 @@ function TopNav(props) {
                         open={open}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem button component={RouterLink} to='/profile' onClick={handleClose}>Profile</MenuItem>
                         <MenuItem onClick={onLogoutAndClose}>Sign out</MenuItem>
                     </Menu>
                     </div>
