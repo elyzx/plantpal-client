@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -50,6 +50,12 @@ function TopNav(props) {
     const drawerIsOpen = Boolean(drawerOpen);
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
   
+    useEffect(() => {
+        return () => {
+            toggleDrawer(false)
+        }
+    }, [])
+
     const handleMenu = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -80,32 +86,39 @@ function TopNav(props) {
                     onClose={() => toggleDrawer(false)}
                     onOpen={() => toggleDrawer(true)}>
                     <div className={drawerClasses.list}>
-                        <List>
-                        {['Dashboard', 'Plants'].map((text, index) => (
-                            <ListItem button key={text}>
-                            <Link></Link>
-                            <ListItemIcon>{index % 2 === 0 ? <BarChartSharpIcon /> : <LocalFloristSharpIcon /> }</ListItemIcon>
+                    {/* <List>
+                        {menuItems.map(({ text, icon: Icon, onClick}, index) => (
+                            <ListItem button key={text} onClick={onClick}>
+                            <ListItemIcon>
+                                <Icon />
+                            </ListItemIcon>
                             <ListItemText primary={text} />
                             </ListItem>
                         ))}
-                        </List>
-                        <Divider />
+                    </List> */}
                         <List>
-                        {['Tasks', 'Guides'].map((text, index) => (
-                            <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <FormatListBulletedSharpIcon /> : <LibraryBooksSharpIcon /> }</ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItem button component={RouterLink} to='/dashboard'>
+                                <ListItemIcon><BarChartSharpIcon /> </ListItemIcon>
+                                <ListItemText>Dashboard</ListItemText>
                             </ListItem>
-                        ))}
-                        </List>
-                        <Divider />
-                        <List>
-                        {['Settings'].map((text, index) => (
-                            <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <SettingsSharpIcon /> : <SettingsSharpIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                            <Divider />
+                            <ListItem button component={RouterLink} to='/plants'>
+                                <ListItemIcon><LocalFloristSharpIcon /> </ListItemIcon>
+                                <ListItemText>Plants</ListItemText>
                             </ListItem>
-                        ))}
+                            <ListItem button component={RouterLink} to='/schedule'>
+                                <ListItemIcon><FormatListBulletedSharpIcon /> </ListItemIcon>
+                                <ListItemText>Reminders</ListItemText>
+                            </ListItem>
+                            <ListItem button component={RouterLink} to='/guides'>
+                                <ListItemIcon><LibraryBooksSharpIcon /> </ListItemIcon>
+                                <ListItemText>Reminders</ListItemText>
+                            </ListItem>
+                            <Divider />
+                            <ListItem button component={RouterLink} to='/profile'>
+                                <ListItemIcon><SettingsSharpIcon /> </ListItemIcon>
+                                <ListItemText>Settings</ListItemText>
+                            </ListItem>
                         </List>
                     </div>
                 </SwipeableDrawer>

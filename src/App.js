@@ -5,7 +5,7 @@ import axios from 'axios';
 import './App.css';
 
 // Components
-import TopNav from './components/TopNav';
+import TopNav from './components/Nav';
 import Footer from './components/Footer';
 
 // Pages
