@@ -23,6 +23,7 @@ import FormatListBulletedSharpIcon from '@material-ui/icons/FormatListBulletedSh
 import BarChartSharpIcon from '@material-ui/icons/BarChartSharp';
 import LibraryBooksSharpIcon from '@material-ui/icons/LibraryBooksSharp';
 import SettingsSharpIcon from '@material-ui/icons/SettingsSharp';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -97,6 +98,11 @@ function TopNav(props) {
                         ))}
                     </List> */}
                         <List>
+                            <ListItem button component={RouterLink} to='/'>
+                                <ListItemIcon><HomeIcon /> </ListItemIcon>
+                                <ListItemText>Home</ListItemText>
+                            </ListItem>
+                            <Divider />
                             <ListItem button component={RouterLink} to='/dashboard'>
                                 <ListItemIcon><BarChartSharpIcon /> </ListItemIcon>
                                 <ListItemText>Dashboard</ListItemText>
