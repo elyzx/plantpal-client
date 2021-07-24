@@ -135,6 +135,43 @@ function App(props) {
         };
     };
 
+    const handleDeletePlant = async (plantId) => {
+        try{
+            axios.delete(`http://localhost:5005/api/plants/${plantId}`)
+            let filteredPlants = plants.filter((plant) => {
+                return plant._id !== plantId
+            })
+            updatePlants(filteredPlants)
+            props.history.push('/plants');
+        }
+        catch(err){
+            console.log('delete plant failed', err)
+        }
+    }
+
+    const handleEditPlant = async (event, plant) => {
+        event.preventDefault()
+        try{
+            await axios.patch(`http://localhost:5005/api/plants/${plant._id}`, plant)
+            let updatePlant = plants.map((singleplant) => {
+                if (singleplant._id === plant._id){
+                    singleplant.name = plant.name
+                    singleplant.description = plant.description
+                    singleplant.waterFreq = plant.waterFreq
+                    singleplant.fertiliseFreq = plant.fertiliseFreq
+                    singleplant.isAlive = plant.isAlive
+                }
+                return singleplant
+            })
+            updatePlants(updatePlant)
+            props.history.push('/plants');
+            
+        }
+        catch(err){
+            console.log('edit plant fetch failed', err)
+        }
+    }
+
     return (
         <div className="App">
             {/* Navbar */}
@@ -166,10 +203,10 @@ function App(props) {
                     return <AddPlant onLogOut={handleLogOut} onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants/:plantId'} render={(routeProps) => {
-                    return <PlantDetails onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <PlantDetails onDelete={handleDeletePlant} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/:plantId/edit'} render={(routeProps) => {
-                    return <EditPlant onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <EditPlant onEdit={handleEditPlant} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Page Not Found */}
                 <Route component={Page404} />

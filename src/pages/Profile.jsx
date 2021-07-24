@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './auth/AuthPageLayout.css';
 import './PageLayout.css'
 import axios from 'axios';
