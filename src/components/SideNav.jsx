@@ -24,13 +24,13 @@ import { BiCog } from "react-icons/bi";
                     <div className="logotext">
                         <p>{menuCollapse ? 'Logo' : <img src={logoImg} className='logo' alt='PlantPal logo' width='120px'/>}</p>
                     </div>
-                    <div className="closemenu" onClick={menuIconClick}>
+                    {/* <div className="closemenu" onClick={menuIconClick}>
                         {menuCollapse ? (
                             <FiArrowRightCircle/>
                         ) : (
                             <FiArrowLeftCircle/>
                         )}
-                    </div>
+                    </div> */}
                     </SidebarHeader>
 
                     <SidebarContent>

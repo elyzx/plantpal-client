@@ -11,7 +11,7 @@
     box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
 }
 
-#sidenav .closemenu {
+/* #sidenav .closemenu {
     color: #000;
     position: absolute;
     right: 0;
@@ -23,7 +23,7 @@
     font-size: 22px;
     top: 55px;
     cursor: pointer;
-}
+} */
 
 #sidenav .pro-sidebar {
     width: 100%;

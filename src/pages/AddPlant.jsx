@@ -5,8 +5,8 @@ import SideNav from '../components/SideNav';
 import './PageLayout.css'
 
 function AddPlant(props) {
-    const {isLoggedIn, onAddPlant, onLogOut} = props
-    if (isLoggedIn === false) {
+    const {isLoggedIn, onAddPlant, onLogOut, user} = props
+    if (!user) {
         return <Redirect to={'/login'} />
     }
     return (

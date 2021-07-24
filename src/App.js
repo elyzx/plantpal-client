@@ -29,15 +29,17 @@ function App(props, state) {
 
     useEffect(() => {
         fetchUser()
-    }, []);
+    }, []); 
 
     const fetchUser = async () => {
         try {
             let response = await axios.get('http://localhost:5005/api/user', {withCredentials: true});
             setUser(response.data);
+            setIsLoggedIn(true);
         }
         catch (err) {
             console.log('User not logged in', err);
+            setIsLoggedIn(false);
         };
     };
   
@@ -69,6 +71,7 @@ function App(props, state) {
         try {
             let response = await axios.post('http://localhost:5005/api/login', myUser, {withCredentials: true});
             setUser(response.data);
+            console.log(response.data)
             setIsLoggedIn(true);
             props.history.push('/dashboard');
         }
