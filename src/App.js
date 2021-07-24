@@ -113,8 +113,10 @@ function App(props, state) {
             fertiliseFreq: fertiliseFreq.value,
         }
         try {
-            await axios.post('http://localhost:5005/api/plants/create', newPlant );
+            let response = await axios.post('http://localhost:5005/api/plants/create', newPlant );
+            newPlant = response.data
             updatePlants([newPlant, ...plants])
+            props.history.push('/plants');
         }
         catch (err) {
             console.log('create plant failed', err);

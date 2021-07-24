@@ -29,7 +29,7 @@ function AddPlant(props) {
                     <label htmlFor="InputPassword">Fertilizer Frequency</label>
                     <input name="fertiliseFreq" type="number" />
                 </div>
-                <button type="submit" className="btn btn-primary"><Link to={'/plants'}>Submit</Link></button>
+                <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
         </>
