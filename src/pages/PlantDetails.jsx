@@ -19,10 +19,7 @@ function PlantDetails(props) {
         }
     }, [])
 
-    const {isLoggedIn, onLogOut, user} = props
-    if (!user) {
-        return <Redirect to={'/login'} />
-    }
+    const {isLoggedIn, onLogOut} = props
 
     if (!plantDetail) {
         return 'page is Loading'

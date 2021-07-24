@@ -140,22 +140,22 @@ function App(props, state) {
                 }} />
                 {/* Protected Pages */}
                 <Route exact path={'/profile'} render={(routeProps) => {
-                    return <Profile user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Profile onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
-                    return <Dashboard user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Dashboard onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
-                    return <MyPlants plants={plants} user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <MyPlants plants={plants} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/create'} render={(routeProps) => {
-                    return <AddPlant onAddPlant={handleAddPlant} user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <AddPlant onAddPlant={handleAddPlant} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants/:plantId'} render={(routeProps) => {
-                    return <PlantDetails user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <PlantDetails onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/:plantId/edit'} render={(routeProps) => {
-                    return <EditPlant user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <EditPlant onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Page Not Found */}
                 <Route component={Page404} />

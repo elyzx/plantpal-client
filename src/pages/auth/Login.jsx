@@ -5,6 +5,7 @@ import './AuthPageLayout.css';
 function Login(props) {
     const {onLogIn, isLoggedIn} = props
     if (isLoggedIn) {
+        console.log("user is logged in; go back")
         return <Redirect to={'/dashboard'} />
     }
     return (

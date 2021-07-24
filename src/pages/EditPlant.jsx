@@ -4,10 +4,7 @@ import SideNav from '../components/SideNav';
 import './PageLayout.css'
 
 function EditPlant(props) {
-    const {isLoggedIn, onLogOut, user} = props
-    if (!user) {
-        return <Redirect to={'/login'} />
-    }
+    const {isLoggedIn, onLogOut} = props
     return (
         <>
             <SideNav onLogOut={onLogOut} />
