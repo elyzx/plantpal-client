@@ -21,7 +21,31 @@ function App(props) {
 
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [plants, updatePlants] = useState([]);
+    const [plants, updatePlants] = useState([])
+
+  // -----------------------------------------------------
+  //            ------- fetch plants --------------
+  // -----------------------------------------------------
+
+    useEffect(async () => {
+        try{
+        let response = await axios.get(`http://localhost:5005/api/plants`)
+        updatePlants(response.data)
+        }
+        catch(err){
+            console.log('plants fetch failed', err)
+        }
+    
+    }, [])
+
+    // the block of code below will run whenever your state `plants` is updated
+
+    useEffect(() => {
+        props.history.push('/')
+      }, [plants])
+  // -----------------------------------------------------
+  // -----------------------------------------------------
+ 
 
     useEffect(() => {
         fetchUser()
@@ -128,7 +152,7 @@ function App(props) {
                     return <Dashboard user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
-                    return <MyPlants user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <MyPlants plants={plants} user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/create'} render={(routeProps) => {
                     return <AddPlant onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
