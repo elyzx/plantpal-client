@@ -6,13 +6,13 @@ import './PageLayout.css';
 
 function PlantDetails(props) {
 
-    const [plantDetail, updatePlanDetail] = useState(null)
+    const [plantDetail, updatePlantDetail] = useState(null)
 
     useEffect(async() => {
         try{
            let plantId = props.match.params.plantId
            let response = await axios.get(`http://localhost:5005/api/plants/${plantId}`) 
-           updatePlanDetail(response.data)
+           updatePlantDetail(response.data)
         }
         catch(err){
             console.log('Plant detail fetch failed', err)
