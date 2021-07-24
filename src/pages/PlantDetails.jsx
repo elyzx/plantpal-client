@@ -5,24 +5,24 @@ import SideNav from '../components/SideNav';
 import './PageLayout.css';
 
 function PlantDetails(props) {
+    const {isLoggedIn, onLogOut} = props;
+    const [plantDetail, updatePlantDetail] = useState({});
 
-    const [plantDetail, updatePlantDetail] = useState(null)
+    useEffect(() => {
+        fetchPlantDetails();
+    }, []);
 
-    useEffect(async() => {
-        try{
-           let plantId = props.match.params.plantId
-           let response = await axios.get(`http://localhost:5005/api/plants/${plantId}`) 
-           updatePlantDetail(response.data)
+    const fetchPlantDetails = async () => {
+        try {
+            let plantId = props.match.params.plantId
+            let response = await axios.get(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true});
+            console.log(response.data)
+            updatePlantDetail(response.data);
         }
-        catch(err){
-            console.log('Plant detail fetch failed', err)
-        }
-    }, [])
-
-    const {isLoggedIn, onLogOut, user} = props
-    if (!user) {
-        return <Redirect to={'/login'} />
-    }
+        catch (err) {
+            console.log('Plant details fetch failed', err);
+        };
+    };
 
     if (!plantDetail) {
         return 'page is Loading'

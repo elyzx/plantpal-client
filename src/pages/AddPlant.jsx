@@ -5,10 +5,7 @@ import SideNav from '../components/SideNav';
 import './PageLayout.css'
 
 function AddPlant(props) {
-    const {isLoggedIn, onAddPlant, onLogOut, user} = props
-    if (!user) {
-        return <Redirect to={'/login'} />
-    }
+    const {isLoggedIn, onAddPlant, onLogOut} = props
     return (
         <>
             <SideNav onLogOut={onLogOut} />
@@ -32,7 +29,7 @@ function AddPlant(props) {
                     <label htmlFor="InputPassword">Fertilizer Frequency</label>
                     <input name="fertiliseFreq" type="number" />
                 </div>
-                <button type="submit" className="btn btn-primary"><Link to={'/plants'}>Submit</Link></button>
+                <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
         </>

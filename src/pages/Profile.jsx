@@ -5,10 +5,7 @@ import './PageLayout.css'
 import SideNav from '../components/SideNav';
 
 function Profile(props) {
-    const {isLoggedIn, onLogOut, user} = props
-    if (!user) {
-        return <Redirect to={'/login'} />
-    }
+    const {isLoggedIn, onLogOut} = props
     return (
         <>
             <SideNav onLogOut={onLogOut}/>
