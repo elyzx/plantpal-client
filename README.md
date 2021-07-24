@@ -77,8 +77,7 @@ With PlantPal, caring for your houseplants has never been easier. Keep track of 
 - Register
 - LogIn
 - Profile
-- TopNav
-- SideNav
+- Nav
 - Dashboard
 - PlantsList
 - PlantsDetail

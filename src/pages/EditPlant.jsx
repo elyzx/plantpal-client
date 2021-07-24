@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import SideNav from '../components/SideNav';
 import './PageLayout.css'
 
 function EditPlant(props) {
