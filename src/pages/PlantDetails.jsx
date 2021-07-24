@@ -16,7 +16,6 @@ function PlantDetails(props) {
         try {
             let plantId = props.match.params.plantId
             let response = await axios.get(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true});
-            console.log(response.data)
             updatePlantDetail(response.data);
         }
         catch (err) {

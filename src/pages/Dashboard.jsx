@@ -1,6 +1,6 @@
 import React from 'react';
 import SideNav from '../components/SideNav';
-import {Redirect} from 'react-router-dom';
+// import {Redirect} from 'react-router-dom';
 import './PageLayout.css'
 
 function Dashboard(props) {

@@ -141,7 +141,7 @@ function App(props, state) {
                     return <Login onLogIn={handleLogIn} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Protected Pages */}
-                <Route exact path={'/profile'} render={(routeProps) => {
+                <Route path={'/profile'} render={(routeProps) => {
                     return <Profile onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
