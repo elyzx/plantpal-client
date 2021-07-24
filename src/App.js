@@ -21,7 +21,7 @@ import EditPlant from './pages/EditPlant';
 import Page404 from './pages/Page404';
 
 // It begins!
-function App(props, state) {
+function App(props) {
 
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -103,6 +103,18 @@ function App(props, state) {
         };
     };
 
+    const handleDeleteUser = async (user) => {
+        try {
+            await axios.delete('http://localhost:5005/api/profile', {withCredentials: true});
+            setUser(null);
+            setIsLoggedIn(false);
+            props.history.push('/');
+        }
+        catch (err) {
+            console.log('Deleting account failed', err);
+        };
+    };
+
     const handleAddPlant = async (event) => {
         event.preventDefault();
         const { name, description, waterFreq, fertiliseFreq} = event.target;
@@ -142,16 +154,16 @@ function App(props, state) {
                 }} />
                 {/* Protected Pages */}
                 <Route path={'/profile'} render={(routeProps) => {
-                    return <Profile onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Profile onLogOut={handleLogOut} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
                     return <Dashboard onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
-                    return <MyPlants plants={plants} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <MyPlants onLogOut={handleLogOut} plants={plants} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/create'} render={(routeProps) => {
-                    return <AddPlant onAddPlant={handleAddPlant} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <AddPlant onLogOut={handleLogOut} onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants/:plantId'} render={(routeProps) => {
                     return <PlantDetails onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>

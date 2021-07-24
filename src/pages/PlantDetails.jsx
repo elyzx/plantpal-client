@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Redirect} from 'react-router-dom';
 import axios from 'axios';
-import SideNav from '../components/SideNav';
 import './PageLayout.css';
 
 function PlantDetails(props) {
@@ -28,8 +26,7 @@ function PlantDetails(props) {
     } 
 
     return (
-        <div>
-            <SideNav onLogOut={onLogOut} />
+        <>
             <div className="body-container">
                 Hello I'm the plant details
                 <p> Login status: {isLoggedIn.toString()}</p>
@@ -39,7 +36,7 @@ function PlantDetails(props) {
                 <h2>Fertilise Frequency: {plantDetail.fertiliseFreq}</h2>
                 <h2>Status: {plantDetail.isAlive}</h2>
             </div>          
-        </div>
+        </>
     );
 };
 

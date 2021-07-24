@@ -1,4 +1,4 @@
-#root {
+/* #root {
   display: flex;
 }
 
@@ -72,10 +72,10 @@ input {
 
 #payment-request-button {
   margin-bottom: 32px;
-}
+} */
 
 /* Buttons and links */
-button {
+/* button {
   background: #05297A;
   text-decoration: none;
   font-family: Arial, sans-serif;
@@ -169,4 +169,4 @@ spinner/processing state, errors
   form {
     width: 80vw;
   }
-}
+} */

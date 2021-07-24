@@ -1,68 +1,81 @@
-import React from 'react';
-import {Link} from  'react-router-dom';
-import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
-import "react-pro-sidebar/dist/css/styles.css";
-import './SideNav.css'
-import logoImg from '../images/logo.png'
-import { FaList, FaRegHeart } from "react-icons/fa";
-import { FiHome, FiLogOut } from "react-icons/fi";
-import { RiPencilLine } from "react-icons/ri";
-import { BiCog } from "react-icons/bi";
+// import React from 'react';
+// // import {Link} from  'react-router-dom';
+// // import "react-pro-sidebar/dist/css/styles.css";
+// import clsx from 'clsx';
+// import { makeStyles } from '@material-ui/core/styles';
+// import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+// import Button from '@material-ui/core/Button';
+// import List from '@material-ui/core/List';
+// import Divider from '@material-ui/core/Divider';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemText from '@material-ui/core/ListItemText';
+// import InboxIcon from '@material-ui/icons/MoveToInbox';
+// import MailIcon from '@material-ui/icons/Mail';
 
-    const SideNav = (props) => {
-        const {onLogOut} = props
+// const useStyles = makeStyles({
+//     list: {
+//       width: 250,
+//     },
+//     fullList: {
+//       width: 'auto',
+//     },
+//   });
 
-        return (
-            <>
-                <div id="sidenav">
-                    <ProSidebar>
-                    <SidebarContent>
-                        <SidebarHeader>
-                        <div>
-                            <p><img src={logoImg} className='logo' alt='PlantPal logo' width='120px'/></p>
-                        </div>
-                        </SidebarHeader>
-                        <Menu iconShape="square">
-                            <MenuItem active={true} icon={<FiHome />}>
-                                <Link to='/dashboard'>
-                                    Dashboard
-                                </Link>
-                            </MenuItem>
+//     const SideNav = () => {
+//         const classes = useStyles();
+//         const [state, setState] = React.useState({
+//           top: false,
+//           left: false,
+//           bottom: false,
+//           right: false,
+//         });
+      
+//         const toggleDrawer = (anchor, open) => (event) => {
+//           if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+//             return;
+//           }
+      
+//           setState({ ...state, [anchor]: open });
+//         };
+      
+//         const list = (anchor) => (
+//           <div
+//             className={clsx(classes.list, {
+//               [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+//             })}
+//             role="presentation"
+//             onClick={toggleDrawer(anchor, false)}
+//             onKeyDown={toggleDrawer(anchor, false)}
+//           >
+//             <List>
+//               {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+//                 <ListItem button key={text}>
+//                   <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+//                   <ListItemText primary={text} />
+//                 </ListItem>
+//               ))}
+//             </List>
+//             <Divider />
+//             <List>
+//               {['All mail', 'Trash', 'Spam'].map((text, index) => (
+//                 <ListItem button key={text}>
+//                   <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+//                   <ListItemText primary={text} />
+//                 </ListItem>
+//               ))}
+//             </List>
+//           </div>
+//         );
+//         return (
+//             <>
+//                 <React.Fragment key={'left'}>
+//                 <Button onClick={toggleDrawer('left', true)}>{'left'}</Button>
 
-                            <MenuItem icon={<FaRegHeart />}>
-                                <Link to='/plants'>
-                                    Plants
-                                </Link>
-                            </MenuItem>
+//                 </React.Fragment>
+//                 )}
+//             </>
+//         )
+//     };
 
-                            <MenuItem icon={<FaList />}>
-                                Tasks
-                            </MenuItem>
-                            
-                            <MenuItem icon={<RiPencilLine />}>
-                                Guides
-                            </MenuItem>
-                        
-                            <MenuItem icon={<BiCog />}>
-                                <Link to='/profile'>
-                                    Settings
-                                </Link>
-                            </MenuItem>
-
-                        </Menu>
-                    </SidebarContent>
-
-                    <SidebarFooter>
-                        <Menu iconShape="square">
-                            <MenuItem icon={<FiLogOut />}>
-                                <button onClick={onLogOut} id='logoutButton'>Logout</button>
-                            </MenuItem>
-                        </Menu>
-                    </SidebarFooter>
-                    </ProSidebar>
-                </div>
-            </>
-        )
-    };
-
-export default SideNav;
+// export default SideNav;
