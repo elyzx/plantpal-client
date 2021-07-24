@@ -25,7 +25,7 @@ function MyPlants(props) {
                         </p>
                      </div>
                     
-                            
+             
 
                         
                     )
