@@ -1,5 +1,6 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
+import './AuthPageLayout.css';
 
 function Signup(props) {
     const {onSignUp, isLoggedIn} = props
@@ -7,9 +8,11 @@ function Signup(props) {
         return <Redirect to={'/dashboard'} />
     }
     return (
-        <div>
-            Hello I'm the signup form
-            <p> Login status: {isLoggedIn.toString()}</p>
+        <div className='auth-page'>
+            <div> 
+                <h1>Create an account</h1>
+                <p> Login status: {isLoggedIn.toString()}</p>
+            </div>
             <form onSubmit={onSignUp}>
                 <div className="form-group">
                     <label htmlFor="InputName">Name</label>
@@ -22,16 +25,16 @@ function Signup(props) {
                 <div className="form-group">
                     <label htmlFor="InputEmail">Email address</label>
                     <input type="email" className="form-control" id="InputEmail" name="email" />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="InputPassword">Password</label>
                     <input name="password" type="password" className="form-control" id="password" />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+             </form>
         </div>
     );
 };
 
 export default Signup;
+

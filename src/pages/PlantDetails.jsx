@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {Redirect} from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import SideNav from '../components/SideNav';
+import './PageLayout.css';
 
 function PlantDetails(props) {
 
@@ -17,8 +19,8 @@ function PlantDetails(props) {
         }
     }, [])
 
-    const {isLoggedIn} = props
-    if (isLoggedIn === false) {
+    const {isLoggedIn, onLogOut, user} = props
+    if (!user) {
         return <Redirect to={'/login'} />
     }
 
@@ -28,15 +30,16 @@ function PlantDetails(props) {
 
     return (
         <div>
-            Hello I'm the plant details
-            <p> Login status: {isLoggedIn.toString()}</p>
-
-            <h1>{plantDetail.name}</h1>
-            <h2>{plantDetail.description}</h2>
-            <h2>Water Frequency: {plantDetail.waterFreq}</h2>
-            <h2>Fertilise Frequency: {plantDetail.fertiliseFreq}</h2>
-            <h2>Status: {plantDetail.isAlive}</h2>
-            
+            <SideNav onLogOut={onLogOut} />
+            <div className="body-container">
+                Hello I'm the plant details
+                <p> Login status: {isLoggedIn.toString()}</p>
+                <h1>{plantDetail.name}</h1>
+                <h2>{plantDetail.description}</h2>
+                <h2>Water Frequency: {plantDetail.waterFreq}</h2>
+                <h2>Fertilise Frequency: {plantDetail.fertiliseFreq}</h2>
+                <h2>Status: {plantDetail.isAlive}</h2>
+            </div>          
         </div>
     );
 };

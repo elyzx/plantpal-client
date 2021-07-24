@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import './Footer.css';
 
 function Footer() {
     return (
-        <div>
-            Hello I'm the footer
+        <div id='footer'>
+            Built by Ironhackers Ellen + Humberto
         </div>
     );
 };

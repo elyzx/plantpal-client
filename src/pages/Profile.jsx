@@ -1,16 +1,22 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
+import './auth/AuthPageLayout.css';
+import './PageLayout.css'
+import SideNav from '../components/SideNav';
 
 function Profile(props) {
-    const {isLoggedIn} = props
-    if (isLoggedIn === false) {
+    const {isLoggedIn, onLogOut, user} = props
+    if (!user) {
         return <Redirect to={'/login'} />
     }
     return (
-        <div>
-            Hello I'm your profile page. view/update your details or delete your account
-            <p> Login status: {isLoggedIn.toString()}</p>
-        </div>
+        <>
+            <SideNav onLogOut={onLogOut}/>
+            <div className='body-container'>
+                <h1>Profile Details</h1>
+                <p> Login status: {isLoggedIn.toString()}</p>
+            </div>
+        </>
     );
 };
 

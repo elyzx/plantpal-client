@@ -1,20 +1,21 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-
-// Components
 import SideNav from '../components/SideNav';
+import './PageLayout.css'
 
 function EditPlant(props) {
-    const {isLoggedIn} = props
-    if (isLoggedIn === false) {
+    const {isLoggedIn, onLogOut, user} = props
+    if (!user) {
         return <Redirect to={'/login'} />
     }
     return (
-        <div>
-            <SideNav />
-            Hello I'm the edit plant form
-            <p> Login status: {isLoggedIn.toString()}</p>
-        </div>
+        <>
+            <SideNav onLogOut={onLogOut} />
+            <div className='body-container'>
+                <h1>Edit Plant</h1>
+                <p> Login status: {isLoggedIn.toString()}</p>
+            </div>
+        </>
     );
 };
 

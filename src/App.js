@@ -1,13 +1,17 @@
+// Setup
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, withRouter } from "react-router-dom";
 import axios from 'axios';
+import './App.css';
 
 // Components
-import LandingPage from './pages/LandingPage';
 import TopNav from './components/TopNav';
-import SideNav from './components/SideNav';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+import Footer from './components/Footer';
+
+// Pages
+import LandingPage from './pages/LandingPage';
+import Signup from './pages/auth/Signup';
+import Login from './pages/auth/Login';
 import Profile from './pages/Profile';
 import Dashboard from './pages/Dashboard';
 import MyPlants from './pages/MyPlants';
@@ -15,49 +19,62 @@ import AddPlant from './pages/AddPlant';
 import PlantDetails from './pages/PlantDetails';
 import EditPlant from './pages/EditPlant';
 import Page404 from './pages/Page404';
-import Footer from './components/Footer';
 
-function App(props) {
+// It begins!
+function App(props, state) {
 
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [plants, updatePlants] = useState([])
+    const [plants, updatePlants] = useState([]);
 
-  // -----------------------------------------------------
-  //            ------- fetch plants --------------
-  // -----------------------------------------------------
+//   // -----------------------------------------------------
+//   //            ------- fetch plants --------------
+//   // -----------------------------------------------------
 
-    useEffect(async () => {
-        try{
-        let response = await axios.get(`http://localhost:5005/api/plants`)
-        updatePlants(response.data)
-        }
-        catch(err){
-            console.log('plants fetch failed', err)
-        }
+//     useEffect(async () => {
+//         try{
+//         let response = await axios.get(`http://localhost:5005/api/plants`)
+//         updatePlants(response.data)
+//         }
+//         catch(err){
+//             console.log('plants fetch failed', err)
+//         }
     
-    }, [])
+//     }, [])
 
-    // the block of code below will run whenever your state `plants` is updated
+//     // the block of code below will run whenever your state `plants` is updated
 
-    useEffect(() => {
-        props.history.push('/')
-      }, [plants])
-  // -----------------------------------------------------
-  // -----------------------------------------------------
+//     useEffect(() => {
+//         props.history.push('/')
+//       }, [plants])
+//   // -----------------------------------------------------
+//   // -----------------------------------------------------
  
 
     useEffect(() => {
-        fetchUser()
-    }, []);
+        fetchUser();
+        fetchPlants();
+    }, []); 
 
     const fetchUser = async () => {
         try {
             let response = await axios.get('http://localhost:5005/api/user', {withCredentials: true});
             setUser(response.data);
+            setIsLoggedIn(true);
         }
         catch (err) {
             console.log('User not logged in', err);
+            setIsLoggedIn(false);
+        };
+    };
+
+    const fetchPlants = async () => {
+        try {
+            let response = await axios.get(`http://localhost:5005/api/plants`);
+            updatePlants(response.data);
+        }
+        catch (err) {
+            console.log('plants fetch failed', err)
         };
     };
   
@@ -89,6 +106,7 @@ function App(props) {
         try {
             let response = await axios.post('http://localhost:5005/api/login', myUser, {withCredentials: true});
             setUser(response.data);
+            console.log(response.data)
             setIsLoggedIn(true);
             props.history.push('/dashboard');
         }
@@ -131,7 +149,7 @@ function App(props) {
         <div className="App">
             {/* Navbar */}
             <TopNav onLogOut={handleLogOut} isLoggedIn={isLoggedIn} />
-            <SideNav isLoggedIn={isLoggedIn}/>
+            <div className='container'>
             {/* Pages */}
             <Switch>
                 {/* Public Pages */}
@@ -146,29 +164,30 @@ function App(props) {
                 }} />
                 {/* Protected Pages */}
                 <Route exact path={'/profile'} render={(routeProps) => {
-                    return <Profile user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Profile user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
-                    return <Dashboard user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Dashboard user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
-                    return <MyPlants plants={plants} user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <MyPlants plants={plants} user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/create'} render={(routeProps) => {
-                    return <AddPlant onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <AddPlant onAddPlant={handleAddPlant} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants/:plantId'} render={(routeProps) => {
-                    return <PlantDetails user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <PlantDetails user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/:plantId/edit'} render={(routeProps) => {
-                    return <EditPlant user={user} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <EditPlant user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Page Not Found */}
                 <Route component={Page404} />
             </Switch>
+            </div>
             <Footer />
         </div>
     );
-}
+};
 
 export default withRouter(App);
