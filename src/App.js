@@ -18,6 +18,7 @@ import MyPlants from './pages/MyPlants';
 import AddPlant from './pages/AddPlant';
 import PlantDetails from './pages/PlantDetails';
 import EditPlant from './pages/EditPlant';
+import Reminders from './pages/Reminders';
 import Page404 from './pages/Page404';
 
 // It begins!
@@ -26,10 +27,12 @@ function App(props) {
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [plants, updatePlants] = useState([]);
+    const [reminders, setReminders] = useState([]);
 
     useEffect(() => {
         fetchUser();
         fetchPlants();
+        fetchReminders();
     }, []); 
 
     const fetchUser = async () => {
@@ -46,13 +49,24 @@ function App(props) {
 
     const fetchPlants = async () => {
         try {
-            let response = await axios.get(`http://localhost:5005/api/plants`);
+            let response = await axios.get(`http://localhost:5005/api/plants`, {withCredentials: true});
             updatePlants(response.data);
         }
         catch (err) {
             console.log('plants fetch failed', err)
         };
     };
+
+    const fetchReminders = async () => {
+        try {
+            let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
+            console.log('in the fetchreminders function', response.data)
+            setReminders(response.data)
+        }
+        catch (err) {
+            console.log('reminders fetch failed', err)
+        }
+    }
   
     const handleSignUp = async (event) => {
         event.preventDefault();
@@ -125,7 +139,7 @@ function App(props) {
             fertiliseFreq: fertiliseFreq.value,
         }
         try {
-            let response = await axios.post('http://localhost:5005/api/plants/create', newPlant );
+            let response = await axios.post('http://localhost:5005/api/plants/create', newPlant , {withCredentials: true});
             newPlant = response.data
             updatePlants([newPlant, ...plants])
             props.history.push('/plants');
@@ -137,7 +151,7 @@ function App(props) {
 
     const handleDeletePlant = async (plantId) => {
         try{
-            axios.delete(`http://localhost:5005/api/plants/${plantId}`)
+            axios.delete(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true})
             let filteredPlants = plants.filter((plant) => {
                 return plant._id !== plantId
             })
@@ -152,7 +166,7 @@ function App(props) {
     const handleEditPlant = async (event, plant) => {
         event.preventDefault()
         try{
-            await axios.patch(`http://localhost:5005/api/plants/${plant._id}`, plant)
+            await axios.patch(`http://localhost:5005/api/plants/${plant._id}`, plant, {withCredentials: true})
             let updatePlant = plants.map((singleplant) => {
                 if (singleplant._id === plant._id){
                     singleplant.name = plant.name
@@ -191,22 +205,25 @@ function App(props) {
                 }} />
                 {/* Protected Pages */}
                 <Route path={'/profile'} render={(routeProps) => {
-                    return <Profile onLogOut={handleLogOut} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Profile onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
-                    return <Dashboard onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Dashboard isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
-                    return <MyPlants onLogOut={handleLogOut} plants={plants} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <MyPlants plants={plants} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/create'} render={(routeProps) => {
-                    return <AddPlant onLogOut={handleLogOut} onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <AddPlant onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants/:plantId'} render={(routeProps) => {
-                    return <PlantDetails onDelete={handleDeletePlant} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <PlantDetails onDelete={handleDeletePlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/:plantId/edit'} render={(routeProps) => {
-                    return <EditPlant onEdit={handleEditPlant} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <EditPlant onEdit={handleEditPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
+                }} />
+                <Route exact path={'/reminders'} render={(routeProps) => {
+                    return <Reminders reminders={reminders }isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Page Not Found */}
                 <Route component={Page404} />

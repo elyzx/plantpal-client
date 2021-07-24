@@ -5,7 +5,7 @@ import './PageLayout.css';
 
 
 function PlantDetails(props) {
-    const {isLoggedIn, onLogOut} = props;
+    const {isLoggedIn} = props;
     const [plantDetail, updatePlantDetail] = useState({});
 
     useEffect(() => {
@@ -44,6 +44,8 @@ function PlantDetails(props) {
                 <p> Login status: {isLoggedIn.toString()}</p>
                 <h1>{plantDetail.name}</h1>
                 <h2>{plantDetail.description}</h2>
+                <h2>Last Watering</h2>
+                <h2>Last Fertilise</h2>
                 <h2>Water Frequency: {plantDetail.waterFreq}</h2>
                 <h2>Fertilise Frequency: {plantDetail.fertiliseFreq}</h2>
                 {

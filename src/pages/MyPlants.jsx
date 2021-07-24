@@ -3,12 +3,12 @@ import {Link} from 'react-router-dom';
 import './PageLayout.css';
 
 function MyPlants(props) {
-    const {isLoggedIn, onLogOut, plants} = props
+    const {isLoggedIn, plants} = props
     console.log(plants)
     return (
         <>
             <div className="body-container">
-                Hello I'm all your plants
+                My Plants
                 <p> Login status: {isLoggedIn.toString()}</p>
                 <Link to='/plants/create'>Add Plant</Link>
                 {

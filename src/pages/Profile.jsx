@@ -4,7 +4,7 @@ import './PageLayout.css'
 import axios from 'axios';
 
 function Profile(props) {
-    const {isLoggedIn, onDeleteUser, onLogOut} = props
+    const {isLoggedIn, onDeleteUser} = props
     const [profileDetails, setProfileDetails] = useState({});
 
     useEffect(() => {

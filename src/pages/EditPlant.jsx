@@ -17,7 +17,7 @@ function EditPlant(props) {
         }
     }, [])
 
-    const {isLoggedIn, onLogOut} = props
+    const {isLoggedIn} = props
 
     const handleNameChange = (event) => {
         let newName = event.target.value

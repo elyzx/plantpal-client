@@ -1,8 +1,9 @@
 import React from 'react';
 import './PageLayout.css';
 
+
 function AddPlant(props) {
-    const {isLoggedIn, onLogOut, onAddPlant} = props
+    const {isLoggedIn, onAddPlant} = props
     return (
         <>
             <div className='body-container'>

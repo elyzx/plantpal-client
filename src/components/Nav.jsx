@@ -113,7 +113,7 @@ function TopNav(props) {
                                 <ListItemText>Plants</ListItemText>
                             </ListItem>
                             
-                            <ListItem button component={RouterLink} to='/schedule'>
+                            <ListItem button component={RouterLink} to='/reminders'>
                                 <ListItemIcon><FormatListBulletedSharpIcon /> </ListItemIcon>
                                 <ListItemText>Reminders</ListItemText>
                             </ListItem>

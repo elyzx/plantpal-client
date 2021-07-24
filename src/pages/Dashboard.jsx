@@ -1,8 +1,9 @@
 import React from 'react';
 import './PageLayout.css';
 
+
 function Dashboard(props) {
-    const {isLoggedIn, onLogOut} = props
+    const {isLoggedIn} = props
     return (
         <>
             <div className='body-container'>
