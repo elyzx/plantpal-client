@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 import './PageLayout.css';
 
 function Reminders(props) {
     const {isLoggedIn, reminders} = props
     console.log('reminders props', reminders)
+
+
     return (
         <div className='body-container'>
             My Reminders
