@@ -27,6 +27,7 @@ function App(props) {
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [plants, updatePlants] = useState([]);
+    const [FilteredPlants, updateFilteredPlants] = useState([]);
     const [reminders, setReminders] = useState([]);
 
     useEffect(() => {
@@ -34,6 +35,7 @@ function App(props) {
         if (isLoggedIn) {
             fetchPlants();
             fetchReminders();
+            fetchFilterPlants();
         }
     }, [isLoggedIn]); 
 
@@ -53,6 +55,20 @@ function App(props) {
         try {
             let response = await axios.get(`http://localhost:5005/api/plants`, {withCredentials: true});
             updatePlants(response.data);
+        }
+        catch (err) {
+            console.log('plants fetch failed', err)
+        };
+    };
+
+//----------------------------------------------------------
+//------------------------   Fetch filter plants -----------
+//----------------------------------------------------------
+
+    const fetchFilterPlants = async () => {
+        try {
+            let response = await axios.get(`http://localhost:5005/api/plants`, {withCredentials: true});
+            updateFilteredPlants(response.data);
         }
         catch (err) {
             console.log('plants fetch failed', err)
@@ -205,28 +221,22 @@ function App(props) {
             console.log('handling the reminder failed', err);
         };
     }
+//----------------------------------------------------------
+//------------------------   SEARCH ------------------------
+//----------------------------------------------------------
 
-    // const handleEditUser = async (event, user) => {
-    //     event.preventDefault()
-    //     try{
-    //         await axios.patch(`http://localhost:5005/api/profile`, user)
-    //         let updateUser = user.map((singleUser) => {
-    //             if (singleUser._id === user._id){
-    //             singleUser.name = user.name
-    //             singleUser.username = user.username
-    //             singleUser.email = user.email
-    //             singleUser.password = user.password
-    //             }
+    const handleSearch = (event) => {
+        let searchPlant = event.target.value
+        
+        let filteredPlants = plants.filter((plant) => {
+            return(
+                plant.name.toLowerCase().includes(searchPlant.toLowerCase()) 
+            ) 
+        })
 
-    //             return singleUser
-    //         })
-    //         setUser(updateUser)
-    //         props.history.push('/');
-    //     }
-    //     catch(err){
-    //         console.log('edit user fetch failed', err)
-    //     }
-    // }
+        updateFilteredPlants(filteredPlants)
+    }
+
 
     return (
         <div className="App">
@@ -253,7 +263,7 @@ function App(props) {
                     return <Dashboard isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
-                    return <MyPlants plants={plants} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <MyPlants onSearch={handleSearch} plants={FilteredPlants} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/create'} render={(routeProps) => {
                     return <AddPlant onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>

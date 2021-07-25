@@ -28,3 +28,8 @@
     flex-wrap: wrap;
     gap: 25px;
 }
+
+.isAlive-margin {
+    margin-top: -50px;
+    padding: 0px;
+}

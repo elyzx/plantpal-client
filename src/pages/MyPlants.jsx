@@ -14,7 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import './PageLayout.css';
 
 function MyPlants(props) {
-    const {isLoggedIn, plants} = props
+
+    const {isLoggedIn, plants, onSearch} = props
     console.log(plants)
 
     const useStyles = makeStyles({
@@ -29,19 +30,32 @@ function MyPlants(props) {
 
       const classes = useStyles();
 
+      const live = (v) => {
+        if (v.isAlive === true){
+           return <h2>Alive</h2>
+         }
+         else{
+            return <h2>Not Alive</h2>
+         }
+      }
 
     return (
         <>
-            <div className="body-container">
-
+           
                 <div>
                 Hello I'm all your plants
                 <p> Login status: {isLoggedIn.toString()}</p>
                 <Link to='/plants/create'>Add Plant</Link>
                 </div>
 
+                <div>
+                    <input onChange={onSearch} type="text" placeholder="Search.."/>
+                </div>
 
-                
+            <div className="body-container">
+
+       
+    
 
                 {
                     plants.map((plant, i) => {
@@ -49,52 +63,38 @@ function MyPlants(props) {
 
                             <div key={i} className="plants-direction">
 
-                            <Card className={classes.root}>
-                                <CardActionArea>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={plant.photo}
-                                        title={plant.name}
-                                        />
-                                        
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                {plant.name}
-                                            </Typography>
-                                        </CardContent>
-                                </CardActionArea>
-
-                                <CardActions>
-                                    <Link to={`/plants/${plant._id}`}>
-                                        <Button size="small" color="primary">
-                                            Details
-                                        </Button>
-                                    </Link>
-                                </CardActions>
-                            </Card>
-
-                   
-
-{/* 
-                                            <div key={i}>
-                                                <img src={plant.photo} alt='a plant' width="80"/>
-                                                <p>
-                                                <Link to={`/plants/${plant._id}`}>{plant.name}</Link>
-                                                </p>
-                                            </div> */}
-
-
-
-
-
-
-                     
+                                <Card className={classes.root}>
+                                    <CardActionArea>
+                                        <CardMedia
+                                            className={classes.media}
+                                            image={plant.photo}
+                                            title={plant.name}
+                                            />
+                                            <CardContent>
+                                                <Typography gutterBottom variant="h5" component="h2">
+                                                    {plant.name}
+                                                </Typography>
+                                            </CardContent>
+                                            <CardContent className='isAlive-margin'>
+                                            { 
+                                                live(plant) 
+                                                
+                                            }
+                                            </CardContent>
+                                    </CardActionArea>
+                                    <CardActions>
+                                        <Link to={`/plants/${plant._id}`}>
+                                            <Button size="small" color="primary">
+                                                Details
+                                            </Button>
+                                        </Link>
+                                    </CardActions>
+                                </Card>
+  
                             </div>
                         )
                     })
                 }
-                
-
             </div>
         </>
     );

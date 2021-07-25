@@ -12,7 +12,7 @@ function AddPlant(props) {
                 <form onSubmit={onAddPlant} action="/plants/create" encType="multipart/form-data">
 
                     <div className="form-group">
-                        <input type="file" name="photo" accept="image/png, image/jpg" />
+                        <input type="file" name="photo" accept="image/png, image/jpg" required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputName">Name</label>
