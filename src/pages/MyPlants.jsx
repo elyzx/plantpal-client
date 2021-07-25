@@ -1,29 +1,100 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+
 import './PageLayout.css';
 
 function MyPlants(props) {
     const {isLoggedIn, plants} = props
     console.log(plants)
+
+    const useStyles = makeStyles({
+        root: {
+          maxWidth: 345,
+        },
+        media: {
+          height: 140,
+          width: 200,
+        },
+      });
+
+      const classes = useStyles();
+
+
     return (
         <>
             <div className="body-container">
-                My Plants
+
+                <div>
+                Hello I'm all your plants
                 <p> Login status: {isLoggedIn.toString()}</p>
                 <Link to='/plants/create'>Add Plant</Link>
+                </div>
+
+
+                
+
                 {
-                    
                     plants.map((plant, i) => {
                         return(
-                        <div key={i}>
-                            <img src={plant.photo} alt='a plant' width="80"/>
-                            <p>
-                            <Link to={`/plants/${plant._id}`}>{plant.name}</Link>
-                            </p>
-                        </div>
+
+                            <div key={i} className="plants-direction">
+
+                            <Card className={classes.root}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image={plant.photo}
+                                        title={plant.name}
+                                        />
+                                        
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                {plant.name}
+                                            </Typography>
+                                        </CardContent>
+                                </CardActionArea>
+
+                                <CardActions>
+                                    <Link to={`/plants/${plant._id}`}>
+                                        <Button size="small" color="primary">
+                                            Details
+                                        </Button>
+                                    </Link>
+                                </CardActions>
+                            </Card>
+
+                   
+
+{/* 
+                                            <div key={i}>
+                                                <img src={plant.photo} alt='a plant' width="80"/>
+                                                <p>
+                                                <Link to={`/plants/${plant._id}`}>{plant.name}</Link>
+                                                </p>
+                                            </div> */}
+
+
+
+
+
+
+                     
+                            </div>
                         )
                     })
                 }
+                
+
             </div>
         </>
     );

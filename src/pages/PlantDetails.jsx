@@ -39,7 +39,7 @@ function PlantDetails(props) {
 
     return (
         <>
-            <div className="body-container">
+            <div>
                 Hello I'm the plant details
                 <p> Login status: {isLoggedIn.toString()}</p>
                 <h1>{plantDetail.name}</h1>
