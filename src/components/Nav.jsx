@@ -87,16 +87,9 @@ function TopNav(props) {
                     onClose={() => toggleDrawer(false)}
                     onOpen={() => toggleDrawer(true)}>
                     <div className={drawerClasses.list}>
-                    {/* <List>
-                        {menuItems.map(({ text, icon: Icon, onClick}, index) => (
-                            <ListItem button key={text} onClick={onClick}>
-                            <ListItemIcon>
-                                <Icon />
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
-                    </List> */}
+                        <List>
+                            
+                        </List>
                         <List>
                             <ListItem button component={RouterLink} to='/'>
                                 <ListItemIcon><HomeIcon /> </ListItemIcon>
@@ -118,6 +111,7 @@ function TopNav(props) {
                         <List>
                             <Divider />
                         </List>
+
                         <List>
                             <ListItem button component={RouterLink} to='/dashboard'>
                                 <ListItemIcon><BarChartSharpIcon /> </ListItemIcon>
@@ -139,9 +133,11 @@ function TopNav(props) {
                                 <ListItemText>Find Species</ListItemText>
                             </ListItem>
                         </List>
+
                         <List>
                             <Divider />
                         </List>
+
                         <List>
                             <ListItem button component={RouterLink} to='/profile'>
                                 <ListItemIcon><SettingsSharpIcon /> </ListItemIcon>

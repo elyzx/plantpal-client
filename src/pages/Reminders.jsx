@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 });
 
 function Reminders(props) {
-    const {isLoggedIn, reminders} = props
+    const {isLoggedIn, reminders, onWatering} = props
     console.log('reminders props', reminders)
     const classes = useStyles();
 
@@ -53,7 +53,7 @@ function Reminders(props) {
                                     {reminder.complete.toString()}
                                 </TableCell>
                                 <TableCell>
-                                    <button>Done</button>
+                                    <button onClick={() => onWatering(reminder._id)}>Done</button>
                                 </TableCell>
                             </TableRow>
                         )

@@ -195,6 +195,17 @@ function App(props) {
         }
     }
 
+    const handleReminder = async (reminderId) => {
+        try {
+            await axios.patch(`http://localhost:5005/api/reminders/${reminderId}`, {}, {withCredentials: true});
+            let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
+            setReminders(response.data)
+        }
+        catch (err) {
+            console.log('handling the reminder failed', err);
+        };
+    }
+
     // const handleEditUser = async (event, user) => {
     //     event.preventDefault()
     //     try{
@@ -254,7 +265,7 @@ function App(props) {
                     return <EditPlant onEdit={handleEditPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/reminders'} render={(routeProps) => {
-                    return <Reminders reminders={reminders }isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Reminders onWatering={handleReminder} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Page Not Found */}
                 <Route component={Page404} />
