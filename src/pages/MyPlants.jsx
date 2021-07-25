@@ -12,9 +12,11 @@ function MyPlants(props) {
                 <p> Login status: {isLoggedIn.toString()}</p>
                 <Link to='/plants/create'>Add Plant</Link>
                 {
+                    
                     plants.map((plant, i) => {
                         return(
                         <div key={i}>
+                            <img src={plant.photo} alt='a plant' width="80"/>
                             <p>
                             <Link to={`/plants/${plant._id}`}>{plant.name}</Link>
                             </p>

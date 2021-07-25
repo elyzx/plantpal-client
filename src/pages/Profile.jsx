@@ -41,7 +41,7 @@ function Profile(props) {
             <div className='body-container'>
                 <h1>Profile Details</h1>
                 <p>Login status: {isLoggedIn.toString()}</p>
-                <form>
+                <form onSubmit={(event) => {props.onEditUser(event, setProfileDetails)}}>
                     <div className="form-group">
                         <label htmlFor="InputName">Name</label>
                         <input onChange={handleNameChange} value={profileDetails.name} type="text" className="form-control" id="InputName" name="name" />
