@@ -117,12 +117,19 @@ function App(props) {
 
     const handleAddPlant = async (event) => {
         event.preventDefault();
+
+        let formData = new FormData()
+        formData.append('imageUrl', event.target.photo.files[0])
+
+        let imgResponse = await axios.post('http://localhost:5005/api/upload', formData)
+
         const { name, description, waterFreq, fertiliseFreq} = event.target;
         let newPlant = {
             name: name.value,
             description: description.value,
             waterFreq: waterFreq.value,
             fertiliseFreq: fertiliseFreq.value,
+            photo: imgResponse.data.photo
         }
         try {
             let response = await axios.post('http://localhost:5005/api/plants/create', newPlant );
@@ -172,6 +179,28 @@ function App(props) {
         }
     }
 
+    // const handleEditUser = async (event, user) => {
+    //     event.preventDefault()
+    //     try{
+    //         await axios.patch(`http://localhost:5005/api/profile`, user)
+    //         let updateUser = user.map((singleUser) => {
+    //             if (singleUser._id === user._id){
+    //             singleUser.name = user.name
+    //             singleUser.username = user.username
+    //             singleUser.email = user.email
+    //             singleUser.password = user.password
+    //             }
+
+    //             return singleUser
+    //         })
+    //         setUser(updateUser)
+    //         props.history.push('/');
+    //     }
+    //     catch(err){
+    //         console.log('edit user fetch failed', err)
+    //     }
+    // }
+
     return (
         <div className="App">
             {/* Navbar */}
@@ -212,7 +241,7 @@ function App(props) {
                 <Route component={Page404} />
             </Switch>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 };

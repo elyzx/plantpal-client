@@ -5,7 +5,7 @@ import './PageLayout.css';
 
 
 function PlantDetails(props) {
-    const {isLoggedIn, onLogOut} = props;
+    const {isLoggedIn} = props;
     const [plantDetail, updatePlantDetail] = useState({});
 
     useEffect(() => {

@@ -2,13 +2,17 @@ import React from 'react';
 import './PageLayout.css';
 
 function AddPlant(props) {
-    const {isLoggedIn, onLogOut, onAddPlant} = props
+    const {isLoggedIn, onAddPlant} = props
     return (
         <>
             <div className='body-container'>
                 <h1>Add Plant</h1>
                 <p> Login status: {isLoggedIn.toString()}</p>
-                <form onSubmit={onAddPlant}>
+                <form onSubmit={onAddPlant} action="/plants/create" encType="multipart/form-data">
+
+                    <div className="form-group">
+                        <input type="file" name="photo" accept="image/png, image/jpg" />
+                    </div>
                     <div className="form-group">
                         <label htmlFor="InputName">Name</label>
                         <input type="text"  name="name" />
