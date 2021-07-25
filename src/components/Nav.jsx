@@ -100,9 +100,25 @@ function TopNav(props) {
                         <List>
                             <ListItem button component={RouterLink} to='/'>
                                 <ListItemIcon><HomeIcon /> </ListItemIcon>
-                                <ListItemText>Home</ListItemText>
+                                <ListItemText>PlantPal</ListItemText>
                             </ListItem>
+                        </List>
+
+                        <List>
                             <Divider />
+                        </List>
+
+                        <List>
+                            <ListItem>
+                            <ListItemIcon><AccountCircle /> </ListItemIcon>
+                                <ListItemText>Username</ListItemText>
+                            </ListItem>
+                        </List>
+
+                        <List>
+                            <Divider />
+                        </List>
+                        <List>
                             <ListItem button component={RouterLink} to='/dashboard'>
                                 <ListItemIcon><BarChartSharpIcon /> </ListItemIcon>
                                 <ListItemText>Dashboard</ListItemText>
@@ -118,11 +134,15 @@ function TopNav(props) {
                                 <ListItemText>Reminders</ListItemText>
                             </ListItem>
                             
-                            <ListItem button component={RouterLink} to='/guides'>
+                            <ListItem button component={RouterLink} to='/identify'>
                                 <ListItemIcon><LibraryBooksSharpIcon /> </ListItemIcon>
-                                <ListItemText>Guides</ListItemText>
+                                <ListItemText>Find Species</ListItemText>
                             </ListItem>
+                        </List>
+                        <List>
                             <Divider />
+                        </List>
+                        <List>
                             <ListItem button component={RouterLink} to='/profile'>
                                 <ListItemIcon><SettingsSharpIcon /> </ListItemIcon>
                                 <ListItemText>Settings</ListItemText>
