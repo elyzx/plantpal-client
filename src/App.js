@@ -31,9 +31,11 @@ function App(props) {
 
     useEffect(() => {
         fetchUser();
-        fetchPlants();
-        fetchReminders();
-    }, []); 
+        if (isLoggedIn) {
+            fetchPlants();
+            fetchReminders();
+        }
+    }, [isLoggedIn]); 
 
     const fetchUser = async () => {
         try {
