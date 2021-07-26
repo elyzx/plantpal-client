@@ -58,15 +58,16 @@ function Dashboard(props) {
             <div>
                 <h1>Dashboard</h1>
                 <p> Login status: {isLoggedIn.toString()}</p>
-
+            <Container>
                 {
-                    <div>
-                        <h1>Plants: {plantTotal()}</h1>
-                        <h1>Plants not Alive: {plantsDead()} </h1>
-                        <h1>Plants Alive: {plantsAlive()} </h1>
-                    </div>
+                        <div>
+                            <h1>Plants: {plantTotal()}</h1>
+                            <h1>Plants not Alive: {plantsDead()} </h1>
+                            <h1>Plants Alive: {plantsAlive()} </h1>
+                        </div>
 
-                }
+                    }
+            </Container>
             </div>
         </ Container>
     );

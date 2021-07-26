@@ -250,7 +250,7 @@ function App(props) {
                 }
                 return singleplant
             })
-            updatePlants(updatePlant)
+            updatePlants(updatePlant);
             props.history.push('/plants');
             
         }
