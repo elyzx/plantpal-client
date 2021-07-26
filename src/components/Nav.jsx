@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+
+// Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,7 +19,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
-// material-ui icons
+// Icons
 import LocalFloristSharpIcon from '@material-ui/icons/LocalFloristSharp';
 import FormatListBulletedSharpIcon from '@material-ui/icons/FormatListBulletedSharp';
 import BarChartSharpIcon from '@material-ui/icons/BarChartSharp';
@@ -37,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function TopNav(props) {
+function Nav(props) {
     const {onLogOut, isLoggedIn} = props
     const classes = useStyles();
     const drawerClasses = makeStyles({
@@ -189,4 +191,4 @@ function TopNav(props) {
     );
 };
 
-export default TopNav;
+export default Nav;

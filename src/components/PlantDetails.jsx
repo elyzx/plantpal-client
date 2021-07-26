@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import './PageLayout.css';
 
+// Material UI
+import Container from '@material-ui/core/Container';
 
 function PlantDetails(props) {
     const {isLoggedIn} = props;
@@ -36,18 +37,16 @@ function PlantDetails(props) {
          }
     }
     
-
     return (
-        <>
+        <Container>
             <div>
-                Hello I'm the plant details
-                <p> Login status: {isLoggedIn.toString()}</p>
                 <h1>{plantDetail.name}</h1>
+                {/* <p> Login status: {isLoggedIn.toString()}</p> */}
                 <h2>{plantDetail.description}</h2>
                 <h2>Last Watering</h2>
-                <h2>Last Fertilise</h2>
-                <h2>Water Frequency: {plantDetail.waterFreq}</h2>
-                <h2>Fertilise Frequency: {plantDetail.fertiliseFreq}</h2>
+                <p>Next Watering</p>
+                <h2>Water Frequency: Every {plantDetail.waterFreq} days</h2>
+
                 {
                     live()
                 }
@@ -62,7 +61,7 @@ function PlantDetails(props) {
             
                 
             </div>          
-        </>
+        </ Container>
     );
 };
 

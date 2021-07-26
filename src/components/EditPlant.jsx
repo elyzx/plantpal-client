@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import './PageLayout.css'
+import Container from '@material-ui/core/Container';
 
 function EditPlant(props) {
-
+    const {isLoggedIn} = props
     const [plantDetail, updatePlantDetail] = useState(null)
 
     useEffect(async () => {
@@ -16,8 +16,6 @@ function EditPlant(props) {
             console.log('edit plant fetch failed', err)
         }
     }, [])
-
-    const {isLoggedIn} = props
 
     const handleNameChange = (event) => {
         let newName = event.target.value
@@ -40,16 +38,13 @@ function EditPlant(props) {
         updatePlantDetail({...plantDetail, isAlive: newIsAlive})
     }
 
-
-
     if(!plantDetail){
         return 'Loading...'
     }
 
-
     return (
-        <>
-            <div className='body-container'>
+        <Container>
+            <div>
                 <h1>Edit Plant</h1>
                 <p> Login status: {isLoggedIn.toString()}</p>
 
@@ -72,7 +67,7 @@ function EditPlant(props) {
             </form>
 
             </div>
-        </>
+        </ Container>
     );
 };
 

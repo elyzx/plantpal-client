@@ -1,7 +1,8 @@
 import React, {useState, useEffect }from 'react';
-import './auth/AuthPageLayout.css';
-import './PageLayout.css'
 import axios from 'axios';
+
+// Material UI
+import Container from '@material-ui/core/Container';
 
 function Profile(props) {
     const {isLoggedIn, onDeleteUser} = props
@@ -37,8 +38,8 @@ function Profile(props) {
     }
 
     return (
-        <>
-            <div className='body-container'>
+        <Container>
+            <div className="flex-box">
                 <h1>Profile Details</h1>
                 <p>Login status: {isLoggedIn.toString()}</p>
                 <form onSubmit={(event) => {props.onEditUser(event, setProfileDetails)}}>
@@ -66,7 +67,7 @@ function Profile(props) {
                 </form>
                 <button onClick={onDeleteUser}>Delete account</button>
             </div>
-        </>
+        </ Container>
     );
 };
 

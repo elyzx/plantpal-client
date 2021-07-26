@@ -1,15 +1,19 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import './AuthPageLayout.css';
+
+// Material UI
+import Container from '@material-ui/core/Container';
 
 function Login(props) {
     const {onLogIn, isLoggedIn} = props
+
     if (isLoggedIn) {
         console.log("user is logged in; go back")
         return <Redirect to={'/dashboard'} />
     }
+    
     return (
-        <div className='auth-page'>
+        <Container>
             <h1>Log in to PlantPal</h1>
             <p> Login status: {isLoggedIn.toString()}</p>
             <form onSubmit={onLogIn}>
@@ -23,7 +27,7 @@ function Login(props) {
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
-        </div>
+        </ Container>
     );
 };
 

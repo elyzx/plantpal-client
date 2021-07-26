@@ -1,12 +1,13 @@
 import React from 'react';
-import './PageLayout.css';
 
+// Material UI
+import Container from '@material-ui/core/Container';
 
 function AddPlant(props) {
     const {isLoggedIn, onAddPlant} = props
     return (
-        <>
-            <div className='body-container'>
+        <Container>
+            <div>
                 <h1>Add Plant</h1>
                 <p> Login status: {isLoggedIn.toString()}</p>
                 <form onSubmit={onAddPlant} action="/plants/create" encType="multipart/form-data">
@@ -33,7 +34,7 @@ function AddPlant(props) {
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
-        </>
+        </ Container>
     );
 };
 

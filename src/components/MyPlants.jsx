@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+// Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,12 +10,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
-
-import './PageLayout.css';
 
 function MyPlants(props) {
-
     const {isLoggedIn, plants, onSearch} = props
     console.log(plants)
 
@@ -40,17 +39,14 @@ function MyPlants(props) {
       }
 
     return (
-        <>
+        <Container>
                 <div>
-                Hello I'm all your plants
-                <p> Login status: {isLoggedIn.toString()}</p>
-                <Link to='/plants/create'>Add Plant</Link>
-                </div>
-
-                <div>
+                    <h1>My Plants</h1>
+                    <p> Login status: {isLoggedIn.toString()}</p>
+                    <Link to='/plants/create'>Add Plant</Link>
                     <input onChange={onSearch} type="text" placeholder="Search.."/>
                 </div>
-            <div className="body-container">
+            <div className="flex-box">
                 {
                     plants.map((plant, i) => {
                         return(
@@ -90,7 +86,7 @@ function MyPlants(props) {
                     })
                 }
             </div>
-        </>
+        </ Container>
     );
 };
 

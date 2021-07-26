@@ -1,6 +1,8 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import './AuthPageLayout.css';
+
+// Material UI
+import Container from '@material-ui/core/Container';
 
 function Signup(props) {
     const {onSignUp, isLoggedIn} = props
@@ -8,7 +10,7 @@ function Signup(props) {
         return <Redirect to={'/dashboard'} />
     }
     return (
-        <div className='auth-page'>
+        <Container>
             <div> 
                 <h1>Create an account</h1>
                 <p> Login status: {isLoggedIn.toString()}</p>
@@ -32,7 +34,7 @@ function Signup(props) {
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
              </form>
-        </div>
+        </ Container>
     );
 };
 

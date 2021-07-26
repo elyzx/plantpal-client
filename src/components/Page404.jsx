@@ -1,11 +1,13 @@
-// Setup
 import React from 'react'
+
+// Material UI
+import Container from '@material-ui/core/Container';
 
 function Page404() {
     return (
-        <div>
+        <Container>
             404 Error
-        </div>
+        </ Container>
     )
 }
 

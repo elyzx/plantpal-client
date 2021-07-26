@@ -5,21 +5,19 @@ import axios from 'axios';
 import './App.css';
 
 // Components
-import TopNav from './components/Nav';
+import Nav from './components/Nav';
 import Footer from './components/Footer';
-
-// Pages
-import LandingPage from './pages/LandingPage';
-import Signup from './pages/auth/Signup';
-import Login from './pages/auth/Login';
-import Profile from './pages/Profile';
-import Dashboard from './pages/Dashboard';
-import MyPlants from './pages/MyPlants';
-import AddPlant from './pages/AddPlant';
-import PlantDetails from './pages/PlantDetails';
-import EditPlant from './pages/EditPlant';
-import Reminders from './pages/Reminders';
-import Page404 from './pages/Page404';
+import LandingPage from './components/LandingPage';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Profile from './components/Profile';
+import Dashboard from './components/Dashboard';
+import MyPlants from './components/MyPlants';
+import AddPlant from './components/AddPlant';
+import PlantDetails from './components/PlantDetails';
+import EditPlant from './components/EditPlant';
+import Reminders from './components/Reminders';
+import Page404 from './components/Page404';
 
 // It begins!
 function App(props) {
@@ -27,7 +25,7 @@ function App(props) {
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [plants, updatePlants] = useState([]);
-    const [FilteredPlants, updateFilteredPlants] = useState([]);
+    const [filteredPlants, updateFilteredPlants] = useState([]);
     const [reminders, setReminders] = useState([]);
 
     useEffect(() => {
@@ -39,10 +37,10 @@ function App(props) {
         }
     }, [isLoggedIn]); 
 
-    useEffect(() => {
-        console.log(plants, 'in use effect')
-        props.history.push('/plants');
-    }, [FilteredPlants])
+    // useEffect(() => {
+    //     console.log(plants, 'in use effect')
+    //     props.history.push('/plants');
+    // }, [filteredPlants])
 
 //----------------------------------------------------------
 //------------------------   FETCH USER     ----------------
@@ -196,8 +194,7 @@ function App(props) {
             newPlant = response.data
             console.log(plants, 'in add plant handler')
             updatePlants([newPlant, ...plants])
-            updateFilteredPlants([newPlant, ...FilteredPlants])
-            
+            updateFilteredPlants([newPlant, ...filteredPlants])
         }
         catch (err) {
             console.log('create plant failed', err);
@@ -282,7 +279,7 @@ function App(props) {
     return (
         <div className="App">
             {/* Navbar */}
-            <TopNav onLogOut={handleLogOut} isLoggedIn={isLoggedIn} />
+            <Nav onLogOut={handleLogOut} isLoggedIn={isLoggedIn} />
             <div className='container'>
             {/* Pages */}
             <Switch>
@@ -304,7 +301,7 @@ function App(props) {
                     return <Dashboard isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
-                    return <MyPlants onSearch={handleSearch} plants={FilteredPlants} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <MyPlants onSearch={handleSearch} plants={filteredPlants} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/create'} render={(routeProps) => {
                     return <AddPlant onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
