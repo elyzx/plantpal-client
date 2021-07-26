@@ -224,8 +224,8 @@ function App(props) {
 //------------------------  DELETE A PLANT  ----------------
 //----------------------------------------------------------
     const handleDeletePlant = async (plantId) => {
-        try{
-            axios.delete(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true})
+        try {
+            await axios.delete(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true})
             let filteredPlants = plants.filter((plant) => {
                 return plant._id !== plantId
             })
