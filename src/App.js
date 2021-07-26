@@ -67,10 +67,12 @@ function App(props) {
             let response = await axios.get('http://localhost:5005/api/user', {withCredentials: true});
             setUser(response.data);
             setIsLoggedIn(true);
+            pdateSpecificUser(false)
         }
         catch (err) {
             console.log('User not logged in', err);
             setIsLoggedIn(false);
+            pdateSpecificUser(false)
         };
     };
 
