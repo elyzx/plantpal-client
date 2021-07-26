@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+
+// Material UI
 import Container from '@material-ui/core/Container';
 
 function EditPlant(props) {
     const {isLoggedIn} = props
-    const [plantDetail, updatePlantDetail] = useState(null)
+    const [plantDetail, updatePlantDetail] = useState([])
 
     useEffect(async () => {
         try {
