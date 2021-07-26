@@ -5,17 +5,17 @@ import axios from 'axios'
 import Container from '@material-ui/core/Container';
 
 function EditPlant(props) {
-    const {isLoggedIn} = props
+    const {isLoggedIn, onEdit} = props
     const [plantDetail, updatePlantDetail] = useState([])
 
     useEffect(async () => {
         try {
             let plantId = props.match.params.plantId
-            let response = await axios.get(`http://localhost:5005/api/plants/${plantId}`)
+            let response = await axios.get(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true})
             updatePlantDetail(response.data)
         }
         catch(err){
-            console.log('edit plant fetch failed', err)
+            console.log('edit plant fetch failed2', err)
         }
     }, [])
 
@@ -55,8 +55,12 @@ function EditPlant(props) {
                 <h1>Edit Plant</h1>
                 <p> Login status: {isLoggedIn.toString()}</p>
 
+<<<<<<< HEAD
             <form onSubmit={ (event) => {props.onEdit(event, plantDetail ) } } >
                 <input onChange={handlePhotoChange} value={plantDetail.photo} name="photo" type="sting" />
+=======
+            <form onSubmit={ (event) => {onEdit(event, plantDetail ) } } >
+>>>>>>> 67b4938d3bcebb28bf208100c39a619df94b4607
                 <input onChange={handleNameChange} value={plantDetail.name}  name="name"  type="text"  placeholder="Enter name"/>
                 <input onChange={handleDescriptionChange} value={plantDetail.description} name="description"  type="text"  placeholder="Enter desc"/>
                 

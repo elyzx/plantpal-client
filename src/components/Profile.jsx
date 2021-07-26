@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 
 function Profile(props) {
     const {isLoggedIn, onEditUser, onDeleteUser} = props
-    const [profileDetails, setProfileDetails] = useState({});
+    const [profileDetails, setProfileDetails] = useState([]);
 
     useEffect(() => {
         fetchProfileDetails();
