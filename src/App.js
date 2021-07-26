@@ -210,6 +210,7 @@ function App(props) {
             console.log(plants, 'in add plant handler')
             updatePlants([newPlant, ...plants])
             updateFilteredPlants([newPlant, ...filteredPlants])
+            props.history.push('/plants')
         }
         catch (err) {
             console.log('create plant failed', err);
@@ -238,8 +239,8 @@ function App(props) {
 //----------------------------------------------------------
     const handleEditPlant = async (event, plant) => {
         event.preventDefault()
-        try{
-            await axios.patch(`http://localhost:5005/api/plants/${plant._id}`, plant, {withCredentials: true})
+        try {
+            await axios.patch(`http://localhost:5005/api/plants/${plant._id}/edit`, plant, {withCredentials: true})
             let updatePlant = plants.map((singleplant) => {
                 if (singleplant._id === plant._id){
                     singleplant.name = plant.name
@@ -251,6 +252,7 @@ function App(props) {
                 return singleplant
             })
             updatePlants(updatePlant);
+            updateFilteredPlants(updatePlant);
             props.history.push('/plants');
             
         }
