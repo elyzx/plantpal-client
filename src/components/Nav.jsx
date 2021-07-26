@@ -41,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Nav(props) {
     const {onLogOut, isLoggedIn, user} = props
-    console.log('user Id test', user)
     const classes = useStyles();
     const drawerClasses = makeStyles({
         list: {
@@ -107,7 +106,7 @@ function Nav(props) {
                         <List>
                             <ListItem>
                             <ListItemIcon><AccountCircle /> </ListItemIcon>
-                                <ListItemText>Username</ListItemText>
+                                <ListItemText>{user.username}</ListItemText>
                             </ListItem>
                         </List>
 
