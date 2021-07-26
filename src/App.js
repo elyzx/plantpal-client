@@ -27,7 +27,6 @@ function App(props) {
     const [plants, updatePlants] = useState([]);
     const [filteredPlants, updateFilteredPlants] = useState([]);
     const [reminders, setReminders] = useState([]);
-
     //const [weather, updateWeather] = useState([]);
 
     useEffect(() => {
@@ -38,6 +37,10 @@ function App(props) {
             fetchFilterPlants();
         }
     }, [isLoggedIn]); 
+
+    // useEffect(() => {
+    //     props.history.push('/plants');
+    // }, [filteredPlants])
 
     // useEffect(() => {
     //     fetchWeather();
@@ -96,7 +99,7 @@ function App(props) {
     };
 
 //----------------------------------------------------------
-//------------------------   FETCH REMINDERS----------------
+//--------------------   FETCH ALL REMINDERS----------------
 //----------------------------------------------------------
     const fetchReminders = async () => {
         try {
@@ -257,20 +260,7 @@ function App(props) {
     }
 
 //----------------------------------------------------------
-//------------------------   EDIT REMINDER STATUS  ---------
-//----------------------------------------------------------
-    const handleReminder = async (reminderId) => {
-        try {
-            await axios.patch(`http://localhost:5005/api/reminders/${reminderId}`, {}, {withCredentials: true});
-            let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
-            setReminders(response.data)
-        }
-        catch (err) {
-            console.log('handling the reminder failed', err);
-        };
-    }
-//----------------------------------------------------------
-//------------------------   SEARCH FOR NAME----------------
+//------------------   SEARCH FOR PLANT NAME ---------------
 //----------------------------------------------------------
     const handleSearch = (event) => {
         let searchPlant = event.target.value
@@ -283,6 +273,20 @@ function App(props) {
 
         updateFilteredPlants(filteredPlants)
     }
+
+//----------------------------------------------------------
+//----------------------   UPDATE REMINDER STATUS  ---------
+//----------------------------------------------------------
+const handleReminder = async (reminderId) => {
+    try {
+        await axios.patch(`http://localhost:5005/api/reminders/${reminderId}`, {}, {withCredentials: true});
+        let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
+        setReminders(response.data)
+    }
+    catch (err) {
+        console.log('handling the reminder failed', err);
+    };
+}
 
 
 //----------------------------------------------------------

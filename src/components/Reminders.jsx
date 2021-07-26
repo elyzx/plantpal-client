@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
+import axios from 'axios';
 
 // Material UI
 import Container from '@material-ui/core/Container';
@@ -19,7 +20,6 @@ const useStyles = makeStyles({
 
 function Reminders(props) {
     const {isLoggedIn, reminders, onWatering} = props
-    console.log('reminders props', reminders)
     const classes = useStyles();
 
     return (
@@ -28,7 +28,7 @@ function Reminders(props) {
                 <h1>Reminders</h1>
                 {/* <p> Login status: {isLoggedIn.toString()}</p> */}
             </div>
-            <h2>Upcoming</h2>
+            <h2>To Do</h2>
             <div className="flex-box">
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
@@ -36,14 +36,16 @@ function Reminders(props) {
                         <TableRow>
                             <TableCell>Plant</TableCell>
                             <TableCell>Task</TableCell>
-                            <TableCell>Due Date</TableCell>
+                            <TableCell>Date Due</TableCell>
                             <TableCell>Status</TableCell>
                             <TableCell>Update</TableCell>
                             {/* Edit reminder frequency? */}
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        {reminders.map((reminder, i) => {
+                        {reminders
+                            .filter((reminder) => !reminder.complete)
+                            .map((reminder, i) => {
                             return (
                                 <TableRow key={i}>
                                     <TableCell component="th" scope="row">
@@ -69,22 +71,24 @@ function Reminders(props) {
                     </Table>
                 </TableContainer>
             </div>
-            <h2>Previous</h2>
-            <div className="flex-box">
+            <h2>Done</h2>
+                        <div className="flex-box">
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
                         <TableRow>
                             <TableCell>Plant</TableCell>
                             <TableCell>Task</TableCell>
-                            <TableCell>Due Date</TableCell>
-                            <TableCell>Status</TableCell>
-                            <TableCell>Update</TableCell>
+                            <TableCell>Date Due</TableCell>
+                            <TableCell>Date Completed</TableCell>
+                            {/* <TableCell>Update</TableCell> */}
                             {/* Edit reminder frequency? */}
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        {reminders.map((reminder, i) => {
+                        {reminders
+                            .filter((reminder) => reminder.complete)
+                            .map((reminder, i) => {
                             return (
                                 <TableRow key={i}>
                                     <TableCell component="th" scope="row">
@@ -98,11 +102,11 @@ function Reminders(props) {
                                         {reminder.nextWatering}
                                     </TableCell>
                                     <TableCell>
-                                        {reminder.complete.toString()}
+                                        {reminder.wateredAt}
                                     </TableCell>
-                                    <TableCell>
+                                    {/* <TableCell>
                                         <button onClick={() => onWatering(reminder._id)}>Done</button>
-                                    </TableCell>
+                                    </TableCell> */}
                                 </TableRow>
                             )
                         })}
