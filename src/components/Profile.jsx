@@ -5,7 +5,7 @@ import axios from 'axios';
 import Container from '@material-ui/core/Container';
 
 function Profile(props) {
-    const {isLoggedIn, onDeleteUser} = props
+    const {isLoggedIn, onEditUser, onDeleteUser} = props
     const [profileDetails, setProfileDetails] = useState({});
 
     useEffect(() => {
@@ -39,10 +39,10 @@ function Profile(props) {
 
     return (
         <Container>
-            <div className="flex-box">
+            <div>
                 <h1>Profile Details</h1>
                 <p>Login status: {isLoggedIn.toString()}</p>
-                <form onSubmit={(event) => {props.onEditUser(event, setProfileDetails)}}>
+                <form onSubmit={(event) => {onEditUser(event, setProfileDetails)}}>
                     <div className="form-group">
                         <label htmlFor="InputName">Name</label>
                         <input onChange={handleNameChange} value={profileDetails.name} type="text" className="form-control" id="InputName" name="name" />
