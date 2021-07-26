@@ -39,6 +39,9 @@ function App(props) {
         }
     }, [isLoggedIn]); 
 
+//----------------------------------------------------------
+//------------------------   FETCH USER     ----------------
+//----------------------------------------------------------
     const fetchUser = async () => {
         try {
             let response = await axios.get('http://localhost:5005/api/user', {withCredentials: true});
@@ -51,6 +54,9 @@ function App(props) {
         };
     };
 
+//----------------------------------------------------------
+//------------------------   FETCH PLANTS   ----------------
+//----------------------------------------------------------
     const fetchPlants = async () => {
         try {
             let response = await axios.get(`http://localhost:5005/api/plants`, {withCredentials: true});
@@ -62,9 +68,8 @@ function App(props) {
     };
 
 //----------------------------------------------------------
-//------------------------   Fetch filter plants -----------
+//------------------------   FETCH FILTER PLANTS -----------
 //----------------------------------------------------------
-
     const fetchFilterPlants = async () => {
         try {
             let response = await axios.get(`http://localhost:5005/api/plants`, {withCredentials: true});
@@ -75,6 +80,9 @@ function App(props) {
         };
     };
 
+//----------------------------------------------------------
+//------------------------   FETCH REMINDERS----------------
+//----------------------------------------------------------
     const fetchReminders = async () => {
         try {
             let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
@@ -85,7 +93,10 @@ function App(props) {
             console.log('reminders fetch failed', err)
         }
     }
-  
+
+//----------------------------------------------------------
+//------------------------   SIGN UP        ----------------
+//----------------------------------------------------------
     const handleSignUp = async (event) => {
         event.preventDefault();
         const {name, username, email, password} = event.target;
@@ -104,6 +115,9 @@ function App(props) {
         };
     };
 
+//----------------------------------------------------------
+//------------------------   LOGN IN        ----------------
+//----------------------------------------------------------
     const handleLogIn = async (event) => {
         event.preventDefault();
         const {username, password} = event.target;
@@ -123,6 +137,9 @@ function App(props) {
         };
     };
 
+//----------------------------------------------------------
+//------------------------   LOGOUT         ----------------
+//----------------------------------------------------------
     const handleLogOut = async () => {
         try {
             await axios.post(`http://localhost:5005/api/logout`, {}, {withCredentials: true});
@@ -135,6 +152,9 @@ function App(props) {
         };
     };
 
+//----------------------------------------------------------
+//------------------------   DELETE USER    ----------------
+//----------------------------------------------------------
     const handleDeleteUser = async (user) => {
         try {
             await axios.delete('http://localhost:5005/api/profile', {withCredentials: true});
@@ -147,6 +167,9 @@ function App(props) {
         };
     };
 
+//----------------------------------------------------------
+//------------------------   ADD A NEW PLANT ---------------
+//----------------------------------------------------------
     const handleAddPlant = async (event) => {
         event.preventDefault();
 
@@ -174,6 +197,9 @@ function App(props) {
         };
     };
 
+//----------------------------------------------------------
+//------------------------  DELETE A PLANT  ----------------
+//----------------------------------------------------------
     const handleDeletePlant = async (plantId) => {
         try{
             axios.delete(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true})
@@ -188,6 +214,9 @@ function App(props) {
         }
     }
 
+//----------------------------------------------------------
+//------------------------ EDIT A PLANT     ----------------
+//----------------------------------------------------------
     const handleEditPlant = async (event, plant) => {
         event.preventDefault()
         try{
@@ -211,6 +240,9 @@ function App(props) {
         }
     }
 
+//----------------------------------------------------------
+//------------------------   EDIT REMINDER STATUS  ---------
+//----------------------------------------------------------
     const handleReminder = async (reminderId) => {
         try {
             await axios.patch(`http://localhost:5005/api/reminders/${reminderId}`, {}, {withCredentials: true});
@@ -222,9 +254,8 @@ function App(props) {
         };
     }
 //----------------------------------------------------------
-//------------------------   SEARCH ------------------------
+//------------------------   SEARCH FOR NAME----------------
 //----------------------------------------------------------
-
     const handleSearch = (event) => {
         let searchPlant = event.target.value
         
@@ -238,6 +269,9 @@ function App(props) {
     }
 
 
+//----------------------------------------------------------
+//------------------------   ROUTES         ----------------
+//----------------------------------------------------------
     return (
         <div className="App">
             {/* Navbar */}
