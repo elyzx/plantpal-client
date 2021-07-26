@@ -48,27 +48,26 @@ function Dashboard(props) {
           return <p>{arrPlantsDead.length}</p>
       }
 
-      const plantsDead = () => {
+    const plantsDead = () => {
         let arrPlantsDead = plants.filter((plant, i) => {
             return plant.isAlive === false;  
         })
         return <p>{arrPlantsDead.length}</p>
-      }
+    }
 
-      const plantsAlive = () => {
-          let arrPlantsAlive = plants.filter((plant, i) => {
+    const plantsAlive = () => {
+        let arrPlantsAlive = plants.filter((plant, i) => {
             return plant.isAlive === true;  
         })
         return <p>{arrPlantsAlive.length}</p>
-      }
+    }
 
       const completedReminders = () => {
-          let completedReminders = reminders.filter((reminders, i) => {
+        let completedReminders = reminders.filter((reminders, i) => {
             return reminders.complete === true;
-          })
-          return <p>{completedReminders.length}</p>
+        })
+        return <p>{completedReminders.length}</p>
       }
-
   
     return (
         <Container>
@@ -76,25 +75,25 @@ function Dashboard(props) {
             <h1>Dashboard</h1>
                 <Grid container spacing={3}>
                     <Grid item xs={6} sm={3}>
-                    <Paper className={classes.paper}>{<h3>Total Plants: {plantTotal()}</h3>}</Paper>
+                        <Paper className={classes.paper}>{<h3>Total Plants: {plantTotal()}</h3>}</Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                    <Paper className={classes.paper}>{<h3>Alive Plants: {plantsAlive()}</h3>}</Paper>
+                        <Paper className={classes.paper}>{<h3>Alive Plants: {plantsAlive()}</h3>}</Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                    <Paper className={classes.paper}><h3>Deceased Plants: {plantsDead()}</h3></Paper>
+                        <Paper className={classes.paper}><h3>Deceased Plants: {plantsDead()}</h3></Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                    <Paper className={classes.paper}><h3>Completed Tasks: {completedReminders()}</h3></Paper>
+                        <Paper className={classes.paper}><h3>Completed Reminders {completedReminders()}</h3></Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                    <Paper className={classes.paper}>Upcoming Reminders</Paper>
+                        <Paper className={classes.paper}>Next Reminders</Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                    <Paper className={classes.paper}>Weather Forecast</Paper>
+                        <Paper className={classes.paper}>Weather Forecast</Paper>
                     </Grid>
                     <Grid item xs={12}>
-                    <Paper className={classes.paper}>Plant Gallery</Paper>
+                        <Paper className={classes.paper}>Plant Gallery</Paper>
                     </Grid>
                 </Grid>
             </div>
