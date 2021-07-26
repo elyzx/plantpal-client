@@ -30,14 +30,35 @@ function App(props) {
     const [FilteredPlants, updateFilteredPlants] = useState([]);
     const [reminders, setReminders] = useState([]);
 
+    //const [weather, updateWeather] = useState([]);
+
     useEffect(() => {
         fetchUser();
         if (isLoggedIn) {
             fetchPlants();
             fetchReminders();
             fetchFilterPlants();
+
+            
         }
     }, [isLoggedIn]); 
+
+    // useEffect(() => {
+    //     fetchWeather();
+    // }, [weather])
+
+
+
+    // const fetchWeather = async () => {
+    //     try{
+    //         let response = await axios.get(`http://api.weatherbit.io/v2.0/current?&postal_code=42103&country=DE&key=40b97bfea4d145428c756bc5caf74cbb`)
+    //         updateWeather(response.data)
+    //         console.log(weather)
+    //     }
+    //     catch(err){
+    //         console.log('failed to get the weahter')
+    //     }
+    // };
 
 //----------------------------------------------------------
 //------------------------   FETCH USER     ----------------
@@ -294,7 +315,7 @@ function App(props) {
                     return <Profile onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
-                    return <Dashboard isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Dashboard plants={plants} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
                     return <MyPlants onSearch={handleSearch} plants={FilteredPlants} isLoggedIn={isLoggedIn} {...routeProps}/>
