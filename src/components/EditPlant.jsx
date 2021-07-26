@@ -55,12 +55,7 @@ function EditPlant(props) {
                 <h1>Edit Plant</h1>
                 <p> Login status: {isLoggedIn.toString()}</p>
 
-<<<<<<< HEAD
-            <form onSubmit={ (event) => {props.onEdit(event, plantDetail ) } } >
-                <input onChange={handlePhotoChange} value={plantDetail.photo} name="photo" type="sting" />
-=======
             <form onSubmit={ (event) => {onEdit(event, plantDetail ) } } >
->>>>>>> 67b4938d3bcebb28bf208100c39a619df94b4607
                 <input onChange={handleNameChange} value={plantDetail.name}  name="name"  type="text"  placeholder="Enter name"/>
                 <input onChange={handleDescriptionChange} value={plantDetail.description} name="description"  type="text"  placeholder="Enter desc"/>
                 
