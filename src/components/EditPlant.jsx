@@ -19,6 +19,11 @@ function EditPlant(props) {
         }
     }, [])
 
+    const handlePhotoChange = (event) => {
+        let newPhoto = event.target.value
+        updatePlantDetail({...plantDetail, name: newPhoto})
+    }
+
     const handleNameChange = (event) => {
         let newName = event.target.value
         updatePlantDetail({...plantDetail, name: newName})
@@ -69,7 +74,7 @@ function EditPlant(props) {
             </form>
 
             </div>
-        </ Container>
+        </Container>
     );
 };
 

@@ -27,6 +27,8 @@ function App(props) {
     const [plants, updatePlants] = useState([]);
     const [filteredPlants, updateFilteredPlants] = useState([]);
     const [reminders, setReminders] = useState([]);
+    const [specificUser, updateSpecificUser] = useState([]);
+    const [fetchingUser ,pdateSpecificUser] = useState(true);
     //const [weather, updateWeather] = useState([]);
 
     useEffect(() => {
@@ -65,10 +67,12 @@ function App(props) {
             let response = await axios.get('http://localhost:5005/api/user', {withCredentials: true});
             setUser(response.data);
             setIsLoggedIn(true);
+            pdateSpecificUser(false)
         }
         catch (err) {
             console.log('User not logged in', err);
             setIsLoggedIn(false);
+            pdateSpecificUser(false)
         };
     };
 
@@ -244,6 +248,7 @@ function App(props) {
             await axios.patch(`http://localhost:5005/api/plants/${plant._id}/edit`, plant, {withCredentials: true})
             let updatePlant = plants.map((singleplant) => {
                 if (singleplant._id === plant._id){
+                    singleplant.photo = plant.photo
                     singleplant.name = plant.name
                     singleplant.description = plant.description
                     singleplant.waterFreq = plant.waterFreq
@@ -291,6 +296,31 @@ const handleReminder = async (reminderId) => {
     };
 }
 
+//----------------------------------------------------------
+//----------------------   EDIT USER PROFILE       ---------
+//----------------------------------------------------------
+const handleEditProfile = async (event, profile) => {
+    event.preventDefault()
+    try {
+        await axios.patch(`http://localhost:5005/api/profile/${profile._id}`, profile, {withCredentials: true})
+        let updateProfile = specificUser.map((singleUser) => {
+            if (singleUser._id === profile._id) {
+                singleUser.name = profile.name
+                singleUser.username = profile.username
+            }
+            return singleUser
+        })
+        updateSpecificUser(updateProfile)
+        props.history.push('/');
+    }
+    catch(err){
+        console.log('handling edit profile error', err)
+    }
+}
+
+if (fetchingUser) {
+    return <p>Loading . .. . </p>
+}
 
 //----------------------------------------------------------
 //------------------------   ROUTES         ----------------
@@ -298,7 +328,7 @@ const handleReminder = async (reminderId) => {
     return (
         <div className="App">
             {/* Navbar */}
-            <Nav onLogOut={handleLogOut} isLoggedIn={isLoggedIn} />
+            <Nav user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} />
             <div className='container'>
             {/* Pages */}
             <Switch>
@@ -313,8 +343,8 @@ const handleReminder = async (reminderId) => {
                     return <Login onLogIn={handleLogIn} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Protected Pages */}
-                <Route path={'/profile'} render={(routeProps) => {
-                    return <Profile onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
+                <Route path={'/profile/:userId'} render={(routeProps) => {
+                    return <Profile onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
                     return <Dashboard plants={plants} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>

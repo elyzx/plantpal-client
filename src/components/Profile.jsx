@@ -5,7 +5,7 @@ import axios from 'axios';
 import Container from '@material-ui/core/Container';
 
 function Profile(props) {
-    const {isLoggedIn, onEditUser, onDeleteUser} = props
+    const {isLoggedIn, onEdit, onDeleteUser} = props
     const [profileDetails, setProfileDetails] = useState([]);
 
     useEffect(() => {
@@ -14,7 +14,9 @@ function Profile(props) {
     
     const fetchProfileDetails = async () => {
         try {
-            let response = await axios.get(`http://localhost:5005/api/profile`, {withCredentials: true});
+            let userId = props.match.params.userId
+            console.log(props.match.params)
+            let response = await axios.get(`http://localhost:5005/api/profile/${userId}`, {withCredentials: true});
             setProfileDetails(response.data);
         }
         catch (err) {
@@ -42,7 +44,7 @@ function Profile(props) {
             <div>
                 <h1>Profile Details</h1>
                 <p>Login status: {isLoggedIn.toString()}</p>
-                <form onSubmit={(event) => {onEditUser(event, setProfileDetails)}}>
+                <form onSubmit={(event) => {onEdit(event, setProfileDetails)}}>
                     <div className="form-group">
                         <label htmlFor="InputName">Name</label>
                         <input onChange={handleNameChange} value={profileDetails.name} type="text" className="form-control" id="InputName" name="name" />
