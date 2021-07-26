@@ -242,6 +242,7 @@ function App(props) {
             await axios.patch(`http://localhost:5005/api/plants/${plant._id}`, plant, {withCredentials: true})
             let updatePlant = plants.map((singleplant) => {
                 if (singleplant._id === plant._id){
+                    singleplant.photo = plant.photo
                     singleplant.name = plant.name
                     singleplant.description = plant.description
                     singleplant.waterFreq = plant.waterFreq

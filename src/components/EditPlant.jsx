@@ -19,6 +19,11 @@ function EditPlant(props) {
         }
     }, [])
 
+    const handlePhotoChange = (event) => {
+        let newPhoto = event.target.value
+        updatePlantDetail({...plantDetail, name: newPhoto})
+    }
+
     const handleNameChange = (event) => {
         let newName = event.target.value
         updatePlantDetail({...plantDetail, name: newName})
@@ -51,6 +56,7 @@ function EditPlant(props) {
                 <p> Login status: {isLoggedIn.toString()}</p>
 
             <form onSubmit={ (event) => {props.onEdit(event, plantDetail ) } } >
+                <input onChange={handlePhotoChange} value={plantDetail.photo} name="photo" type="sting" />
                 <input onChange={handleNameChange} value={plantDetail.name}  name="name"  type="text"  placeholder="Enter name"/>
                 <input onChange={handleDescriptionChange} value={plantDetail.description} name="description"  type="text"  placeholder="Enter desc"/>
                 
@@ -69,7 +75,7 @@ function EditPlant(props) {
             </form>
 
             </div>
-        </ Container>
+        </Container>
     );
 };
 
