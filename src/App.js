@@ -39,6 +39,11 @@ function App(props) {
         }
     }, [isLoggedIn]); 
 
+    useEffect(() => {
+        console.log(plants, 'in use effect')
+        props.history.push('/plants');
+    }, [FilteredPlants])
+
 //----------------------------------------------------------
 //------------------------   FETCH USER     ----------------
 //----------------------------------------------------------
@@ -189,8 +194,10 @@ function App(props) {
         try {
             let response = await axios.post('http://localhost:5005/api/plants/create', newPlant , {withCredentials: true});
             newPlant = response.data
+            console.log(plants, 'in add plant handler')
             updatePlants([newPlant, ...plants])
-            props.history.push('/plants');
+            updateFilteredPlants([newPlant, ...FilteredPlants])
+            
         }
         catch (err) {
             console.log('create plant failed', err);
