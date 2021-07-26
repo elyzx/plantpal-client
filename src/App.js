@@ -226,7 +226,8 @@ function App(props) {
             let filteredPlants = plants.filter((plant) => {
                 return plant._id !== plantId
             })
-            updatePlants(filteredPlants)
+            updatePlants(filteredPlants);
+            updateFilteredPlants(filteredPlants);
             props.history.push('/plants');
         }
         catch(err){
@@ -316,7 +317,7 @@ const handleReminder = async (reminderId) => {
                     return <Profile onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
-                    return <Dashboard plants={plants} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Dashboard plants={plants} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
                     return <MyPlants onSearch={handleSearch} plants={filteredPlants} isLoggedIn={isLoggedIn} {...routeProps}/>

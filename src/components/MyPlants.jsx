@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import PlantDetails from './PlantDetails';
 
 
 function MyPlants(props) {
@@ -47,8 +48,9 @@ function MyPlants(props) {
                     <input onChange={onSearch} type="text" placeholder="Search.."/>
                 </div>
             <div className="flex-box">
-                {
-                    plants.map((plant, i) => {
+                {   
+                    plants
+                    .map((plant, i) => {
                         return(
 
                             <div key={i} className="plants-direction">

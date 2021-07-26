@@ -3,10 +3,24 @@ import React from 'react';
 
 // Material UI
 import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    },
+  }));
 
 function Dashboard(props) {
-    const {isLoggedIn, plants} = props
+    const {isLoggedIn, plants, reminders} = props;
+    const classes = useStyles();
 
     // const plantAlive = () => {
     //   let arrPlantsAlive = plants.map((plant, i) => {
@@ -36,38 +50,53 @@ function Dashboard(props) {
 
       const plantsDead = () => {
         let arrPlantsDead = plants.filter((plant, i) => {
-
             return plant.isAlive === false;  
-          })
-          
-          return <p>{arrPlantsDead.length}</p>
+        })
+        return <p>{arrPlantsDead.length}</p>
       }
 
       const plantsAlive = () => {
-        let arrPlantsAlive = plants.filter((plant, i) => {
-
+          let arrPlantsAlive = plants.filter((plant, i) => {
             return plant.isAlive === true;  
+        })
+        return <p>{arrPlantsAlive.length}</p>
+      }
+
+      const completedReminders = () => {
+          let completedReminders = reminders.filter((reminders, i) => {
+            return reminders.complete === true;
           })
-          
-          return <p>{arrPlantsAlive.length}</p>
+          return <p>{completedReminders.length}</p>
       }
 
   
     return (
         <Container>
-            <div>
-                <h1>Dashboard</h1>
-                <p> Login status: {isLoggedIn.toString()}</p>
-            <Container>
-                {
-                        <div>
-                            <h1>Plants: {plantTotal()}</h1>
-                            <h1>Plants not Alive: {plantsDead()} </h1>
-                            <h1>Plants Alive: {plantsAlive()} </h1>
-                        </div>
-
-                    }
-            </Container>
+            <div className={classes.root}>
+            <h1>Dashboard</h1>
+                <Grid container spacing={3}>
+                    <Grid item xs={6} sm={3}>
+                    <Paper className={classes.paper}>{<h3>Total Plants: {plantTotal()}</h3>}</Paper>
+                    </Grid>
+                    <Grid item xs={6} sm={3}>
+                    <Paper className={classes.paper}>{<h3>Alive Plants: {plantsAlive()}</h3>}</Paper>
+                    </Grid>
+                    <Grid item xs={6} sm={3}>
+                    <Paper className={classes.paper}><h3>Deceased Plants: {plantsDead()}</h3></Paper>
+                    </Grid>
+                    <Grid item xs={6} sm={3}>
+                    <Paper className={classes.paper}><h3>Completed Tasks: {completedReminders()}</h3></Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                    <Paper className={classes.paper}>Upcoming Reminders</Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                    <Paper className={classes.paper}>Weather Forecast</Paper>
+                    </Grid>
+                    <Grid item xs={12}>
+                    <Paper className={classes.paper}>Plant Gallery</Paper>
+                    </Grid>
+                </Grid>
             </div>
         </ Container>
     );
