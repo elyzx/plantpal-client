@@ -355,7 +355,7 @@ if (fetchingUser) {
                     return <AddPlant onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants/:plantId'} render={(routeProps) => {
-                    return <PlantDetails onDelete={handleDeletePlant} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <PlantDetails onDelete={handleDeletePlant} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/:plantId/edit'} render={(routeProps) => {
                     return <EditPlant onEdit={handleEditPlant} isLoggedIn={isLoggedIn} {...routeProps}/>

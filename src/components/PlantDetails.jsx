@@ -6,7 +6,7 @@ import axios from 'axios';
 import Container from '@material-ui/core/Container';
 
 function PlantDetails(props) {
-    const {isLoggedIn} = props;
+    const {isLoggedIn, reminders} = props;
     const [plantDetail, updatePlantDetail] = useState({});
 
     useEffect(() => {
@@ -37,6 +37,14 @@ function PlantDetails(props) {
          }
     }
     
+    let nextWatering = ""
+    if (reminders) {
+        let nextWateringReminder = reminders.find((r) => r.plant._id == plantDetail._id && !r.complete)
+        if (nextWateringReminder) {
+            nextWatering = nextWateringReminder.nextWatering
+        }
+    }
+
     return (
         <Container>
             <div>
@@ -44,7 +52,7 @@ function PlantDetails(props) {
                 {/* <p> Login status: {isLoggedIn.toString()}</p> */}
                 <h2>{plantDetail.description}</h2>
                 <h2>Last Watering</h2>
-                <p>Next Watering</p>
+                <h2>Next Watering {nextWatering}</h2>
                 <h2>Water Frequency: Every {plantDetail.waterFreq} days</h2>
 
                 {
