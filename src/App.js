@@ -35,14 +35,13 @@ function App(props) {
         fetchUser();
         if (isLoggedIn) {
             fetchPlants();
-            fetchReminders();
             fetchFilterPlants();
         }
     }, [isLoggedIn]); 
 
-    // useEffect(() => {
-    //     props.history.push('/plants');
-    // }, [filteredPlants])
+    useEffect(() => {
+        fetchReminders();
+    }, [plants, filteredPlants]); 
 
     // useEffect(() => {
     //     fetchWeather();
@@ -319,7 +318,7 @@ const handleEditProfile = async (event, profile) => {
 }
 
 if (fetchingUser) {
-    return <p>Loading . .. . </p>
+    return <p>Loading . . . </p>
 }
 
 //----------------------------------------------------------
