@@ -41,7 +41,6 @@ function MyPlants(props) {
 
     return (
         <>
-           
                 <div>
                 Hello I'm all your plants
                 <p> Login status: {isLoggedIn.toString()}</p>
@@ -51,12 +50,7 @@ function MyPlants(props) {
                 <div>
                     <input onChange={onSearch} type="text" placeholder="Search.."/>
                 </div>
-
             <div className="body-container">
-
-       
-    
-
                 {
                     plants.map((plant, i) => {
                         return(
