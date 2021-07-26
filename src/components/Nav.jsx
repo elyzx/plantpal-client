@@ -142,6 +142,7 @@ function Nav(props) {
                         </List>
 
                         <List>
+                            {/* <ListItem button component={RouterLink} to={`/profile`}> */}
                             <ListItem button component={RouterLink} to={`/profile/${user._id}`}>
                                 <ListItemIcon><SettingsSharpIcon /> </ListItemIcon>
                                 <ListItemText>Settings</ListItemText>
@@ -175,7 +176,7 @@ function Nav(props) {
                         open={open}
                         onClose={handleClose}
                     >
-                        <MenuItem button component={RouterLink} to='/profile' onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem button component={RouterLink} to={`/profile/${user._id}`} onClick={handleClose}>Profile</MenuItem>
                         <MenuItem onClick={onLogoutAndClose}>Sign out</MenuItem>
                     </Menu>
                     </div>

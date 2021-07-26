@@ -28,7 +28,7 @@ function App(props) {
     const [filteredPlants, updateFilteredPlants] = useState([]);
     const [reminders, setReminders] = useState([]);
     const [specificUser, updateSpecificUser] = useState([]);
-    const [fetchingUser ,pdateSpecificUser] = useState(true);
+    const [fetchingUser , updateLoadingUser] = useState(true);
     //const [weather, updateWeather] = useState([]);
 
     useEffect(() => {
@@ -67,12 +67,12 @@ function App(props) {
             let response = await axios.get('http://localhost:5005/api/user', {withCredentials: true});
             setUser(response.data);
             setIsLoggedIn(true);
-            pdateSpecificUser(false)
+            updateLoadingUser(false)
         }
         catch (err) {
             console.log('User not logged in', err);
             setIsLoggedIn(false);
-            pdateSpecificUser(false)
+            updateLoadingUser(false)
         };
     };
 
