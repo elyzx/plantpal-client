@@ -1,8 +1,6 @@
 import React from 'react';
-
 // Material UI
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,28 +10,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-import RemindersToDo from './RemindersToDo';
-
-const useStyles = makeStyles({
-    table: {
-      minWidth: 500,
-    },
-});
-
-function Reminders(props) {
-    const {reminders, onWatering} = props
-    const classes = useStyles();
+function RemindersToDo(props) {
+    const {reminders, onWatering, classes} = props
     const options = {month: 'short', day: 'numeric'};
-
     return (
-        <Container>
-            <div>
-                <h1>Reminders</h1>
-            </div>
-            <h2>To Do</h2>
-                <RemindersToDo classes={classes} reminders={reminders}/>
-            <h2>Done</h2>
-                <div className="flex-box">
+        <>
+            <div className="flex-box">
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
@@ -42,12 +24,13 @@ function Reminders(props) {
                             <TableCell>Task</TableCell>
                             <TableCell align="right">Date Due</TableCell>
                             <TableCell align="right">Status</TableCell>
-                            <TableCell align="right">Date Changed</TableCell>
+                            <TableCell align="right">Change Status</TableCell>
+                            {/* Edit reminder frequency? */}
                         </TableRow>
                         </TableHead>
                         <TableBody>
                         {reminders
-                            .filter((reminder) => reminder.complete)
+                            .filter((reminder) => !reminder.complete)
                             .map((reminder, i) => {
                             return (
                                 <TableRow key={i}>
@@ -62,14 +45,11 @@ function Reminders(props) {
                                         {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}
                                     </TableCell>
                                     <TableCell align="right">
-                                        Done
+                                        To Do
                                     </TableCell>
                                     <TableCell align="right">
-                                        {new Intl.DateTimeFormat('en-GB', options).format(reminders.wateredAt)}
+                                        <button onClick={() => onWatering(reminder._id)}><Button>Done</Button></button>
                                     </TableCell>
-                                    {/* <TableCell>
-                                        <button onClick={() => onWatering(reminder._id)}>Done</button>
-                                    </TableCell> */}
                                 </TableRow>
                             )
                         })}
@@ -77,8 +57,8 @@ function Reminders(props) {
                     </Table>
                 </TableContainer>
             </div>
-        </Container>
+        </>
     )
 }
 
-export default Reminders;
+export default RemindersToDo;

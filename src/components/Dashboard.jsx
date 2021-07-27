@@ -10,6 +10,8 @@ import Grid from '@material-ui/core/Grid';
 // Theme
 import { useTheme } from '@material-ui/core/styles';
 
+import RemindersToDo from './RemindersToDo';
+
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -89,7 +91,10 @@ function Dashboard(props) {
                         <Paper className={classes.paper}><h3>Plant Waterings: {completedReminders()}</h3></Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <Paper className={classes.paper}>Next Reminders</Paper>
+                        <Paper className={classes.paper}>
+                            Next Reminders
+                            <RemindersToDo classes={classes} reminders={reminders}/> 
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paper}>Weather Forecast</Paper>
