@@ -91,74 +91,61 @@ function Nav(props) {
                 <Typography variant="h6" className={classes.title}>
                     <Link component={RouterLink} to='/' color='inherit'>PlantPal</Link>
                 </Typography>
-                <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS}
-                    anchor={'left'}
-                    open={drawerIsOpen}
-                    onClose={() => toggleDrawer(false)}
-                    onOpen={() => toggleDrawer(true)}>
-                    <div className={drawerClasses.list}>
-                        <List>
-                            
-                        </List>
-                        <List>
-                            <ListItem button component={RouterLink} to='/'>
-                                <ListItemIcon><HomeIcon color="secondary"/> </ListItemIcon>
-                                <ListItemText>PlantPal</ListItemText>
-                            </ListItem>
-                        </List>
 
-                        {
-                           user && (
-                               <>
+                {
+                    user && (
+                        <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS}
+                            anchor={'left'}
+                            open={drawerIsOpen}
+                            onClose={() => toggleDrawer(false)}
+                            onOpen={() => toggleDrawer(true)}>
+                            <div className={drawerClasses.list}>
+                                <List></List>
+                                <List>
+                                    <ListItem button component={RouterLink} to='/'>
+                                        <ListItemIcon><HomeIcon color="secondary"/> </ListItemIcon>
+                                        <ListItemText>PlantPal</ListItemText>
+                                    </ListItem>
+                                </List>
                                 <List>
                                     <Divider />
                                 </List>
                                 <List>
                                     <ListItem button component={RouterLink} to={`/profile/${user._id}`}>
                                     <ListItemIcon><AccountCircle color="secondary"/> </ListItemIcon>
-                                        <ListItemText> {user.username} </ListItemText>
+                                    <ListItemText> {user.username} </ListItemText>
                                     </ListItem>
                                 </List>
-                                </>
-                            ) 
-                        }
-                        
-                        <List>
-                            <Divider />
-                        </List>
-
-                        <List>
-                            <ListItem button component={RouterLink} to='/dashboard'>
-                                <ListItemIcon><BarChartSharpIcon color="primary" /> </ListItemIcon>
-                                <ListItemText>Dashboard</ListItemText>
-                            </ListItem>
-                            
-                            <ListItem button component={RouterLink} to='/plants'>
-                                <ListItemIcon><LocalFloristSharpIcon color="primary"/> </ListItemIcon>
-                                <ListItemText>Plants</ListItemText>
-                            </ListItem>
-                            
-                            <ListItem button component={RouterLink} to='/reminders'>
-                                <ListItemIcon><FormatListBulletedSharpIcon color="primary" /> </ListItemIcon>
-                                <ListItemText>Reminders</ListItemText>
-                            </ListItem>
-                            
-                        </List>
-
-                        <List>
-                            <Divider />
-                        </List>
-
-                        <List>
-                            {/* <ListItem button component={RouterLink} to={`/profile`}> */}
-                            <ListItem button onClick={onLogoutAndClose}>
-                                <ListItemIcon><ExitToAppIcon color="secondary"/> </ListItemIcon>
-                                <ListItemText>Sign out</ListItemText>
-                            </ListItem>
-                        </List>
-                   
-                    </div>
-                </SwipeableDrawer>
+                                <List>
+                                    <Divider />
+                                </List>
+                                <List>
+                                    <ListItem button component={RouterLink} to='/dashboard'>
+                                        <ListItemIcon><BarChartSharpIcon color="primary" /> </ListItemIcon>
+                                        <ListItemText>Dashboard</ListItemText>
+                                    </ListItem>
+                                    <ListItem button component={RouterLink} to='/plants'>
+                                        <ListItemIcon><LocalFloristSharpIcon color="primary"/> </ListItemIcon>
+                                        <ListItemText>Plants</ListItemText>
+                                    </ListItem>
+                                    <ListItem button component={RouterLink} to='/reminders'>
+                                        <ListItemIcon><FormatListBulletedSharpIcon color="primary" /> </ListItemIcon>
+                                        <ListItemText>Reminders</ListItemText>
+                                    </ListItem>
+                                </List>
+                                <List>
+                                    <Divider />
+                                </List>
+                                <List>
+                                    <ListItem button onClick={onLogoutAndClose}>
+                                        <ListItemIcon><ExitToAppIcon color="secondary"/> </ListItemIcon>
+                                        <ListItemText>Sign out</ListItemText>
+                                    </ListItem>
+                                </List>
+                            </div>
+                        </SwipeableDrawer>
+                    )
+                }
                 {isLoggedIn ? (
                     <div>
                     <IconButton
@@ -190,7 +177,6 @@ function Nav(props) {
                             <MenuItem button component={RouterLink} to={`/profile/${user._id}`} onClick={handleClose}>Profile</MenuItem>
                         )
                     }
-                       
                         <MenuItem onClick={onLogoutAndClose}>Sign out</MenuItem>
                     </Menu>
                     </div>
