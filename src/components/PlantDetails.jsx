@@ -67,9 +67,9 @@ function PlantDetails(props) {
                     <Link to={`/plants/${plantDetail._id}/edit`}>
                         <Button>Edit</Button>
                     </Link>
-                    <button onClick={() => { props.onDelete(plantDetail._id) }}>
-                        <Button >Delete</Button>
-                    </button>  
+                    <Link>
+                        <Button onClick={() => {props.onDelete(plantDetail._id)}}>Delete</Button>
+                    </Link>
                     </div>
                 </div>
             </>          

@@ -42,9 +42,11 @@ function Profile(props) {
     return (
         <Container>
             <div>
-                <div className='flex-box'>
-                    <h1>Hi there, {user.username}!</h1>
-                </div>
+                { user && (
+                    <div className='flex-box'>
+                        <h1>Hi there, {user.username}!</h1>
+                    </div>
+                )}
                 
                 <div className='flex-box'>
                     <p>Edit your profile details using the form below.</p>
@@ -72,11 +74,11 @@ function Profile(props) {
                             <label htmlFor="InputPassword">New Password</label>
                             <input name="password" type="password" className="form-control" id="password" />
                         </div>
-                        <button type="submit" className="btn btn-primary"><Button>Save</Button></button>
+                        <Button type="submit" className="btn btn-primary">Save</Button>
                     </form>
                 </div>
                 <div className='flex-box'>
-                    <button onClick={onDeleteUser}><Button>Delete account</Button></button>
+                    <Button onClick={onDeleteUser}>Delete account</Button>
                 </div>
             </div>
         </Container>

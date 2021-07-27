@@ -49,7 +49,7 @@ function RemindersToDo(props) {
                                         To Do
                                     </TableCell>
                                     <TableCell align="right">
-                                        <button onClick={() => onWatering(reminder._id)}><Button>Done</Button></button>
+                                        <Button onClick={() => onWatering(reminder._id)}>Done</Button>
                                     </TableCell>
                                 </TableRow>
                             )
