@@ -82,10 +82,12 @@ function Nav(props) {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
-                    onClick={() => isLoggedIn && toggleDrawer(true)}>
-                    <MenuIcon />
-                </IconButton>
+                    { user && (
+                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
+                            onClick={() => isLoggedIn && toggleDrawer(true)}>
+                            <MenuIcon />
+                        </IconButton>
+                    )}
                 <Typography variant="h6" className={classes.title}>
                     <Link component={RouterLink} to='/' color='inherit'>PlantPal</Link>
                 </Typography>
@@ -105,27 +107,22 @@ function Nav(props) {
                             </ListItem>
                         </List>
 
-                        <List>
-                            <Divider />
-                        </List>
                         {
-                           user && (<List>
-                            <ListItem>
-                            <ListItemIcon><AccountCircle /> </ListItemIcon>
-                                <ListItemText> {user.username}
-                                    {/* { if(!user) {
-                                        return null;
-                                    } 
-                                    else {
-                                        return {user.username}
-                                    }
-                                    } */}
-                                </ListItemText>
-                            </ListItem>
-                        </List>) 
+                           user && (
+                               <>
+                                <List>
+                                    <Divider />
+                                </List>
+                                <List>
+                                    <ListItem button component={RouterLink} to={`/profile/${user._id}`}>
+                                    <ListItemIcon><AccountCircle color="secondary"/> </ListItemIcon>
+                                        <ListItemText> {user.username} </ListItemText>
+                                    </ListItem>
+                                </List>
+                                </>
+                            ) 
                         }
                         
-
                         <List>
                             <Divider />
                         </List>
@@ -146,29 +143,20 @@ function Nav(props) {
                                 <ListItemText>Reminders</ListItemText>
                             </ListItem>
                             
-                            {/* <ListItem button component={RouterLink} to='/identify'>
-                                <ListItemIcon><LibraryBooksSharpIcon color="primary"/> </ListItemIcon>
-                                <ListItemText>Find Species</ListItemText>
-                            </ListItem> */}
                         </List>
 
                         <List>
                             <Divider />
                         </List>
 
-                        {
-                            user && (
-                                <List>
-                                    {/* <ListItem button component={RouterLink} to={`/profile`}> */}
-                                    <ListItem button component={RouterLink} to={`/profile/${ user._id }`}>
-                                        <ListItemIcon><SettingsSharpIcon /> </ListItemIcon>
-                                        <ListItemText>Settings</ListItemText>
-                                    </ListItem>
-                                </List>
-                                )
-                        }
+                        <List>
+                            {/* <ListItem button component={RouterLink} to={`/profile`}> */}
+                            <ListItem button onClick={onLogoutAndClose}>
+                                <ListItemIcon><ExitToAppIcon color="secondary"/> </ListItemIcon>
+                                <ListItemText>Sign out</ListItemText>
+                            </ListItem>
+                        </List>
                    
-
                     </div>
                 </SwipeableDrawer>
                 {isLoggedIn ? (
