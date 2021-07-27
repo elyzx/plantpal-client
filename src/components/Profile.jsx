@@ -16,7 +16,6 @@ function Profile(props) {
     
     const fetchProfileDetails = async () => {
         try {
-            let propsUser = user
             let propsUserId = user._id
             console.log('propsUserId', propsUserId) // 60fa9de929e94897bd682a4b
             let userId = props.match.params.userId
@@ -80,7 +79,7 @@ function Profile(props) {
                 </form>
                 <button onClick={onDeleteUser}>Delete account</button>
             </div>
-        </ Container>
+        </Container>
     );
 };
 

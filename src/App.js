@@ -23,6 +23,7 @@ import Page404 from './components/Page404';
 function App(props) {
 
     const [user, setUser] = useState(null);
+
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [plants, updatePlants] = useState([]);
     const [filteredPlants, updateFilteredPlants] = useState([]);
@@ -41,6 +42,13 @@ function App(props) {
     useEffect(() => {
         fetchReminders();
     }, [plants, filteredPlants]); 
+
+    useEffect(() =>{
+        if(user === null){
+            props.history.push('/');
+        }
+        
+    }, [user])
 
     // useEffect(() => {
     //     fetchWeather();
@@ -170,7 +178,8 @@ function App(props) {
             await axios.post(`http://localhost:5005/api/logout`, {}, {withCredentials: true});
             setUser(null);
             setIsLoggedIn(false);
-            props.history.push('/');
+            console.log('sign out succesfull')
+          
         }
         catch (err) {
             console.log('Logout failed', err);

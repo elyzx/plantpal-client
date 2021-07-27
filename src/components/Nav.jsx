@@ -103,11 +103,11 @@ function Nav(props) {
                         <List>
                             <Divider />
                         </List>
-
-                        <List>
+                        {
+                           user && (<List>
                             <ListItem>
                             <ListItemIcon><AccountCircle /> </ListItemIcon>
-                                <ListItemText> username
+                                <ListItemText> {user.username}
                                     {/* { if(!user) {
                                         return null;
                                     } 
@@ -117,7 +117,9 @@ function Nav(props) {
                                     } */}
                                 </ListItemText>
                             </ListItem>
-                        </List>
+                        </List>) 
+                        }
+                        
 
                         <List>
                             <Divider />
@@ -149,13 +151,19 @@ function Nav(props) {
                             <Divider />
                         </List>
 
-                        <List>
-                            {/* <ListItem button component={RouterLink} to={`/profile`}> */}
-                            <ListItem button component={RouterLink} to={`/profile/${ user._id }`}>
-                                <ListItemIcon><SettingsSharpIcon /> </ListItemIcon>
-                                <ListItemText>Settings</ListItemText>
-                            </ListItem>
-                        </List>
+                        {
+                            user && (
+                                <List>
+                                    {/* <ListItem button component={RouterLink} to={`/profile`}> */}
+                                    <ListItem button component={RouterLink} to={`/profile/${ user._id }`}>
+                                        <ListItemIcon><SettingsSharpIcon /> </ListItemIcon>
+                                        <ListItemText>Settings</ListItemText>
+                                    </ListItem>
+                                </List>
+                                )
+                        }
+                   
+
                     </div>
                 </SwipeableDrawer>
                 {isLoggedIn ? (
@@ -184,7 +192,12 @@ function Nav(props) {
                         open={open}
                         onClose={handleClose}
                     >
-                        <MenuItem button component={RouterLink} to={`/profile/${user}`} onClick={handleClose}>Profile</MenuItem>
+                    {
+                        user && (
+                            <MenuItem button component={RouterLink} to={`/profile/${user._id}`} onClick={handleClose}>Profile</MenuItem>
+                        )
+                    }
+                       
                         <MenuItem onClick={onLogoutAndClose}>Sign out</MenuItem>
                     </Menu>
                     </div>
