@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 function Reminders(props) {
     const {reminders, onWatering} = props
     const classes = useStyles();
+    const options = {month: 'short', day: 'numeric'};
 
     return (
         <Container>
@@ -55,7 +56,7 @@ function Reminders(props) {
                                         Water Me!
                                     </TableCell>
                                     <TableCell>
-                                        {reminder.nextWatering}
+                                        {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}
                                     </TableCell>
                                     <TableCell>
                                         {reminder.complete.toString()}
@@ -98,10 +99,10 @@ function Reminders(props) {
                                         Water Me!
                                     </TableCell>
                                     <TableCell>
-                                        {reminder.nextWatering}
+                                        {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}
                                     </TableCell>
                                     <TableCell>
-                                        {reminder.wateredAt}
+                                        {new Intl.DateTimeFormat('en-GB', options).format(reminders.wateredAt)}
                                     </TableCell>
                                     {/* <TableCell>
                                         <button onClick={() => onWatering(reminder._id)}>Done</button>

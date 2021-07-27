@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 
 function Profile(props) {
     const { onEdit, onDeleteUser, user} = props
-    console.log('user props', user) // user Obj - with all the key value pairs for user details
     const [profileDetails, setProfileDetails] = useState([]);
 
     useEffect(() => {

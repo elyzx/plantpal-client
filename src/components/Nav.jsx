@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Nav(props) {
     const {onLogOut, isLoggedIn, user} = props
-    console.log(user)
     const theme = useTheme();
     const classes = useStyles();
     const drawerClasses = makeStyles({
