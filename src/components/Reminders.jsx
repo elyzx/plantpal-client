@@ -36,9 +36,9 @@ function Reminders(props) {
                         <TableRow>
                             <TableCell>Plant</TableCell>
                             <TableCell>Task</TableCell>
-                            <TableCell>Date Due</TableCell>
-                            <TableCell>Status</TableCell>
-                            <TableCell>Update</TableCell>
+                            <TableCell align="right">Date Due</TableCell>
+                            <TableCell align="right">Status</TableCell>
+                            <TableCell align="right">Change Status</TableCell>
                             {/* Edit reminder frequency? */}
                         </TableRow>
                         </TableHead>
@@ -55,13 +55,13 @@ function Reminders(props) {
                                     <TableCell>
                                         Water Me!
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell align="right">
                                         {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}
                                     </TableCell>
-                                    <TableCell>
-                                        {reminder.complete.toString()}
+                                    <TableCell align="right">
+                                        To Do
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell align="right">
                                         <button onClick={() => onWatering(reminder._id)}><Button>Done</Button></button>
                                     </TableCell>
                                 </TableRow>
@@ -79,10 +79,9 @@ function Reminders(props) {
                         <TableRow>
                             <TableCell>Plant</TableCell>
                             <TableCell>Task</TableCell>
-                            <TableCell>Date Due</TableCell>
-                            <TableCell>Date Completed</TableCell>
-                            {/* <TableCell>Update</TableCell> */}
-                            {/* Edit reminder frequency? */}
+                            <TableCell align="right">Date Due</TableCell>
+                            <TableCell align="right">Status</TableCell>
+                            <TableCell align="right">Date Changed</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
@@ -98,10 +97,13 @@ function Reminders(props) {
                                     <TableCell>
                                         Water Me!
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell align="right">
                                         {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell align="right">
+                                        Done
+                                    </TableCell>
+                                    <TableCell align="right">
                                         {new Intl.DateTimeFormat('en-GB', options).format(reminders.wateredAt)}
                                     </TableCell>
                                     {/* <TableCell>
