@@ -1,11 +1,13 @@
-import React, {useState, useEffect }from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 // Material UI
 import Container from '@material-ui/core/Container';
 
 function Profile(props) {
-    const {isLoggedIn, onEdit, onDeleteUser} = props
+    const {isLoggedIn, onEdit, onDeleteUser, user} = props
+    console.log('user props', user) // user Obj - with all the key value pairs for user details
+    console.log('user props id', user._id) // userid
     const [profileDetails, setProfileDetails] = useState([]);
 
     useEffect(() => {
@@ -14,12 +16,15 @@ function Profile(props) {
     
     const fetchProfileDetails = async () => {
         try {
+            let propsUser = user
+            let propsUserId = user._id
+            console.log('propsUserId', propsUserId) // 60fa9de929e94897bd682a4b
             let userId = props.match.params.userId
-            console.log(props.match.params) // {userId: "[object Object]"}
-            console.log(props.match.params.userId) // [object Object]
-            console.log(userId) // [object Object]
-            console.log(userId._id) // undefined
-            let response = await axios.get(`http://localhost:5005/api/profile/${userId}`, {withCredentials: true});
+            console.log('props.match.params', props.match.params) // {userId: "60fa9de929e94897bd682a4b"}
+            console.log('props.match.params.userId', props.match.params.userId) // 60fa9de929e94897bd682a4b
+            console.log('userId', userId) // [60fa9de929e94897bd682a4b
+            console.log('userId._id', userId._id) // undefined
+            let response = await axios.get(`http://localhost:5005/api/profile/${propsUser._id}`, {withCredentials: true});
             setProfileDetails(response.data);
         }
         catch (err) {

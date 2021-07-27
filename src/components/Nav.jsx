@@ -106,7 +106,15 @@ function Nav(props) {
                         <List>
                             <ListItem>
                             <ListItemIcon><AccountCircle /> </ListItemIcon>
-                                <ListItemText>user username</ListItemText>
+                                <ListItemText> username
+                                    {/* { if(!user) {
+                                        return null;
+                                    } 
+                                    else {
+                                        return {user.username}
+                                    }
+                                    } */}
+                                </ListItemText>
                             </ListItem>
                         </List>
 
