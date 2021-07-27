@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Nav(props) {
     const {onLogOut, isLoggedIn, user} = props
+   console.log(user)
     const classes = useStyles();
     const drawerClasses = makeStyles({
         list: {
@@ -142,7 +143,7 @@ function Nav(props) {
 
                         <List>
                             {/* <ListItem button component={RouterLink} to={`/profile`}> */}
-                            <ListItem button component={RouterLink} to={`/profile/${user._id}`}>
+                            <ListItem button component={RouterLink} to={`/profile/${ user._id }`}>
                                 <ListItemIcon><SettingsSharpIcon /> </ListItemIcon>
                                 <ListItemText>Settings</ListItemText>
                             </ListItem>

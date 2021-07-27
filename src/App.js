@@ -27,7 +27,6 @@ function App(props) {
     const [plants, updatePlants] = useState([]);
     const [filteredPlants, updateFilteredPlants] = useState([]);
     const [reminders, setReminders] = useState([]);
-    const [specificUser, updateSpecificUser] = useState([]);
     const [fetchingUser , updateLoadingUser] = useState(true);
     //const [weather, updateWeather] = useState([]);
 
@@ -302,14 +301,14 @@ const handleEditProfile = async (event, profile) => {
     event.preventDefault()
     try {
         await axios.patch(`http://localhost:5005/api/profile/${profile._id}`, profile, {withCredentials: true})
-        let updateProfile = specificUser.map((singleUser) => {
+        let updateProfile = user.map((singleUser) => {
             if (singleUser._id === profile._id) {
                 singleUser.name = profile.name
                 singleUser.username = profile.username
             }
             return singleUser
         })
-        updateSpecificUser(updateProfile)
+        setUser(updateProfile)
         props.history.push('/');
     }
     catch(err){
@@ -317,6 +316,8 @@ const handleEditProfile = async (event, profile) => {
     }
 }
 
+
+//------------------------   FETCH USER        ----------------
 if (fetchingUser) {
     return <p>Loading . . . </p>
 }
@@ -343,7 +344,7 @@ if (fetchingUser) {
                 }} />
                 {/* Protected Pages */}
                 <Route path={'/profile/:userId'} render={(routeProps) => {
-                    return <Profile onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Profile setUser={setUser} onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
                     return <Dashboard plants={plants} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>

@@ -15,9 +15,10 @@ function Profile(props) {
     const fetchProfileDetails = async () => {
         try {
             let userId = props.match.params.userId
-            console.log(props.match.params)
+            console.log('this is the user Id:', userId)
             let response = await axios.get(`http://localhost:5005/api/profile/${userId}`, {withCredentials: true});
             setProfileDetails(response.data);
+
         }
         catch (err) {
             console.log('Profile details fetch failed', err)
@@ -44,7 +45,7 @@ function Profile(props) {
             <div>
                 <h1>Profile Details</h1>
                 <p>Login status: {isLoggedIn.toString()}</p>
-                <form onSubmit={(event) => {onEdit(event, setProfileDetails)}}>
+                <form onSubmit={(event) => {onEdit(event, profileDetails)}}>
                     <div className="form-group">
                         <label htmlFor="InputName">Name</label>
                         <input onChange={handleNameChange} value={profileDetails.name} type="text" className="form-control" id="InputName" name="name" />
