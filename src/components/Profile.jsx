@@ -15,15 +15,6 @@ function Profile(props) {
     
     const fetchProfileDetails = async () => {
         try {
-            let propsUserId = user._id
-            console.log('propsUserId', propsUserId) // 60fa9de929e94897bd682a4b
-            let userId = props.match.params.userId
-            console.log('props.match.params', props.match.params) // {userId: "60fa9de929e94897bd682a4b"}
-            console.log('props.match.params.userId', props.match.params.userId) // 60fa9de929e94897bd682a4b
-            console.log('userId', userId) // [60fa9de929e94897bd682a4b
-            console.log('userId._id', userId._id) // undefined
-            // let response = await axios.get(`http://localhost:5005/api/profile/${propsUser._id}`, {withCredentials: true});
-            console.log('this is the user Id:', userId)
             let response = await axios.get(`http://localhost:5005/api/profile`, {withCredentials: true});
             setProfileDetails(response.data);
 

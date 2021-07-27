@@ -73,11 +73,6 @@ function MyPlants(props) {
                                             <Button size="small" color="primary">Details</Button>
                                         </Link>
                                     </CardActions>
-                                    <CardActions>
-                                        <Link to={`/plants/${plant._id}/edit`}>
-                                            <Button size="small" color="primary">Edit</Button>
-                                        </Link>
-                                    </CardActions>
                                 </Card>
                             </div>
                         )
