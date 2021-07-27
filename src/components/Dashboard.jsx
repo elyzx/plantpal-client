@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function Dashboard(props) {
-    const {plants, reminders} = props;
+    const {plants, reminders, onWatering} = props;
     const classes = useStyles();
     const theme = useTheme();
 
@@ -93,7 +93,7 @@ function Dashboard(props) {
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paper}>
                             Next Reminders
-                            <RemindersToDo classes={classes} reminders={reminders}/> 
+                            <RemindersToDo classes={classes} reminders={reminders} onWatering={onWatering}/> 
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>

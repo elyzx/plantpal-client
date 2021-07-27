@@ -390,7 +390,7 @@ if (fetchingUser) {
                     return <Profile user={user} setUser={setUser} onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
-                    return <Dashboard user={user} plants={plants} reminders={reminders} {...routeProps}/>
+                    return <Dashboard user={user} plants={plants} reminders={reminders} onWatering={handleReminder} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
                     return <MyPlants onSearch={handleSearch} plants={filteredPlants} isLoggedIn={isLoggedIn} {...routeProps}/>

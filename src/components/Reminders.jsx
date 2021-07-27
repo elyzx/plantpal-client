@@ -31,7 +31,7 @@ function Reminders(props) {
                 <h1>Reminders</h1>
             </div>
             <h2>To Do</h2>
-                <RemindersToDo classes={classes} reminders={reminders}/>
+                <RemindersToDo classes={classes} reminders={reminders} onWatering={onWatering} />
             <h2>Done</h2>
                 <div className="flex-box">
                 <TableContainer component={Paper}>
@@ -67,9 +67,6 @@ function Reminders(props) {
                                     <TableCell align="right">
                                         {new Intl.DateTimeFormat('en-GB', options).format(reminders.wateredAt)}
                                     </TableCell>
-                                    {/* <TableCell>
-                                        <button onClick={() => onWatering(reminder._id)}>Done</button>
-                                    </TableCell> */}
                                 </TableRow>
                             )
                         })}

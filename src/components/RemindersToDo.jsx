@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 
 function RemindersToDo(props) {
     const {reminders, onWatering, classes} = props
+    console.log('onwatering', onWatering)
     const options = {month: 'short', day: 'numeric'};
     return (
         <>
