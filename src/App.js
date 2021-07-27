@@ -349,7 +349,7 @@ if (fetchingUser) {
                 }} />
                 {/* Protected Pages */}
                 <Route path={'/profile/:userId'} render={(routeProps) => {
-                    return <Profile setUser={setUser} onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Profile user={user} setUser={setUser} onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
                     return <Dashboard user={user} plants={plants} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
