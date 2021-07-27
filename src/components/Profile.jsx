@@ -26,7 +26,7 @@ function Profile(props) {
             console.log('userId._id', userId._id) // undefined
             // let response = await axios.get(`http://localhost:5005/api/profile/${propsUser._id}`, {withCredentials: true});
             console.log('this is the user Id:', userId)
-            let response = await axios.get(`http://localhost:5005/api/profile/${userId}`, {withCredentials: true});
+            let response = await axios.get(`http://localhost:5005/api/profile`, {withCredentials: true});
             setProfileDetails(response.data);
 
         }
@@ -58,15 +58,15 @@ function Profile(props) {
                 <form onSubmit={(event) => {onEdit(event, profileDetails)}}>
                     <div className="form-group">
                         <label htmlFor="InputName">Name</label>
-                        <input onChange={handleNameChange} value={profileDetails.name} type="text" className="form-control" id="InputName" name="name" />
+                        <input onChange={handleNameChange} value={user.name} type="text" className="form-control" id="InputName" name="name" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputUsername">Username</label>
-                        <input onChange={handleUsernameChange} value={profileDetails.username} type="text" className="form-control" id="InputUsername" name="username" />
+                        <input onChange={handleUsernameChange} value={user.username} type="text" className="form-control" id="InputUsername" name="username" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputEmail">Email address</label>
-                        <input onChange={handleEmailChange} value={profileDetails.email} type="email" className="form-control" id="InputEmail" name="email" />
+                        <input onChange={handleEmailChange} value={user.email} type="email" className="form-control" id="InputEmail" name="email" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputPassword">Previous Password</label>

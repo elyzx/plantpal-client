@@ -19,6 +19,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
+// Theme
+import { useTheme } from '@material-ui/core/styles';
+
 // Icons
 import LocalFloristSharpIcon from '@material-ui/icons/LocalFloristSharp';
 import FormatListBulletedSharpIcon from '@material-ui/icons/FormatListBulletedSharp';
@@ -26,6 +29,7 @@ import BarChartSharpIcon from '@material-ui/icons/BarChartSharp';
 import LibraryBooksSharpIcon from '@material-ui/icons/LibraryBooksSharp';
 import SettingsSharpIcon from '@material-ui/icons/SettingsSharp';
 import HomeIcon from '@material-ui/icons/Home';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Nav(props) {
     const {onLogOut, isLoggedIn, user} = props
-   console.log(user)
+    console.log(user)
+    const theme = useTheme();
     const classes = useStyles();
     const drawerClasses = makeStyles({
         list: {
@@ -95,7 +100,7 @@ function Nav(props) {
                         </List>
                         <List>
                             <ListItem button component={RouterLink} to='/'>
-                                <ListItemIcon><HomeIcon /> </ListItemIcon>
+                                <ListItemIcon><HomeIcon color="secondary"/> </ListItemIcon>
                                 <ListItemText>PlantPal</ListItemText>
                             </ListItem>
                         </List>
@@ -105,17 +110,9 @@ function Nav(props) {
                         </List>
 
                         <List>
-                            <ListItem>
-                            <ListItemIcon><AccountCircle /> </ListItemIcon>
-                                <ListItemText> username
-                                    {/* { if(!user) {
-                                        return null;
-                                    } 
-                                    else {
-                                        return {user.username}
-                                    }
-                                    } */}
-                                </ListItemText>
+                            <ListItem button component={RouterLink} to={`/profile`}>
+                                <ListItemIcon><AccountCircle  color="secondary"/> </ListItemIcon>
+                                <ListItemText>Profile </ListItemText>
                             </ListItem>
                         </List>
 
@@ -125,24 +122,24 @@ function Nav(props) {
 
                         <List>
                             <ListItem button component={RouterLink} to='/dashboard'>
-                                <ListItemIcon><BarChartSharpIcon /> </ListItemIcon>
+                                <ListItemIcon><BarChartSharpIcon color="primary" /> </ListItemIcon>
                                 <ListItemText>Dashboard</ListItemText>
                             </ListItem>
                             
                             <ListItem button component={RouterLink} to='/plants'>
-                                <ListItemIcon><LocalFloristSharpIcon /> </ListItemIcon>
+                                <ListItemIcon><LocalFloristSharpIcon color="primary"/> </ListItemIcon>
                                 <ListItemText>Plants</ListItemText>
                             </ListItem>
                             
                             <ListItem button component={RouterLink} to='/reminders'>
-                                <ListItemIcon><FormatListBulletedSharpIcon /> </ListItemIcon>
+                                <ListItemIcon><FormatListBulletedSharpIcon color="primary" /> </ListItemIcon>
                                 <ListItemText>Reminders</ListItemText>
                             </ListItem>
                             
-                            <ListItem button component={RouterLink} to='/identify'>
-                                <ListItemIcon><LibraryBooksSharpIcon /> </ListItemIcon>
+                            {/* <ListItem button component={RouterLink} to='/identify'>
+                                <ListItemIcon><LibraryBooksSharpIcon color="primary"/> </ListItemIcon>
                                 <ListItemText>Find Species</ListItemText>
-                            </ListItem>
+                            </ListItem> */}
                         </List>
 
                         <List>
@@ -151,9 +148,9 @@ function Nav(props) {
 
                         <List>
                             {/* <ListItem button component={RouterLink} to={`/profile`}> */}
-                            <ListItem button component={RouterLink} to={`/profile/${ user._id }`}>
-                                <ListItemIcon><SettingsSharpIcon /> </ListItemIcon>
-                                <ListItemText>Settings</ListItemText>
+                            <ListItem button onClick={onLogoutAndClose}>
+                                <ListItemIcon><ExitToAppIcon color="secondary"/> </ListItemIcon>
+                                <ListItemText>Sign out</ListItemText>
                             </ListItem>
                         </List>
                     </div>
@@ -184,7 +181,7 @@ function Nav(props) {
                         open={open}
                         onClose={handleClose}
                     >
-                        <MenuItem button component={RouterLink} to={`/profile/${user}`} onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem button component={RouterLink} to={`/profile}`} onClick={handleClose}>Profile</MenuItem>
                         <MenuItem onClick={onLogoutAndClose}>Sign out</MenuItem>
                     </Menu>
                     </div>

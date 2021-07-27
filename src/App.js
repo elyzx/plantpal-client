@@ -19,6 +19,35 @@ import EditPlant from './components/EditPlant';
 import Reminders from './components/Reminders';
 import Page404 from './components/Page404';
 
+// Material UI theme
+import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { green, blue } from '@material-ui/core/colors';
+import { makeStyles } from '@material-ui/core/styles';
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        // light: will be calculated from palette.primary.main,
+        main: green[500],
+        // dark: will be calculated from palette.primary.main,
+        // contrastText: will be calculated to contrast with palette.primary.main
+      },
+      secondary: {
+        main: blue[500],
+        // dark: will be calculated from palette.secondary.main,
+      },
+      // Used by `getContrastText()` to maximize the contrast between
+      // the background and the text.
+      contrastThreshold: 3,
+      // Used by the functions below to shift a color's luminance by approximately
+      // two indexes within its tonal palette.
+      // E.g., shift from Red 500 to Red 300 or Red 700.
+      tonalOffset: 0.2,
+    },
+  });
+
+
 // It begins!
 function App(props) {
 
@@ -313,7 +342,7 @@ const handleEditProfile = async (event, profile) => {
             }
             return singleUser
         })
-        setUser(updateProfile)
+        setUser(updateProfile);
         props.history.push('/');
     }
     catch(err){
@@ -332,6 +361,7 @@ if (fetchingUser) {
 //----------------------------------------------------------
     return (
         <div className="App">
+            <ThemeProvider theme={theme}>
             {/* Navbar */}
             <Nav user={user} onLogOut={handleLogOut} isLoggedIn={isLoggedIn} />
             <div className='container'>
@@ -348,7 +378,7 @@ if (fetchingUser) {
                     return <Login onLogIn={handleLogIn} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Protected Pages */}
-                <Route path={'/profile/:userId'} render={(routeProps) => {
+                <Route path={'/profile'} render={(routeProps) => {
                     return <Profile user={user} setUser={setUser} onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
@@ -374,6 +404,7 @@ if (fetchingUser) {
             </Switch>
             </div>
             {/* <Footer /> */}
+            </ThemeProvider>
         </div>
     );
 };
