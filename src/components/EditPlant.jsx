@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 // Material UI
@@ -53,6 +54,10 @@ function EditPlant(props) {
     return (
         <Container>
             <>
+                <div className='space-between'>
+                    <Link to='/plants'><Button color='secondary'>Go Back</Button></Link>
+                </div>
+
                 <div className="flex-box">
                     <h1>Edit Plant</h1>
                 </div>
@@ -60,10 +65,9 @@ function EditPlant(props) {
                 <div className="flex-box">
                     <form onSubmit={ (event) => {onEdit(event, plantDetail ) } } >
                         <input onChange={handleNameChange} value={plantDetail.name}  name="name"  type="text"  placeholder="Enter name"/>
-                        <input onChange={handleDescriptionChange} value={plantDetail.description} name="description"  type="text"  placeholder="Enter desc"/>
-                        
-                        <input onChange={handleWaterFreqChange} value={plantDetail.waterFreq}  name="waterFreq"  type="number"  placeholder="Enter name"/>
-                        <input onChange={handleFertiliseFreqChange} value={plantDetail.fertiliseFreq}  name="fertiliseFreq"  type="number"  placeholder="Enter name"/>
+                        <input onChange={handleDescriptionChange} value={plantDetail.description} name="description"  type="text"  placeholder="Enter description"/>
+                        <input onChange={handleWaterFreqChange} value={plantDetail.waterFreq}  name="waterFreq"  type="number"  placeholder="Set frequency for reminders (in days)"/>
+                        {/* <input onChange={handleFertiliseFreqChange} value={plantDetail.fertiliseFreq}  name="fertiliseFreq"  type="number"  placeholder="Enter name"/> */}
                         {/* <input onChange={handleIsAliveChange} value={plantDetail.isAlive}  name="isAlive"  type="text"  placeholder="Enter name"/> */}
 
                         <label for="isAlive">Choose the status:</label>
@@ -73,7 +77,7 @@ function EditPlant(props) {
                             <option  value="false">Dead</option>
                         </select>
 
-                        <button type="submit"><Button>Submit</Button></button>
+                        <Button type="submit">Submit</Button>
                     </form>
                 </div>
             </>

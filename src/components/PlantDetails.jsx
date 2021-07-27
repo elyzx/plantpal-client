@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 // Material UI
@@ -52,25 +52,32 @@ function PlantDetails(props) {
             <> 
                 <div className='space-between'>
                     <Link to='/plants'><Button color='secondary'>Go Back</Button></Link>
-                    <h3>Next Watering: {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}</h3>
+                    <h3>Next Reminder: {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}</h3>
                 </div>
+
                 <div className='flex-box'>
                     <h1>{plantDetail.name}</h1>
                 </div>
+
                 <div className='flex-box'>
+                    {live()}
+                </div>
+
+                <div className='flex-box'>
+                    <p>I need watering every {plantDetail.waterFreq} days.</p>
+                </div>
+
+                <div className='flex-box padded'>
                     <img src={plantDetail.photo} alt='{plantDetail.name}' height='500'/>
-                    <div className='padded'>
-                    <h4>Name: {plantDetail.name}</h4>
-                    <p>{plantDetail.description}</p>
-                    <p>I need watering every {plantDetail.waterFreq} days</p>
-                        {live()}
+                </div>
+
+                <div className='flex-box'>
                     <Link to={`/plants/${plantDetail._id}/edit`}>
                         <Button>Edit</Button>
                     </Link>
                     <Link>
                         <Button onClick={() => {props.onDelete(plantDetail._id)}}>Delete</Button>
                     </Link>
-                    </div>
                 </div>
             </>          
         </ Container>

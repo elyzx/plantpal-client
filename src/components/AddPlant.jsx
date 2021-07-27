@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Material UI
 import Container from '@material-ui/core/Container';
@@ -9,6 +10,10 @@ function AddPlant(props) {
     return (
         <Container>
             <>
+                <div className='space-between'>
+                    <Link to='/plants'><Button color='secondary'>Go Back</Button></Link>
+                </div>
+
                 <div className='flex-box'>
                     <h1>Add Plant</h1>
                 </div>
@@ -16,25 +21,26 @@ function AddPlant(props) {
                 <div className='flex-box'>
                     <form onSubmit={onAddPlant} action="/plants/create" encType="multipart/form-data">
                         <div className="form-group">
-                            <input type="file" name="photo" accept="image/png, image/jpg" required />
-                        </div>
-                        <div className="form-group">
                             <label htmlFor="InputName">Name</label>
-                            <input type="text"  name="name" />
+                            <input type="text"  name="name" placeholder="e.g. Freddie" required/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="InputUsername">Description</label>
-                            <input type="text" className="form-control"  name="description" />
+                            <input type="text" className="form-control"  placeholder="e.g. my beloved cheeseplant" name="description" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="InputEmail">Water Frequency</label>
-                            <input type="number" name="waterFreq" />
+                            <label htmlFor="InputEmail">Reminder Frequency</label>
+                            <input type="number" name="waterFreq" placeholder="number of days" required/>
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label htmlFor="InputPassword">Fertilizer Frequency</label>
                             <input name="fertiliseFreq" type="number" />
+                        </div> */}
+                        <div className="form-group">
+                            <label htmlFor="InputUsername">Plant Photo</label>
+                            <input type="file" name="photo" accept="image/png, image/jpg" required />
                         </div>
-                        <button type="submit" className="btn btn-primary"><Button>Submit</Button></button>
+                        <Button type="submit" className="btn btn-primary">Submit</Button>
                     </form>
                 </div>
             </>
