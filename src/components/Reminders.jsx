@@ -1,5 +1,4 @@
-import React, { useState, useEffect }from 'react';
-import axios from 'axios';
+import React from 'react';
 
 // Material UI
 import Container from '@material-ui/core/Container';
@@ -19,7 +18,7 @@ const useStyles = makeStyles({
 });
 
 function Reminders(props) {
-    const {isLoggedIn, reminders, onWatering} = props
+    const {reminders, onWatering} = props
     const classes = useStyles();
 
     return (

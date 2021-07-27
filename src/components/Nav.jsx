@@ -188,8 +188,8 @@ function Nav(props) {
                 )
                 : ( 
                     <div>
-                        <Link component={RouterLink} to='/login' color='inherit'>Login</Link>
-                        <Link component={RouterLink} to='/signup' color='inherit'>Signup</Link>
+                        <Link button component={RouterLink} to='/login' color='inherit'>Login</Link>
+                        <Link button component={RouterLink} to='/signup' color='inherit'>Signup</Link>
                     </div>
                 )}
                 </Toolbar>

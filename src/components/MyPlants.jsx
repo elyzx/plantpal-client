@@ -11,48 +11,50 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import PlantDetails from './PlantDetails';
-
+import { useTheme } from '@material-ui/core/styles';
 
 function MyPlants(props) {
-    const {isLoggedIn, plants, onSearch} = props
-    console.log(plants)
+    const {plants, onSearch} = props
+    const theme = useTheme();
 
     const useStyles = makeStyles({
         root: {
-          maxWidth: 345,
+            '& > *': {
+                margin: theme.spacing(1),
+            },
+            maxWidth: 345,
         },
         media: {
-          height: 140,
-          width: 200,
+            height: 140,
+            width: 200,
         },
-      });
+    });
+    const classes = useStyles();
 
-      const classes = useStyles();
-
-      const live = (v) => {
+    const live = (v) => {
         if (v.isAlive === true){
-           return <h2>Alive</h2>
-         }
-         else{
+            return <h2>Alive</h2>
+        }
+        else {
             return <h2>Not Alive</h2>
-         }
-      }
+        }
+    };
 
     return (
         <Container>
+            <div className={classes.root}>
+
                 <div>
                     <h1>My Plants</h1>
-                    <p> Login status: {isLoggedIn.toString()}</p>
                     <Link to='/plants/create'>Add Plant</Link>
-                    <input onChange={onSearch} type="text" placeholder="Search.."/>
                 </div>
-            <div className="flex-box">
-                {   
-                    plants
-                    .map((plant, i) => {
-                        return(
 
+                <input onChange={onSearch} type="text" placeholder="Search.."/>
+
+                <div className="flex-box">
+                    {plants
+                    .map((plant, i) => {
+                        return (
                             <div key={i} className="plants-direction">
 
                                 <Card className={classes.root}>
@@ -60,33 +62,28 @@ function MyPlants(props) {
                                         <CardMedia
                                             className={classes.media}
                                             image={plant.photo}
-                                            title={plant.name}
-                                            />
-                                            <CardContent>
-                                                <Typography gutterBottom variant="h5" component="h2">
-                                                    {plant.name}
-                                                </Typography>
-                                            </CardContent>
-                                            <CardContent className='isAlive-margin'>
-                                            { 
-                                                live(plant) 
-                                                
-                                            }
-                                            </CardContent>
+                                            title={plant.name} />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">{plant.name}</Typography>
+                                        </CardContent>
+                                        <CardContent className='isAlive-margin'>{live(plant)}</CardContent>
                                     </CardActionArea>
                                     <CardActions>
                                         <Link to={`/plants/${plant._id}`}>
-                                            <Button size="small" color="primary">
-                                                Details
-                                            </Button>
+                                            <Button size="small" color="primary">Details</Button>
+                                        </Link>
+                                    </CardActions>
+                                    <CardActions>
+                                        <Link to={`/plants/${plant._id}/edit`}>
+                                            <Button size="small" color="primary">Edit</Button>
                                         </Link>
                                     </CardActions>
                                 </Card>
-  
                             </div>
                         )
                     })
-                }
+                    }
+                </div>
             </div>
         </ Container>
     );

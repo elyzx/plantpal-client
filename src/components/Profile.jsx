@@ -7,7 +7,6 @@ import Container from '@material-ui/core/Container';
 function Profile(props) {
     const {isLoggedIn, onEdit, onDeleteUser, user} = props
     console.log('user props', user) // user Obj - with all the key value pairs for user details
-    console.log('user props id', user._id) // userid
     const [profileDetails, setProfileDetails] = useState([]);
 
     useEffect(() => {
