@@ -22,20 +22,18 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function Dashboard(props) {
-    const {isLoggedIn, plants, reminders, user} = props;
-    console.log('In the dashboard, user:', user)
+    const {plants, reminders} = props;
     const classes = useStyles();
+    const theme = useTheme();
 
     // const plantAlive = () => {
     //   let arrPlantsAlive = plants.map((plant, i) => {
     //         return(
-
     //             <div key={i}>
     //                 <p>{plant}</p>
     //             </div>
     //         )
     //     })
-
     //     return <p>{arrPlantsAlive.length}</p>
     // }
 

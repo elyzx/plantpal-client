@@ -18,6 +18,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
 
 // Theme
 import { useTheme } from '@material-ui/core/styles';
@@ -183,8 +184,8 @@ function Nav(props) {
                 )
                 : ( 
                     <div>
-                        <Link button component={RouterLink} to='/login' color='inherit'>Login</Link>
-                        <Link button component={RouterLink} to='/signup' color='inherit'>Signup</Link>
+                        <Link button component={RouterLink} to='/login' color='inherit'><Button>Login</Button></Link>
+                        <Link button component={RouterLink} to='/signup' color='inherit'><Button>Signup</Button></Link>
                     </div>
                 )}
                 </Toolbar>

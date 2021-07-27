@@ -10,10 +10,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     table: {
-      minWidth: 650,
+      minWidth: 500,
     },
 });
 
@@ -60,7 +61,7 @@ function Reminders(props) {
                                         {reminder.complete.toString()}
                                     </TableCell>
                                     <TableCell>
-                                        <button onClick={() => onWatering(reminder._id)}>Done</button>
+                                        <button onClick={() => onWatering(reminder._id)}><Button>Done</Button></button>
                                     </TableCell>
                                 </TableRow>
                             )

@@ -3,6 +3,7 @@ import axios from 'axios'
 
 // Material UI
 import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 
 function EditPlant(props) {
     const {isLoggedIn, onEdit} = props
@@ -51,29 +52,31 @@ function EditPlant(props) {
 
     return (
         <Container>
-            <div>
-                <h1>Edit Plant</h1>
-                <p> Login status: {isLoggedIn.toString()}</p>
+            <>
+                <div className="flex-box">
+                    <h1>Edit Plant</h1>
+                </div>
 
-            <form onSubmit={ (event) => {onEdit(event, plantDetail ) } } >
-                <input onChange={handleNameChange} value={plantDetail.name}  name="name"  type="text"  placeholder="Enter name"/>
-                <input onChange={handleDescriptionChange} value={plantDetail.description} name="description"  type="text"  placeholder="Enter desc"/>
-                
-                <input onChange={handleWaterFreqChange} value={plantDetail.waterFreq}  name="waterFreq"  type="number"  placeholder="Enter name"/>
-                <input onChange={handleFertiliseFreqChange} value={plantDetail.fertiliseFreq}  name="fertiliseFreq"  type="number"  placeholder="Enter name"/>
-                {/* <input onChange={handleIsAliveChange} value={plantDetail.isAlive}  name="isAlive"  type="text"  placeholder="Enter name"/> */}
+                <div className="flex-box">
+                    <form onSubmit={ (event) => {onEdit(event, plantDetail ) } } >
+                        <input onChange={handleNameChange} value={plantDetail.name}  name="name"  type="text"  placeholder="Enter name"/>
+                        <input onChange={handleDescriptionChange} value={plantDetail.description} name="description"  type="text"  placeholder="Enter desc"/>
+                        
+                        <input onChange={handleWaterFreqChange} value={plantDetail.waterFreq}  name="waterFreq"  type="number"  placeholder="Enter name"/>
+                        <input onChange={handleFertiliseFreqChange} value={plantDetail.fertiliseFreq}  name="fertiliseFreq"  type="number"  placeholder="Enter name"/>
+                        {/* <input onChange={handleIsAliveChange} value={plantDetail.isAlive}  name="isAlive"  type="text"  placeholder="Enter name"/> */}
 
-                <label for="isAlive">Choose the status:</label>
-                <select onChange={handleIsAliveChange} id="plantDetail.isAlive" name="isAlive">
-                    <option value="">Is it alive or dead?</option>   
-                    <option  value="true">Alive</option>
-                    <option  value="false">Dead</option>
-                </select>
+                        <label for="isAlive">Choose the status:</label>
+                        <select onChange={handleIsAliveChange} id="plantDetail.isAlive" name="isAlive">
+                            <option value="">Is it alive or dead?</option>   
+                            <option  value="true">Alive</option>
+                            <option  value="false">Dead</option>
+                        </select>
 
-                <button  type="submit">Submit</button>
-            </form>
-
-            </div>
+                        <button type="submit"><Button>Submit</Button></button>
+                    </form>
+                </div>
+            </>
         </Container>
     );
 };

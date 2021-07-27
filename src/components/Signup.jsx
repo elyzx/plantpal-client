@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 
 // Material UI
 import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 
 function Signup(props) {
     const {onSignUp, isLoggedIn} = props
@@ -32,7 +33,7 @@ function Signup(props) {
                         <label htmlFor="InputPassword">Password</label>
                         <input name="password" type="password" className="form-control" id="password" />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary"><Button>Submit</Button></button>
                 </form>
             </div>
         </ Container>

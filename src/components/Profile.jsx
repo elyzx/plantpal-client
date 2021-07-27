@@ -3,9 +3,10 @@ import axios from 'axios';
 
 // Material UI
 import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 
 function Profile(props) {
-    const {isLoggedIn, onEdit, onDeleteUser, user} = props
+    const { onEdit, onDeleteUser, user} = props
     console.log('user props', user) // user Obj - with all the key value pairs for user details
     const [profileDetails, setProfileDetails] = useState([]);
 
@@ -43,7 +44,11 @@ function Profile(props) {
         <Container>
             <div>
                 <div className='flex-box'>
-                    <h1>Profile Details</h1>
+                    <h1>Hi there, {user.username}!</h1>
+                </div>
+                
+                <div className='flex-box'>
+                    <p>Edit your profile details using the form below.</p>
                 </div>
 
                 <div className='flex-box'>
@@ -68,11 +73,11 @@ function Profile(props) {
                             <label htmlFor="InputPassword">New Password</label>
                             <input name="password" type="password" className="form-control" id="password" />
                         </div>
-                        <button type="submit" className="btn btn-primary">Save</button>
+                        <button type="submit" className="btn btn-primary"><Button>Save</Button></button>
                     </form>
                 </div>
                 <div className='flex-box'>
-                    <button onClick={onDeleteUser}>Delete account</button>
+                    <button onClick={onDeleteUser}><Button>Delete account</Button></button>
                 </div>
             </div>
         </Container>
