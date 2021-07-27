@@ -19,10 +19,10 @@ function MyPlants(props) {
 
     const useStyles = makeStyles({
         root: {
-            '& > *': {
-                margin: theme.spacing(1),
-            },
-            maxWidth: 345,
+            maxWidth: '100%',
+        },
+        search: {
+            maxWidth: '350px',
         },
         media: {
             height: 140,
@@ -44,19 +44,19 @@ function MyPlants(props) {
         <Container>
             <div className={classes.root}>
 
-                <div>
+                <div className="space-between">
                     <h1>My Plants</h1>
-                    <Link to='/plants/create'>Add Plant</Link>
+                    <div className="flex-end">
+                        <input onChange={onSearch} type="text" placeholder="Search.." className={classes.search}/>
+                        <Link to='/plants/create'><Button color='secondary'>Add Plant</Button></Link>
+                    </div>
                 </div>
-
-                <input onChange={onSearch} type="text" placeholder="Search.."/>
 
                 <div className="flex-box">
                     {plants
                     .map((plant, i) => {
                         return (
-                            <div key={i} className="plants-direction">
-
+                            <div key={i}>
                                 <Card className={classes.root}>
                                     <CardActionArea>
                                         <CardMedia

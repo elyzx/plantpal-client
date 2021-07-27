@@ -14,19 +14,22 @@ function Login(props) {
     
     return (
         <Container>
-            <h1>Log in to PlantPal</h1>
-            <p> Login status: {isLoggedIn.toString()}</p>
-            <form onSubmit={onLogIn}>
-                <div className="form-group">
-                    <label htmlFor="InputUsername">Username</label>
-                    <input name="username" type="text" className="form-control" id="username" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="InputPassword">Password</label>
-                    <input name="password" type="password" className="form-control" id="password" />
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+            <div className='flex-box'>
+                <h1>Log in to PlantPal</h1>
+            </div>
+            <div className='flex-box'>
+                <form onSubmit={onLogIn}>
+                    <div className="form-group">
+                        <label htmlFor="InputUsername">Username</label>
+                        <input name="username" type="text" className="form-control" id="username" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="InputPassword">Password</label>
+                        <input name="password" type="password" className="form-control" id="password" />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </ Container>
     );
 };

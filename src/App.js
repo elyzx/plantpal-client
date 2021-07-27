@@ -52,7 +52,6 @@ const theme = createTheme({
 function App(props) {
 
     const [user, setUser] = useState(null);
-
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [plants, updatePlants] = useState([]);
     const [filteredPlants, updateFilteredPlants] = useState([]);
@@ -72,12 +71,11 @@ function App(props) {
         fetchReminders();
     }, [plants, filteredPlants]); 
 
-    useEffect(() =>{
-        if(user === null){
-            props.history.push('/');
-        }
-        
-    }, [user])
+    // useEffect(() =>{
+    //     if(!user){
+    //         props.history.push('/');
+    //     } 
+    // }, [user])
 
     // useEffect(() => {
     //     fetchWeather();

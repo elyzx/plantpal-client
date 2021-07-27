@@ -23,9 +23,8 @@ function Reminders(props) {
 
     return (
         <Container>
-            <div className="flex-box">
+            <div>
                 <h1>Reminders</h1>
-                {/* <p> Login status: {isLoggedIn.toString()}</p> */}
             </div>
             <h2>To Do</h2>
             <div className="flex-box">

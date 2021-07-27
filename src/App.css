@@ -43,7 +43,20 @@ input {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
   gap: 25px;
+}
+
+.flex-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .isAlive-margin {
