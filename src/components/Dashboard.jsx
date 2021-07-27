@@ -1,16 +1,17 @@
-import axios from 'axios';
 import React from 'react';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
+import RemindersToDo from './RemindersToDo';
 
 // Material UI
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 // Theme
 import { useTheme } from '@material-ui/core/styles';
-
-import RemindersToDo from './RemindersToDo';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -76,7 +77,10 @@ function Dashboard(props) {
     return (
         <Container>
             <div className={classes.root}>
-            <h1>Dashboard</h1>
+                <div className="space-between">
+                    <h1>Dashboard</h1>
+                    <Link to='/plants/create'><Button color='secondary'>Add Plant</Button></Link>
+                </div>
                 <Grid container spacing={3}>
                     <Grid item xs={6} sm={3}>
                         <Paper className={classes.paper}>{<h3>Total Plants: {plantTotal()}</h3>}</Paper>
