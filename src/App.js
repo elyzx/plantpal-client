@@ -27,8 +27,8 @@ function App(props) {
     const [plants, updatePlants] = useState([]);
     const [filteredPlants, updateFilteredPlants] = useState([]);
     const [reminders, setReminders] = useState([]);
-    const [specificUser, updateSpecificUser] = useState([]);
-    const [fetchingUser , updateLoadingUser] = useState(true);
+    // const [specificUser, updateSpecificUser] = useState([]);
+    const [fetchingUser, updateFetchingUser] = useState(true);
     //const [weather, updateWeather] = useState([]);
 
     useEffect(() => {
@@ -64,14 +64,19 @@ function App(props) {
     const fetchUser = async () => {
         try {
             let response = await axios.get('http://localhost:5005/api/user', {withCredentials: true});
+            console.log('fetch user', response.data)
             setUser(response.data);
+            // updateSpecificUser(response.data);
             setIsLoggedIn(true);
-            updateLoadingUser(false)
+            updateFetchingUser(false)
         }
         catch (err) {
             console.log('User not logged in', err);
+            setUser(null);
+            // updateSpecificUser(null)
             setIsLoggedIn(false);
-            updateLoadingUser(false)
+            updateFetchingUser(false)
+            props.history.push('/')
         };
     };
 
@@ -149,7 +154,7 @@ function App(props) {
         try {
             let response = await axios.post('http://localhost:5005/api/login', myUser, {withCredentials: true});
             setUser(response.data);
-            console.log(response.data)
+            console.log('login function', response.data)
             setIsLoggedIn(true);
             props.history.push('/dashboard');
         }
@@ -302,14 +307,14 @@ const handleEditProfile = async (event, profile) => {
     event.preventDefault()
     try {
         await axios.patch(`http://localhost:5005/api/profile/${profile._id}`, profile, {withCredentials: true})
-        let updateProfile = specificUser.map((singleUser) => {
+        let updateProfile = user.map((singleUser) => {
             if (singleUser._id === profile._id) {
                 singleUser.name = profile.name
                 singleUser.username = profile.username
             }
             return singleUser
         })
-        updateSpecificUser(updateProfile)
+        setUser(updateProfile)
         props.history.push('/');
     }
     catch(err){
@@ -346,7 +351,7 @@ if (fetchingUser) {
                     return <Profile onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
-                    return <Dashboard plants={plants} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Dashboard user={user} plants={plants} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
                     return <MyPlants onSearch={handleSearch} plants={filteredPlants} isLoggedIn={isLoggedIn} {...routeProps}/>

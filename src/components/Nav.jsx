@@ -106,7 +106,7 @@ function Nav(props) {
                         <List>
                             <ListItem>
                             <ListItemIcon><AccountCircle /> </ListItemIcon>
-                                <ListItemText>{user.username}</ListItemText>
+                                <ListItemText>user username</ListItemText>
                             </ListItem>
                         </List>
 
@@ -142,7 +142,7 @@ function Nav(props) {
 
                         <List>
                             {/* <ListItem button component={RouterLink} to={`/profile`}> */}
-                            <ListItem button component={RouterLink} to={`/profile/${user._id}`}>
+                            <ListItem button component={RouterLink} to={`/profile/${user}`}>
                                 <ListItemIcon><SettingsSharpIcon /> </ListItemIcon>
                                 <ListItemText>Settings</ListItemText>
                             </ListItem>
@@ -175,7 +175,7 @@ function Nav(props) {
                         open={open}
                         onClose={handleClose}
                     >
-                        <MenuItem button component={RouterLink} to={`/profile/${user._id}`} onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem button component={RouterLink} to={`/profile/${user}`} onClick={handleClose}>Profile</MenuItem>
                         <MenuItem onClick={onLogoutAndClose}>Sign out</MenuItem>
                     </Menu>
                     </div>

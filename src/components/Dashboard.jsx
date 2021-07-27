@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function Dashboard(props) {
-    const {isLoggedIn, plants, reminders} = props;
+    const {isLoggedIn, plants, reminders, user} = props;
+    console.log('In the dashboard, user:', user)
     const classes = useStyles();
 
     // const plantAlive = () => {
@@ -84,7 +85,7 @@ function Dashboard(props) {
                         <Paper className={classes.paper}><h3>Deceased Plants: {plantsDead()}</h3></Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                        <Paper className={classes.paper}><h3>Completed Reminders {completedReminders()}</h3></Paper>
+                        <Paper className={classes.paper}><h3>Plant Waterings: {completedReminders()}</h3></Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paper}>Next Reminders</Paper>

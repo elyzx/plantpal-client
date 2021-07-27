@@ -15,7 +15,10 @@ function Profile(props) {
     const fetchProfileDetails = async () => {
         try {
             let userId = props.match.params.userId
-            console.log(props.match.params)
+            console.log(props.match.params) // {userId: "[object Object]"}
+            console.log(props.match.params.userId) // [object Object]
+            console.log(userId) // [object Object]
+            console.log(userId._id) // undefined
             let response = await axios.get(`http://localhost:5005/api/profile/${userId}`, {withCredentials: true});
             setProfileDetails(response.data);
         }

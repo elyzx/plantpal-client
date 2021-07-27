@@ -4,7 +4,8 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 
 function LandingPage(props) {
-    const {isLoggedIn} = props
+    const {isLoggedIn, user} = props
+    console.log('landing page', user)
     return (
         <Container>
             <h1>Health tracking for houseplants</h1>
