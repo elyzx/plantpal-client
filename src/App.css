@@ -59,6 +59,10 @@ input {
   justify-content: flex-end;
 }
 
+.padded {
+  padding: 20px;
+}
+
 .isAlive-margin {
   margin-top: -50px;
   padding: 0px;

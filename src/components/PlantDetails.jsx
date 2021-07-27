@@ -4,10 +4,12 @@ import axios from 'axios';
 
 // Material UI
 import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 
 function PlantDetails(props) {
     const {reminders} = props;
     const [plantDetail, updatePlantDetail] = useState({});
+    const options = {month: 'short', day: 'numeric'};
 
     useEffect(() => {
         fetchPlantDetails();
@@ -30,10 +32,10 @@ function PlantDetails(props) {
 
     const live = () => {
         if (plantDetail.isAlive === true){
-           return <h2>Status: Is alive</h2>
+           return <p>Alive</p>
          }
          else{
-            return <h2>Status: Is not Alive</h2>
+            return <p>Deceased</p>
          }
     }
     
@@ -47,27 +49,30 @@ function PlantDetails(props) {
 
     return (
         <Container>
-            <div>
-                <h1>{plantDetail.name}</h1>
-                <h2>{plantDetail.description}</h2>
-                <h2>Last Watering</h2>
-                <h2>Next Watering {nextWatering}</h2>
-                <h2>Water Frequency: Every {plantDetail.waterFreq} days</h2>
-
-                {
-                    live()
-                }
-                <Link to={`/plants/${plantDetail._id}/edit`}>
-                    <button>Edit</button>
-                </Link>
-               
-
-                <button onClick={() => { props.onDelete(plantDetail._id) }}>
-                    Delete
-                </button>
-            
-                
-            </div>          
+            <> 
+                <div className='space-between'>
+                    <Link to='/plants'><Button color='secondary'>Go Back</Button></Link>
+                    <h3>Next Watering: {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}</h3>
+                </div>
+                <div className='flex-box'>
+                    <h1>{plantDetail.name}</h1>
+                </div>
+                <div className='flex-box'>
+                    <img src={plantDetail.photo} alt='{plantDetail.name}' height='500'/>
+                    <div className='padded'>
+                    <h4>Name: {plantDetail.name}</h4>
+                    <p>{plantDetail.description}</p>
+                    <p>I need watering every {plantDetail.waterFreq} days</p>
+                        {live()}
+                    <Link to={`/plants/${plantDetail._id}/edit`}>
+                        <Button>Edit</Button>
+                    </Link>
+                    <button onClick={() => { props.onDelete(plantDetail._id) }}>
+                        <Button >Delete</Button>
+                    </button>  
+                    </div>
+                </div>
+            </>          
         </ Container>
     );
 };
