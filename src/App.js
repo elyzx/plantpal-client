@@ -6,7 +6,7 @@ import './App.css';
 
 // Components
 import Nav from './components/Nav';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
 import Signup from './components/Signup';
 import Login from './components/Login';
@@ -23,7 +23,7 @@ import Page404 from './components/Page404';
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { green, blue } from '@material-ui/core/colors';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
 const theme = createTheme({
     palette: {

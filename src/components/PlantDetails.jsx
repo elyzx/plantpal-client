@@ -6,7 +6,7 @@ import axios from 'axios';
 import Container from '@material-ui/core/Container';
 
 function PlantDetails(props) {
-    const {isLoggedIn, reminders} = props;
+    const {reminders} = props;
     const [plantDetail, updatePlantDetail] = useState({});
 
     useEffect(() => {
@@ -49,7 +49,6 @@ function PlantDetails(props) {
         <Container>
             <div>
                 <h1>{plantDetail.name}</h1>
-                {/* <p> Login status: {isLoggedIn.toString()}</p> */}
                 <h2>{plantDetail.description}</h2>
                 <h2>Last Watering</h2>
                 <h2>Next Watering {nextWatering}</h2>

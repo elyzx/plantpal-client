@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 
 function AddPlant(props) {
-    const {isLoggedIn, onAddPlant} = props
+    const {onAddPlant} = props
     return (
         <Container>
             <>

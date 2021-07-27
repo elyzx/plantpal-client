@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function LandingPage(props) {
-    const {isLoggedIn, user} = props
+    const {user} = props
     console.log('landing page', user)
     const classes = useStyles();
 

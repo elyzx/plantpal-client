@@ -27,8 +27,6 @@ import { useTheme } from '@material-ui/core/styles';
 import LocalFloristSharpIcon from '@material-ui/icons/LocalFloristSharp';
 import FormatListBulletedSharpIcon from '@material-ui/icons/FormatListBulletedSharp';
 import BarChartSharpIcon from '@material-ui/icons/BarChartSharp';
-import LibraryBooksSharpIcon from '@material-ui/icons/LibraryBooksSharp';
-import SettingsSharpIcon from '@material-ui/icons/SettingsSharp';
 import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
@@ -43,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
 }));
+
 
 function Nav(props) {
     const {onLogOut, isLoggedIn, user} = props
