@@ -77,20 +77,21 @@ function App(props) {
     //     } 
     // }, [user])
 
-    // useEffect(() => {
-    //     fetchWeather();
-    // }, [weather])
 
-    // const fetchWeather = async () => {
-    //     try{
-    //         let response = await axios.get(`http://api.weatherbit.io/v2.0/current?&postal_code=42103&country=DE&key=40b97bfea4d145428c756bc5caf74cbb`)
-    //         updateWeather(response.data)
-    //         console.log(weather)
-    //     }
-    //     catch(err){
-    //         console.log('failed to get the weahter')
-    //     }
-    // };
+//----------------------------------------------------------
+//------------------------   WEATHER API   ----------------
+//----------------------------------------------------------
+
+const handleWeather = async () => {
+    try{
+        let response = await axios.get('http://localhost:5005/api/dashboard/test', {withCredentials: true})
+        console.log('weather data', response.data)
+    }
+    catch{
+        console.log('error weather')
+    }
+}
+    
 
 //----------------------------------------------------------
 //------------------------   FETCH USER     ----------------
@@ -405,6 +406,9 @@ if (fetchingUser) {
                 }} />
                 <Route exact path={'/reminders'} render={(routeProps) => {
                     return <Reminders onWatering={handleReminder} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
+                }} />
+                 <Route exact path={'/dashboard/test'} render={(routeProps) => {
+                    return <Dashboard user={user} plants={plants} reminders={reminders} weather={handleWeather}  isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Page Not Found */}
                 <Route component={Page404} />
