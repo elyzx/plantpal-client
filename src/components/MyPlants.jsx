@@ -45,10 +45,14 @@ function MyPlants(props) {
             <div className={classes.root}>
 
                 <div className="space-between">
-                    <h1>My Plants</h1>
+                    <div className='flex-start'>
+                        <h1>My Plants</h1>
+                        <div className='padded'>
+                            <Link to='/plants/create'><Button color='secondary'>Add Plant</Button></Link>
+                        </div>
+                    </div>
                     <div className="flex-end">
                         <input onChange={onSearch} type="text" placeholder="Search.." className={classes.search}/>
-                        <Link to='/plants/create'><Button color='secondary'>Add Plant</Button></Link>
                     </div>
                 </div>
 
