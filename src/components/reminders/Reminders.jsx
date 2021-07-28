@@ -82,7 +82,7 @@ function Reminders(props) {
             </div>
             </Grid>
             <Grid>
-                <LottieControl animation={bigPlant}/>
+                <LottieControl animation={bigPlant} width='50%'/>
             </Grid>
             </Grid>
         </Container>

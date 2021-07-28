@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
 
 // Material UI
 import Container from '@material-ui/core/Container';
@@ -9,7 +8,7 @@ import Button from '@material-ui/core/Button';
 function EditPlant(props) {
     const {onEdit, plants} = props
     let plantId = props.match.params.plantId
-    let plant = plants.find((p) => p._id == plantId)
+    let plant = plants.find((p) => p._id === plantId)
     const [plantDetail, updatePlantDetail] = useState(plant)
 
     useEffect(() => {
@@ -22,28 +21,7 @@ function EditPlant(props) {
             [event.target.name]: event.target.value,
         });
 
-    // const handlePhotoChange = (event) => {
-    //     let newPhoto = event.target.value
-    //     updatePlantDetail({...plantDetail, name: newPhoto})
-    // }
-    // const handleNameChange = (event) => {
-    //     let newName = event.target.value
-    //     updatePlantDetail({...plantDetail, name: newName})
-    // }
-    // const handleDescriptionChange = (event) => {
-    //     let newDescription = event.target.value
-    //     updatePlantDetail({...plantDetail, description: newDescription})
-    // }
-    // const handleWaterFreqChange = (event) => {
-    //     let newWaterfreq = event.target.value
-    //     updatePlantDetail({...plantDetail, waterFreq: newWaterfreq})
-    // }
-    // const handleIsAliveChange = (event) => {
-    //     let newIsAlive = event.target.value
-    //     updatePlantDetail({...plantDetail, isAlive: newIsAlive})
-    // }
-
-    if(!plantDetail){
+    if (!plantDetail){
         return 'Loading...'
     }
 

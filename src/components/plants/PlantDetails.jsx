@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React  from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 // Material UI
 import Container from '@material-ui/core/Container';
@@ -9,7 +8,7 @@ import Button from '@material-ui/core/Button';
 function PlantDetails(props) {
     const {reminders, plants} = props;
     let plantId = props.match.params.plantId
-    let plant = plants.find((p) => p._id == plantId)
+    let plant = plants.find((p) => p._id === plantId)
     const options = {month: 'short', day: 'numeric'};
 
     if (!plant) {

@@ -143,12 +143,13 @@ const handleWeather = async () => {
                 reminder.wateredAt = Date.parse(reminder.wateredAt)
             }
         })
-    }
+        return reminders
+    };
+
     const fetchReminders = async () => {
         try {
             let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
-            handleDatesInReminders(response.data)
-            setReminders(response.data)
+            setReminders(handleDatesInReminders(response.data))
         }
         catch (err) {
             console.log('reminders fetch failed', err)
@@ -351,8 +352,7 @@ const handleReminder = async (reminderId) => {
     try {
         await axios.patch(`http://localhost:5005/api/reminders/${reminderId}`, {}, {withCredentials: true});
         let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
-        handleDatesInReminders(response.data)
-        setReminders(response.data)
+        setReminders(handleDatesInReminders(response.data))
     }
     catch (err) {
         console.log('handling the reminder failed', err);

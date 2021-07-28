@@ -13,8 +13,8 @@ function Page404() {
     return (
         <Container>
             <LottieControl animation={errorJson} width='55%'/>
-            <div class="flex-box">
-                <Link to='/dashboard'><Button>Back to safety</Button></Link>
+            <div className="flex-box">
+                <Link to={'/dashboard'}><Button>Back to safety</Button></Link>
             </div>
         </ Container>
     )

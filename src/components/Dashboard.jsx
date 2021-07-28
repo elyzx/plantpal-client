@@ -71,9 +71,9 @@ const useStyles = makeStyles((theme) => ({
     gallery: {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
         overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: '#C8FACC',
     },
     image: {
         width: '100%',
@@ -85,22 +85,10 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard(props) {
     const {plants, reminders, onWatering, weather, temper} = props;
     const classes = useStyles();
-    const theme = useTheme();
 
     useEffect(() => {
         weather()
     }, [])
-
-    // const plantAlive = () => {
-    //   let arrPlantsAlive = plants.map((plant, i) => {
-    //         return(
-    //             <div key={i}>
-    //                 <p>{plant}</p>
-    //             </div>
-    //         )
-    //     })
-    //     return <p>{arrPlantsAlive.length}</p>
-    // }
 
     const plantTotal = () => {
         let arrPlantsDead = plants.map((plant, i) => {
@@ -172,7 +160,7 @@ function Dashboard(props) {
                         <Paper className={classes.paperGreenWithoutHeight}>
                             <h4>Plant Gallery</h4>
                             <div className={classes.gallery}>
-                            <ImageList rowHeight={'300'} className={classes.gallery} cols={3}>
+                            <ImageList className={classes.gallery} cols={3}>
                                 {plants.map((plant) => (
                                 <ImageListItem className={classes.image} key={plant.img} cols={plant.cols || 1}>
                                     <img src={plant.photo} alt={plant.title} />
