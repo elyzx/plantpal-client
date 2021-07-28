@@ -27,7 +27,7 @@ function Signup(props) {
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputEmail">Email address</label>
-                        <input type="email" className="form-control" id="InputEmail" name="email" placeholder="Optional"/>
+                        <input type="email" className="form-control" id="InputEmail" name="email" placeholder="Enter your email address"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputPassword">Password</label>

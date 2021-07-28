@@ -237,6 +237,7 @@ const handleEditProfile = (event) => {
     const handleDeleteUser = async (user) => {
         try {
             await axios.delete('http://localhost:5005/api/profile', {withCredentials: true});
+            console.log('in the try', user)
             setUser(null);
             setIsLoggedIn(false);
             props.history.push('/');
