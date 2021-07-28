@@ -42,8 +42,7 @@ function RemindersToDo(props) {
                                         Water Me!
                                     </TableCell>
                                     <TableCell align="right">
-                                        {reminder.nextWatering}
-                                        {/* {new Intl.DateTimeFormat('en-GB', options).format(reminder.nextWatering)} */}
+                                        {new Intl.DateTimeFormat('en-GB', options).format(reminder.nextWatering)}
                                     </TableCell>
                                     <TableCell align="right">
                                         To Do

@@ -14,21 +14,6 @@ function PlantDetails(props) {
     let plant = plants.find((p) => p._id == plantId)
     const options = {month: 'short', day: 'numeric'};
 
-    // useEffect(() => {
-    //     fetchPlantDetails();
-    // }, []);
-
-    // const fetchPlantDetails = async () => {
-    //     try {
-    //         let plantId = props.match.params.plantId
-    //         let response = await axios.get(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true});
-    //         updatePlantDetail(response.data);
-    //     }
-    //     catch (err) {
-    //         console.log('Plant details fetch failed', err);
-    //     };
-    // };
-
     if (!plant) {
         return 'Loading . . .'
     } 
@@ -47,7 +32,7 @@ function PlantDetails(props) {
         let nextWateringReminder = reminders.find((r) => r.plant._id === plant._id && !r.complete)
         console.log('nextWateringReminder', nextWateringReminder)
         if (nextWateringReminder) {
-            nextReminderDate = Date.parse(nextWateringReminder.nextWatering)
+            nextReminderDate = nextWateringReminder.nextWatering
         }
     }
 
@@ -57,7 +42,6 @@ function PlantDetails(props) {
                 <div className='space-between'>
                     <Link to='/plants'><Button>Go Back</Button></Link>
                     <h3>Next Reminder: {new Intl.DateTimeFormat('en-GB', options).format(nextReminderDate)}</h3>
-                    {/* <h3>Next Reminder: {nextWatering}</h3> */}
                 </div>
 
                 <div className='flex-box'>

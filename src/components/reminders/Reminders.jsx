@@ -58,13 +58,13 @@ function Reminders(props) {
                                         Water Me!
                                     </TableCell>
                                     <TableCell align="right">
-                                        {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}
+                                        {new Intl.DateTimeFormat('en-GB', options).format(reminder.nextWatering)}
                                     </TableCell>
                                     <TableCell align="right">
                                         Done
                                     </TableCell>
                                     <TableCell align="right">
-                                        {new Intl.DateTimeFormat('en-GB', options).format(reminders.wateredAt)}
+                                        {new Intl.DateTimeFormat('en-GB', options).format(reminder.wateredAt)}
                                     </TableCell>
                                 </TableRow>
                             )

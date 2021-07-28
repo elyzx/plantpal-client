@@ -138,6 +138,14 @@ const handleWeather = async () => {
     const fetchReminders = async () => {
         try {
             let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
+            response.data.map((reminder) => {
+                if (reminder.nextWatering) {
+                    reminder.nextWatering = Date.parse(reminder.nextWatering)
+                }
+                if (reminder.wateredAt) {
+                    reminder.wateredAt = Date.parse(reminder.wateredAt)
+                }
+            })
             setReminders(response.data)
         }
         catch (err) {
