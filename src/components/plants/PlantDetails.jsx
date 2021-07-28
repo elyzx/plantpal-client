@@ -7,31 +7,34 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 
 function PlantDetails(props) {
-    const {reminders} = props;
-    const [plantDetail, updatePlantDetail] = useState({});
+    const {reminders, plants} = props;
+    // const [plantDetail, updatePlantDetail] = useState({});
+    console.log('plantdetail', plants)
+    let plantId = props.match.params.plantId
+    let plant = plants.find((p) => p._id == plantId)
     const options = {month: 'short', day: 'numeric'};
 
-    useEffect(() => {
-        fetchPlantDetails();
-    }, []);
+    // useEffect(() => {
+    //     fetchPlantDetails();
+    // }, []);
 
-    const fetchPlantDetails = async () => {
-        try {
-            let plantId = props.match.params.plantId
-            let response = await axios.get(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true});
-            updatePlantDetail(response.data);
-        }
-        catch (err) {
-            console.log('Plant details fetch failed', err);
-        };
-    };
+    // const fetchPlantDetails = async () => {
+    //     try {
+    //         let plantId = props.match.params.plantId
+    //         let response = await axios.get(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true});
+    //         updatePlantDetail(response.data);
+    //     }
+    //     catch (err) {
+    //         console.log('Plant details fetch failed', err);
+    //     };
+    // };
 
-    if (!plantDetail) {
-        return 'page is Loading'
+    if (!plant) {
+        return 'Loading . . .'
     } 
 
     const live = () => {
-        if (plantDetail.isAlive === true){
+        if (plant.isAlive === true){
            return <p>Alive</p>
          }
          else{
@@ -39,9 +42,10 @@ function PlantDetails(props) {
          }
     }
     
-    let nextWatering = ""
+    let nextWatering = undefined
     if (reminders) {
-        let nextWateringReminder = reminders.find((r) => r.plant._id === plantDetail._id && !r.complete)
+        let nextWateringReminder = reminders.find((r) => r.plant._id === plant._id && !r.complete)
+        console.log('nextWateringReminder', nextWateringReminder)
         if (nextWateringReminder) {
             nextWatering = nextWateringReminder.nextWatering
         }
@@ -52,11 +56,12 @@ function PlantDetails(props) {
             <> 
                 <div className='space-between'>
                     <Link to='/plants'><Button>Go Back</Button></Link>
-                    <h3>Next Reminder: {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}</h3>
+                    {/* <h3>Next Reminder: {new Intl.DateTimeFormat('en-GB', options).format(nextWatering)}</h3> */}
+                    <h3>Next Reminder: {nextWatering}</h3>
                 </div>
 
                 <div className='flex-box'>
-                    <h1>{plantDetail.name}</h1>
+                    <h1>{plant.name}</h1>
                 </div>
 
                 <div className='flex-box'>
@@ -64,19 +69,19 @@ function PlantDetails(props) {
                 </div>
 
                 <div className='flex-box'>
-                    <p>I need watering every {plantDetail.waterFreq} days.</p>
+                    <p>I need watering every {plant.waterFreq} days.</p>
                 </div>
 
                 <div className='flex-box padded'>
-                    <img src={plantDetail.photo} alt='{plantDetail.name}' height='500'/>
+                    <img src={plant.photo} alt='{plant.name}' height='500'/>
                 </div>
 
                 <div className='flex-box'>
-                    <Link to={`/plants/${plantDetail._id}/edit`}>
+                    <Link to={`/plants/${plant._id}/edit`}>
                         <Button>Edit</Button>
                     </Link>
                     <Link>
-                        <Button onClick={() => {props.onDelete(plantDetail._id)}}>Delete</Button>
+                        <Button onClick={() => {props.onDelete(plant._id)}}>Delete</Button>
                     </Link>
                 </div>
             </>          

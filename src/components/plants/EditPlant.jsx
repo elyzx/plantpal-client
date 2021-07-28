@@ -7,7 +7,7 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 
 function EditPlant(props) {
-    const {onEdit} = props
+    const {onEdit, plants} = props
     const [plantDetail, updatePlantDetail] = useState([])
 
     useEffect(async () => {

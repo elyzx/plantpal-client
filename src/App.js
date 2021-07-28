@@ -15,7 +15,7 @@ import MyPlants from './components/plants/MyPlants';
 import AddPlant from './components/plants/AddPlant';
 import PlantDetails from './components/plants/PlantDetails';
 import EditPlant from './components/plants/EditPlant';
-import Reminders from './components/reminders/RemindersPage';
+import Reminders from './components/reminders/Reminders';
 import Page404 from './components/Page404';
 
 // Material UI 
@@ -389,10 +389,10 @@ if (fetchingUser) {
                     return <AddPlant onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants/:plantId'} render={(routeProps) => {
-                    return <PlantDetails onDelete={handleDeletePlant} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <PlantDetails plants={plants} onDelete={handleDeletePlant} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/:plantId/edit'} render={(routeProps) => {
-                    return <EditPlant onEdit={handleEditPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <EditPlant plants={filteredPlants} onEdit={handleEditPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/reminders'} render={(routeProps) => {
                     return <Reminders onWatering={handleReminder} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
