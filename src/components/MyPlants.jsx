@@ -22,7 +22,8 @@ function MyPlants(props) {
             maxWidth: '100%',
         },
         search: {
-            maxWidth: '350px',
+            minWidth: '350px',
+            maxWidth: '500px',
         },
         card: {
             margin: 10, 
