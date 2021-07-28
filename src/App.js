@@ -170,11 +170,12 @@ const handleWeather = async () => {
         };
         try {
             await axios.post('http://localhost:5005/api/signup', newUser, {withCredentials: true});
+            
             props.history.push('/login');
         }
         catch (err) {
             console.log('Signup failed', err);
-            updateError(err.response.data.error)
+            //updateError(err.response.data.error)
         };
     };
 
