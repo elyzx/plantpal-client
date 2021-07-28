@@ -22,8 +22,8 @@ function LandingPage(props) {
         <Container>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
-                      <h1>Your plant's hydration pal</h1>
-                      <p>Keep track of all your plant’s watering schedule with PlantPal</p>
+                      <h1>🌱 Your plant's hydration pal</h1>
+                      <p>Keep track of all your plant’s watering schedule with PlantPal.</p>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <LottieControl animation={plantGrows} width='70%'/>

@@ -55,7 +55,7 @@ function Profile(props) {
                             <Button type="submit" className="btn btn-primary">Save</Button>
                         </form>
                     </div>
-                    <div className='flex-box'>
+                    <div className='flex-box padded'>
                         <Button onClick={onDeleteUser}>Delete account</Button>
                     </div>
             </div>
