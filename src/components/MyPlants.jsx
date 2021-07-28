@@ -24,6 +24,9 @@ function MyPlants(props) {
         search: {
             maxWidth: '350px',
         },
+        card: {
+            margin: 10, 
+        },
         media: {
             height: 140,
             width: 200,
@@ -61,7 +64,7 @@ function MyPlants(props) {
                     .map((plant, i) => {
                         return (
                             <div key={i}>
-                                <Card className={classes.root}>
+                                <Card className={classes.card}>
                                     <CardActionArea>
                                         <CardMedia
                                             className={classes.media}
