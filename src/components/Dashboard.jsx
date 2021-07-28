@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import RemindersToDo from './RemindersToDo';
+import RemindersToDo from './reminders/RemindersToDo';
 
 // Material UI
 import Container from '@material-ui/core/Container';

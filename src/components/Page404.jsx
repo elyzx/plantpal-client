@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
 // Animation
-import LottieControl from './LottieControl.jsx'
+import LottieControl from '../animation/LottieControl.jsx'
 import errorJson from '../animation/error.json';
 
 function Page404() {

@@ -3,7 +3,7 @@ import React from 'react';
 // Material UI
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import LottieControl from './LottieControl.jsx'
+import LottieControl from '../animation/LottieControl.jsx'
 
 const useStyles = makeStyles((theme) => ({
     root: {

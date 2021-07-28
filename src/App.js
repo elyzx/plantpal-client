@@ -7,14 +7,14 @@ import './App.css';
 // Components
 import Nav from './components/Nav';
 import LandingPage from './components/LandingPage';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Profile from './components/Profile';
+import Signup from './components/auth/Signup';
+import Login from './components/auth/Login';
+import Profile from './components/auth/Profile';
 import Dashboard from './components/Dashboard';
-import MyPlants from './components/MyPlants';
-import AddPlant from './components/AddPlant';
-import PlantDetails from './components/PlantDetails';
-import EditPlant from './components/EditPlant';
+import MyPlants from './components/plants/MyPlants';
+import AddPlant from './components/plants/AddPlant';
+import PlantDetails from './components/plants/PlantDetails';
+import EditPlant from './components/plants/EditPlant';
 import Reminders from './components/Reminders';
 import Page404 from './components/Page404';
 
