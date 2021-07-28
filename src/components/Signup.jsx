@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 
 function Signup(props) {
-    const {onSignUp, isLoggedIn} = props
+    const {onSignUp, isLoggedIn, myError} = props
     if (isLoggedIn) {
         return <Redirect to={'/dashboard'} />
     }
@@ -34,9 +34,14 @@ function Signup(props) {
                         <input name="password" type="password" className="form-control" id="password" />
                     </div>
                     <Button type="submit" className="btn btn-primary">Submit</Button>
+                    {
+                        myError ? (
+                             <p>{myError}</p>
+                        ) : ''
+                    }
                 </form>
             </div>
-        </ Container>
+        </Container>
     );
 };
 

@@ -56,6 +56,9 @@ function App(props) {
     const [reminders, setReminders] = useState([]);
     const [fetchingUser, updateFetchingUser] = useState(true);
     //const [weather, updateWeather] = useState([]);
+    const [myError, updateError] = useState(null)
+
+    const [temper, updateTempr] = useState(null)
 
     useEffect(() => {
         fetchUser();
@@ -82,8 +85,10 @@ function App(props) {
 
 const handleWeather = async () => {
     try{
-        let response = await axios.get('http://localhost:5005/api/dashboard/test', {withCredentials: true})
-        console.log('weather data', response.data)
+        let response = await axios.get('http://localhost:5005/api/dashboard/test', {withCredentials: true})  
+        console.log('temperatura', response.data.data[0].temp)
+        let temp = response.data.data[0].temp
+        updateTempr(temp)
     }
     catch{
         console.log('error weather')
@@ -167,10 +172,12 @@ const handleWeather = async () => {
         };
         try {
             await axios.post('http://localhost:5005/api/signup', newUser, {withCredentials: true});
+            
             props.history.push('/login');
         }
         catch (err) {
             console.log('Signup failed', err);
+            updateError(err.response.data.errorMessage)
         };
     };
 
@@ -193,6 +200,7 @@ const handleWeather = async () => {
         }
         catch (err) {
             console.log('Login failed', err);
+            updateError(err.response.data.error)
         };
     };
 
@@ -378,17 +386,17 @@ if (fetchingUser) {
                     return <LandingPage user={user} isLoggedIn={isLoggedIn} {...routeProps} />
                 }} />
                 <Route path={'/signup'} render={(routeProps) => {
-                    return <Signup onSignUp={handleSignUp} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Signup myError={myError} onSignUp={handleSignUp} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/login'} render={(routeProps) => {
-                    return <Login onLogIn={handleLogIn} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Login myError={myError} onLogIn={handleLogIn} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Protected Pages */}
                 <Route path={'/profile'} render={(routeProps) => {
                     return <Profile user={user} setUser={setUser} onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
-                    return <Dashboard user={user} plants={plants} reminders={reminders} onWatering={handleReminder} {...routeProps}/>
+                    return <Dashboard user={user} plants={plants} reminders={reminders} onWatering={handleReminder} weather={handleWeather} temper={temper} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
                     return <MyPlants onSearch={handleSearch} plants={filteredPlants} isLoggedIn={isLoggedIn} {...routeProps}/>
