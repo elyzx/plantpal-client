@@ -51,7 +51,7 @@ function MyPlants(props) {
                     <div className='flex-start'>
                         <h1>My Plants</h1>
                         <div className='padded'>
-                            <Link to='/plants/create'><Button color='secondary'>Add Plant</Button></Link>
+                            <Link to='/plants/create'><Button>Add Plant</Button></Link>
                         </div>
                     </div>
                     <div className="flex-end">
@@ -77,7 +77,7 @@ function MyPlants(props) {
                                     </CardActionArea>
                                     <CardActions>
                                         <Link to={`/plants/${plant._id}`}>
-                                            <Button size="small" color="primary">Details</Button>
+                                            <Button size="small">Details</Button>
                                         </Link>
                                     </CardActions>
                                 </Card>

@@ -76,10 +76,9 @@ function Nav(props) {
         handleClose()
         onLogOut()
     }
-    
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" className={classes.appBar}>
                 <Toolbar>
                     { user && (
                         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
@@ -102,7 +101,7 @@ function Nav(props) {
                                 <List></List>
                                 <List>
                                     <ListItem button component={RouterLink} to='/'>
-                                        <ListItemIcon><HomeIcon color="secondary"/> </ListItemIcon>
+                                        <ListItemIcon><HomeIcon color="primary.dark"/> </ListItemIcon>
                                         <ListItemText>PlantPal</ListItemText>
                                     </ListItem>
                                 </List>
@@ -110,25 +109,16 @@ function Nav(props) {
                                     <Divider />
                                 </List>
                                 <List>
-                                    <ListItem button component={RouterLink} to={`/profile/${user._id}`}>
-                                    <ListItemIcon><AccountCircle color="secondary"/> </ListItemIcon>
-                                    <ListItemText> {user.username} </ListItemText>
-                                    </ListItem>
-                                </List>
-                                <List>
-                                    <Divider />
-                                </List>
-                                <List>
                                     <ListItem button component={RouterLink} to='/dashboard'>
-                                        <ListItemIcon><BarChartSharpIcon color="primary" /> </ListItemIcon>
+                                        <ListItemIcon><BarChartSharpIcon color="primary.dark" /> </ListItemIcon>
                                         <ListItemText>Dashboard</ListItemText>
                                     </ListItem>
                                     <ListItem button component={RouterLink} to='/plants'>
-                                        <ListItemIcon><LocalFloristSharpIcon color="primary"/> </ListItemIcon>
+                                        <ListItemIcon><LocalFloristSharpIcon color="primary.dark"/> </ListItemIcon>
                                         <ListItemText>Plants</ListItemText>
                                     </ListItem>
                                     <ListItem button component={RouterLink} to='/reminders'>
-                                        <ListItemIcon><FormatListBulletedSharpIcon color="primary" /> </ListItemIcon>
+                                        <ListItemIcon><FormatListBulletedSharpIcon color="primary.dark" /> </ListItemIcon>
                                         <ListItemText>Reminders</ListItemText>
                                     </ListItem>
                                 </List>
@@ -136,8 +126,12 @@ function Nav(props) {
                                     <Divider />
                                 </List>
                                 <List>
+                                    <ListItem button component={RouterLink} to={`/profile/${user._id}`}>
+                                        <ListItemIcon><AccountCircle color="secondary.dark"/> </ListItemIcon>
+                                        <ListItemText> {user.username} </ListItemText>
+                                    </ListItem>
                                     <ListItem button onClick={onLogoutAndClose}>
-                                        <ListItemIcon><ExitToAppIcon color="secondary"/> </ListItemIcon>
+                                        <ListItemIcon><ExitToAppIcon color="secondary.dark"/> </ListItemIcon>
                                         <ListItemText>Sign out</ListItemText>
                                     </ListItem>
                                 </List>

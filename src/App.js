@@ -28,14 +28,12 @@ import { green, blue } from '@material-ui/core/colors';
 const theme = createTheme({
     palette: {
       primary: {
-        // light: will be calculated from palette.primary.main,
-        main: green[500],
-        // dark: will be calculated from palette.primary.main,
-        // contrastText: will be calculated to contrast with palette.primary.main
+        main: '#C8FACC',
+        dark: '#00534A',
       },
       secondary: {
-        main: blue[500],
-        // dark: will be calculated from palette.secondary.main,
+        main: '#D1F2FF',
+        dark: '#05297A',
       },
       // Used by `getContrastText()` to maximize the contrast between
       // the background and the text.

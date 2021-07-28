@@ -51,7 +51,7 @@ function PlantDetails(props) {
         <Container>
             <> 
                 <div className='space-between'>
-                    <Link to='/plants'><Button color='secondary'>Go Back</Button></Link>
+                    <Link to='/plants'><Button>Go Back</Button></Link>
                     <h3>Next Reminder: {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}</h3>
                 </div>
 

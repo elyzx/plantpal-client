@@ -29,24 +29,28 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: 'theme.palette.text.secondary',
         backgroundColor: '#C8FACC',
+        height: 100,
     },
     paperBlue: {
         padding: theme.spacing(2),
         textAlign: 'center',
         color: 'theme.palette.text.secondary',
         backgroundColor: '#D1F2FF',
+        height: 100,
     },
     paperYellow: {
         padding: theme.spacing(2),
         textAlign: 'center',
         color: 'theme.palette.text.secondary',
         backgroundColor: '#FFF6CE',
+        height: 100,
     },
     paperRed: {
         padding: theme.spacing(2),
         textAlign: 'center',
         color: 'theme.palette.text.secondary',
         backgroundColor: '#FFE6D9',
+        height: 100,
     },
     gallery: {
         display: 'flex',
@@ -117,7 +121,7 @@ function Dashboard(props) {
             <div className={classes.root}>
                 <div className="space-between">
                     <h1>Dashboard</h1>
-                    <Link to='/plants/create'><Button color='secondary'>Add Plant</Button></Link>
+                    <Link to='/plants/create'><Button>Add Plant</Button></Link>
                 </div>
                 <Grid container spacing={3}>
                     <Grid item xs={6} sm={3}>
@@ -134,16 +138,18 @@ function Dashboard(props) {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paper}>
-                            Next Reminders
+                            <h4>Next Reminders</h4>
                             <RemindersToDo classes={classes} reminders={reminders} onWatering={onWatering}/> 
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <Paper className={classes.paper}>Weather Forecast</Paper>
+                        <Paper className={classes.paper}>
+                            <h4>Weather Forecast</h4>
+                            </Paper>
                     </Grid>
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
-                            Plant Gallery
+                            <h4>Plant Gallery</h4>
                             <div className={classes.gallery}>
                             <ImageList rowHeight={'300'} className={classes.gallery} cols={3}>
                                 {plants.map((plant) => (
