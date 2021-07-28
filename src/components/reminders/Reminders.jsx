@@ -32,7 +32,7 @@ function Reminders(props) {
     return (
         <Container>
             <div>
-                <h1>Reminders</h1>
+                <h1>🔔 Reminders 🔔 </h1>
             </div>
     <Grid spacing={2}>
         <Grid>
@@ -47,8 +47,8 @@ function Reminders(props) {
                             <TableCell>Plant</TableCell>
                             <TableCell>Task</TableCell>
                             <TableCell align="right">Date Due</TableCell>
-                            <TableCell align="right">Status</TableCell>
-                            <TableCell align="right">Date Changed</TableCell>
+                            {/* <TableCell align="right">Status</TableCell> */}
+                            <TableCell align="right">Date Done 🙌</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
@@ -67,11 +67,11 @@ function Reminders(props) {
                                     <TableCell align="right">
                                         {new Intl.DateTimeFormat('en-GB', options).format(reminder.nextWatering)}
                                     </TableCell>
-                                    <TableCell align="right">
+                                    {/* <TableCell align="right">
                                         Done
-                                    </TableCell>
+                                    </TableCell> */}
                                     <TableCell align="right">
-                                        {new Intl.DateTimeFormat('en-GB', options).format(reminder.wateredAt)}
+                                        {new Intl.DateTimeFormat('en-GB', options).format(reminder.wateredAt)}<p></p>
                                     </TableCell>
                                 </TableRow>
                             )

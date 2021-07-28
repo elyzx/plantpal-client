@@ -128,7 +128,7 @@ function Dashboard(props) {
         <Container>
             <div className={classes.root}>
                 <div className="space-between">
-                    <h1>Dashboard</h1>
+                    <h1>✨ Dashboard ✨</h1>
                     <Link to='/plants/create'><Button>Add Plant</Button></Link>
                 </div>
                 <Grid container spacing={3}>

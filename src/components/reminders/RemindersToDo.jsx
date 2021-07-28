@@ -23,7 +23,7 @@ function RemindersToDo(props) {
                             <TableCell>Plant</TableCell>
                             <TableCell>Task</TableCell>
                             <TableCell align="right">Date Due</TableCell>
-                            <TableCell align="right">Status</TableCell>
+                            {/* <TableCell align="right">Status</TableCell> */}
                             <TableCell align="right">Change Status</TableCell>
                             {/* Edit reminder frequency? */}
                         </TableRow>
@@ -44,9 +44,9 @@ function RemindersToDo(props) {
                                     <TableCell align="right">
                                         {new Intl.DateTimeFormat('en-GB', options).format(reminder.nextWatering)}
                                     </TableCell>
-                                    <TableCell align="right">
+                                    {/* <TableCell align="right">
                                         To Do
-                                    </TableCell>
+                                    </TableCell> */}
                                     <TableCell align="right">
                                         <Button onClick={() => onWatering(reminder._id)}>Done</Button>
                                     </TableCell>

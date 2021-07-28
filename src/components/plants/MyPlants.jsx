@@ -50,7 +50,7 @@ function MyPlants(props) {
 
                 <div className="space-between">
                     <div className='flex-start'>
-                        <h1>My Plants</h1>
+                        <h1>🪴 Plants 🪴</h1>
                         <div className='padded'>
                             <Link to='/plants/create'><Button>Add Plant</Button></Link>
                         </div>
