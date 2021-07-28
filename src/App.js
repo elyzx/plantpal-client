@@ -22,6 +22,7 @@ import Page404 from './components/Page404';
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 // import { makeStyles } from '@material-ui/core/styles';
+
 const theme = createTheme({
     palette: {
       primary: {
@@ -94,16 +95,13 @@ const handleWeather = async () => {
     const fetchUser = async () => {
         try {
             let response = await axios.get('http://localhost:5005/api/user', {withCredentials: true});
-            console.log('fetch user', response.data)
             setUser(response.data);
-            // updateSpecificUser(response.data);
             setIsLoggedIn(true);
             updateFetchingUser(false)
         }
         catch (err) {
             console.log('User not logged in', err);
             setUser(null);
-            // updateSpecificUser(null)
             setIsLoggedIn(false);
             updateFetchingUser(false)
             props.history.push('/')
@@ -142,7 +140,6 @@ const handleWeather = async () => {
     const fetchReminders = async () => {
         try {
             let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
-            console.log('in the fetchreminders function', response.data)
             setReminders(response.data)
         }
         catch (err) {
@@ -258,12 +255,11 @@ const handleEditProfile = (event) => {
 
         let imgResponse = await axios.post('http://localhost:5005/api/upload', formData)
 
-        const { name, description, waterFreq, fertiliseFreq} = event.target;
+        const { name, description, waterFreq} = event.target;
         let newPlant = {
             name: name.value,
             description: description.value,
             waterFreq: waterFreq.value,
-            // fertiliseFreq: fertiliseFreq.value,
             photo: imgResponse.data.photo
         }
         try {

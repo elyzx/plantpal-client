@@ -55,7 +55,7 @@ function EditPlant(props) {
         <Container>
             <>
                 <div className='space-between'>
-                    <Link to='/plants'><Button color='secondary'>Go Back</Button></Link>
+                    <Link to='/plants'><Button>Go Back</Button></Link>
                 </div>
 
                 <div className="flex-box">

@@ -41,7 +41,7 @@ function PlantDetails(props) {
     
     let nextWatering = ""
     if (reminders) {
-        let nextWateringReminder = reminders.find((r) => r.plant._id == plantDetail._id && !r.complete)
+        let nextWateringReminder = reminders.find((r) => r.plant._id === plantDetail._id && !r.complete)
         if (nextWateringReminder) {
             nextWatering = nextWateringReminder.nextWatering
         }

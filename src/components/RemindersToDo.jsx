@@ -12,7 +12,6 @@ import Button from '@material-ui/core/Button';
 
 function RemindersToDo(props) {
     const {reminders, onWatering, classes} = props
-    console.log('onwatering', onWatering)
     const options = {month: 'short', day: 'numeric'};
     return (
         <>
@@ -43,7 +42,8 @@ function RemindersToDo(props) {
                                         Water Me!
                                     </TableCell>
                                     <TableCell align="right">
-                                        {new Intl.DateTimeFormat('en-GB', options).format(reminders.nextWatering)}
+                                        {reminder.nextWatering}
+                                        {/* {new Intl.DateTimeFormat('en-GB', options).format(reminder.nextWatering)} */}
                                     </TableCell>
                                     <TableCell align="right">
                                         To Do

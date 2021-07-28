@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 
 // Material UI
 import Container from '@material-ui/core/Container';
@@ -13,17 +12,7 @@ function Profile(props) {
 
     useEffect(() => {
         setProfileDetails(user);
-    }, []);
-    
-    // const fetchProfileDetails = async () => {
-    //     try {
-    //         let response = await axios.get(`http://localhost:5005/api/profile`, {withCredentials: true});
-    //         setProfileDetails(response.data);
-    //     }
-    //     catch (err) {
-    //         console.log('Profile details fetch failed', err)
-    //     }
-    // };
+    }, [user]);
 
     const handleChangeDetails = (event) => 
         setProfileDetails({
@@ -31,27 +20,12 @@ function Profile(props) {
             [event.target.name]: event.target.value,
         });
 
-    // const handleNameChange = (event) => {
-    //     let newName = event.target.value;
-    //     setProfileDetails({...user, name: newName});
-    // }
-
-    // const handleUsernameChange = (event) => {
-    //     let newUsername = event.target.value;
-    //     setProfileDetails({...user, username: newUsername})
-    // }
-
-    // const handleEmailChange = (event) => {
-    //     let newEmail = event.target.value;
-    //     setProfileDetails({...user, [event.target.name]: newEmail})
-    // }
-
     return (
         <Container>
             <div>
                 { user && (
                     <div className='flex-box'>
-                        <h1>Hi there, {user.username}!</h1>
+                        <h1>Hi there, {user.name}!</h1>
                     </div>
                 )}
                 
