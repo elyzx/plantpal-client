@@ -151,7 +151,7 @@ function Dashboard(props) {
                         <Paper className={classes.paperBlue}>{<h3>Alive Plants: {plantsAlive()}</h3>}</Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                        <Paper className={classes.paperYellow}><h3>Complete Reminders: {completedReminders()}</h3></Paper>
+                        <Paper className={classes.paperYellow}><h3>Logged Waters: {completedReminders()}</h3></Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
                         <Paper className={classes.paperRed}><h3>Deceased Plants: {plantsDead()}</h3></Paper>

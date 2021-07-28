@@ -8,8 +8,6 @@ import Button from '@material-ui/core/Button';
 
 function PlantDetails(props) {
     const {reminders, plants} = props;
-    // const [plantDetail, updatePlantDetail] = useState({});
-    console.log('plantdetail', plants)
     let plantId = props.match.params.plantId
     let plant = plants.find((p) => p._id == plantId)
     const options = {month: 'short', day: 'numeric'};

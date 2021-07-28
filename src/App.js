@@ -225,7 +225,7 @@ const handleEditProfile = (event) => {
     let username = event.target.username.value;
     let email = event.target.email.value;
 
-    axios.patch(`http://localhost:5005/api/profile/${event._id}`, {name, username, email}, {withCredentials: true})
+    axios.patch(`http://localhost:5005/api/profile`, {name, username, email}, {withCredentials: true})
     .then((response) => {
         setUser(response.data);
         props.history.push('/dashboard');
@@ -302,29 +302,29 @@ const handleEditProfile = (event) => {
 //----------------------------------------------------------
 //------------------------ EDIT A PLANT     ----------------
 //----------------------------------------------------------
-    const handleEditPlant = async (event, plant) => {
+    const handleEditPlant = (event) => {
         event.preventDefault()
-        try {
-            await axios.patch(`http://localhost:5005/api/plants/${plant._id}/edit`, plant, {withCredentials: true})
-            let updatePlant = plants.map((singleplant) => {
-                if (singleplant._id === plant._id){
-                    singleplant.photo = plant.photo
-                    singleplant.name = plant.name
-                    singleplant.description = plant.description
-                    singleplant.waterFreq = plant.waterFreq
-                    // singleplant.fertiliseFreq = plant.fertiliseFreq
-                    singleplant.isAlive = plant.isAlive
-                }
-                return singleplant
-            })
-            updatePlants(updatePlant);
-            updateFilteredPlants(updatePlant);
-            props.history.push('/plants');
-            
-        }
-        catch(err){
-            console.log('edit plant fetch failed', err)
-        }
+        console.log('event', event)
+        let plantId = event.target.plantId.value;
+        let name = event.target.name.value;
+        let description = event.target.description.value;
+        let waterFreq = event.target.waterFreq.value;
+        let isAlive = event.target.isAlive.value
+
+        axios.patch(`http://localhost:5005/api/plants/${plantId}/edit`, {name, description, waterFreq, isAlive}, {withCredentials: true})
+        .then((response) => {
+            let newPlant = response.data
+            console.log("newplant", newPlant)
+            let p = plants.filter((p) => p._id != newPlant._id)
+            updatePlants([newPlant, ...p])
+
+            let fp = filteredPlants.filter((p) => p._id != newPlant._id)
+            updateFilteredPlants([newPlant, ...fp])
+            props.history.push('/plants')
+        })
+        .catch((err) => {
+            console.log('handling plant details error', err)
+        })
     }
 
 //----------------------------------------------------------
@@ -400,7 +400,7 @@ if (fetchingUser) {
                     return <PlantDetails plants={plants} onDelete={handleDeletePlant} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/:plantId/edit'} render={(routeProps) => {
-                    return <EditPlant plants={filteredPlants} onEdit={handleEditPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <EditPlant plants={plants} onEdit={handleEditPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/reminders'} render={(routeProps) => {
                     return <Reminders onWatering={handleReminder} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>

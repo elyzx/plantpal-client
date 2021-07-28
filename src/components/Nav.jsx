@@ -128,7 +128,7 @@ function Nav(props) {
                                 <List>
                                     <ListItem button component={RouterLink} to={`/profile/${user._id}`}>
                                         <ListItemIcon><AccountCircle color="secondary.dark"/> </ListItemIcon>
-                                        <ListItemText> {user.name} </ListItemText>
+                                        <ListItemText> {user.username} </ListItemText>
                                     </ListItem>
                                     <ListItem button onClick={onLogoutAndClose}>
                                         <ListItemIcon><ExitToAppIcon color="secondary.dark"/> </ListItemIcon>
