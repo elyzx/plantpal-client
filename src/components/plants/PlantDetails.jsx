@@ -42,12 +42,12 @@ function PlantDetails(props) {
          }
     }
     
-    let nextWatering = undefined
+    let nextReminderDate = undefined
     if (reminders) {
         let nextWateringReminder = reminders.find((r) => r.plant._id === plant._id && !r.complete)
         console.log('nextWateringReminder', nextWateringReminder)
         if (nextWateringReminder) {
-            nextWatering = nextWateringReminder.nextWatering
+            nextReminderDate = Date.parse(nextWateringReminder.nextWatering)
         }
     }
 
@@ -56,8 +56,8 @@ function PlantDetails(props) {
             <> 
                 <div className='space-between'>
                     <Link to='/plants'><Button>Go Back</Button></Link>
-                    {/* <h3>Next Reminder: {new Intl.DateTimeFormat('en-GB', options).format(nextWatering)}</h3> */}
-                    <h3>Next Reminder: {nextWatering}</h3>
+                    <h3>Next Reminder: {new Intl.DateTimeFormat('en-GB', options).format(nextReminderDate)}</h3>
+                    {/* <h3>Next Reminder: {nextWatering}</h3> */}
                 </div>
 
                 <div className='flex-box'>
