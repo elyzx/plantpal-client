@@ -58,6 +58,7 @@ function App(props) {
     const [reminders, setReminders] = useState([]);
     const [fetchingUser, updateFetchingUser] = useState(true);
     //const [weather, updateWeather] = useState([]);
+    const [myError, updateError] = useState(null)
 
     useEffect(() => {
         fetchUser();
@@ -173,6 +174,7 @@ const handleWeather = async () => {
         }
         catch (err) {
             console.log('Signup failed', err);
+            updateError(err.response.data.error)
         };
     };
 
@@ -195,6 +197,7 @@ const handleWeather = async () => {
         }
         catch (err) {
             console.log('Login failed', err);
+            updateError(err.response.data.error)
         };
     };
 
@@ -380,10 +383,10 @@ if (fetchingUser) {
                     return <LandingPage user={user} isLoggedIn={isLoggedIn} {...routeProps} />
                 }} />
                 <Route path={'/signup'} render={(routeProps) => {
-                    return <Signup onSignUp={handleSignUp} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Signup myError={myError} onSignUp={handleSignUp} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/login'} render={(routeProps) => {
-                    return <Login onLogIn={handleLogIn} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Login myError={myError} onLogIn={handleLogIn} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Protected Pages */}
                 <Route path={'/profile'} render={(routeProps) => {

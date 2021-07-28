@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 
 function Login(props) {
-    const {onLogIn, isLoggedIn} = props
+    const {onLogIn, isLoggedIn, myError} = props
 
     if (isLoggedIn) {
         console.log("user is logged in; go back")
@@ -29,6 +29,11 @@ function Login(props) {
                         <input name="password" type="password" className="form-control" id="password" />
                     </div>
                     <Button type="submit" className="btn btn-primary">Submit</Button>
+                    {
+                        myError ? (
+                             <p>{myError}</p>
+                        ) : ''
+                    }
                 </form>
             </div>
         </ Container>
