@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import {API_URL} from '../config.js'
 
 // Material UI
 import Container from '@material-ui/core/Container';
@@ -15,7 +16,7 @@ function Profile(props) {
     
     const fetchProfileDetails = async () => {
         try {
-            let response = await axios.get(`http://localhost:5005/api/profile`, {withCredentials: true});
+            let response = await axios.get(`${API_URL}/api/profile`, {withCredentials: true});
             setProfileDetails(response.data);
 
         }

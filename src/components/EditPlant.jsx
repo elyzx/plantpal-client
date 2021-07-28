@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import {API_URL} from '../config.js'
 
 // Material UI
 import Container from '@material-ui/core/Container';
@@ -13,7 +14,7 @@ function EditPlant(props) {
     useEffect(async () => {
         try {
             let plantId = props.match.params.plantId
-            let response = await axios.get(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true})
+            let response = await axios.get(`${API_URL}/api/plants/${plantId}`, {withCredentials: true})
             updatePlantDetail(response.data)
         }
         catch(err){

@@ -38,7 +38,7 @@ function RemindersToDo(props) {
                                     <TableCell component="th" scope="row">
                                         {reminder.plant.name}
                                         {/* could we link to the plant details page? */}
-                                    </TableCell >
+                                    </TableCell>
                                     <TableCell>
                                         Water Me!
                                     </TableCell>
