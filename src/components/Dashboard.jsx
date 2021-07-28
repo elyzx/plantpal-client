@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import RemindersToDo from './RemindersToDo';
@@ -25,9 +25,13 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function Dashboard(props) {
-    const {plants, reminders, onWatering} = props;
+    const {plants, reminders, onWatering, weather, temper} = props;
     const classes = useStyles();
     const theme = useTheme();
+
+    useEffect(() => {
+        weather()
+    }, [])
 
     // const plantAlive = () => {
     //   let arrPlantsAlive = plants.map((plant, i) => {
@@ -101,14 +105,14 @@ function Dashboard(props) {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <Paper className={classes.paper}>Weather Forecast</Paper>
+                        <Paper className={classes.paper}>Weather Forecast: { temper } °C</Paper>
                     </Grid>
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>Plant Gallery</Paper>
                     </Grid>
                 </Grid>
             </div>
-        </ Container>
+        </Container>
     );
 };
 

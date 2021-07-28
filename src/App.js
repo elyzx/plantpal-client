@@ -60,6 +60,8 @@ function App(props) {
     //const [weather, updateWeather] = useState([]);
     const [myError, updateError] = useState(null)
 
+    const [temper, updateTempr] = useState(null)
+
     useEffect(() => {
         fetchUser();
         if (isLoggedIn) {
@@ -85,8 +87,10 @@ function App(props) {
 
 const handleWeather = async () => {
     try{
-        let response = await axios.get('http://localhost:5005/api/dashboard/test', {withCredentials: true})
-        console.log('weather data', response.data)
+        let response = await axios.get('http://localhost:5005/api/dashboard/test', {withCredentials: true})  
+        console.log('temperatura', response.data.data[0].temp)
+        let temp = response.data.data[0].temp
+        updateTempr(temp)
     }
     catch{
         console.log('error weather')
@@ -175,7 +179,7 @@ const handleWeather = async () => {
         }
         catch (err) {
             console.log('Signup failed', err);
-            //updateError(err.response.data.error)
+            updateError(err.response.data.errorMessage)
         };
     };
 
@@ -394,7 +398,7 @@ if (fetchingUser) {
                     return <Profile user={user} setUser={setUser} onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
-                    return <Dashboard user={user} plants={plants} reminders={reminders} onWatering={handleReminder} {...routeProps}/>
+                    return <Dashboard user={user} plants={plants} reminders={reminders} onWatering={handleReminder} weather={handleWeather} temper={temper} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants'} render={(routeProps) => {
                     return <MyPlants onSearch={handleSearch} plants={filteredPlants} isLoggedIn={isLoggedIn} {...routeProps}/>
