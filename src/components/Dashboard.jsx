@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: 'theme.palette.text.secondary',
         backgroundColor: '#D1F2FF',
+        minHeight: 115,
     },
     paperYellow: {
         padding: theme.spacing(2),
