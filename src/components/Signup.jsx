@@ -19,19 +19,19 @@ function Signup(props) {
                 <form onSubmit={onSignUp}>
                     <div className="form-group">
                         <label htmlFor="InputName">Name</label>
-                        <input type="text" className="form-control" id="InputName" name="name" />
+                        <input type="text" className="form-control" id="InputName" name="name" placeholder="Enter your name"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputUsername">Username</label>
-                        <input type="text" className="form-control" id="InputUsername" name="username" />
+                        <input type="text" className="form-control" id="InputUsername" name="username" placeholder="Create a case-sensitive username"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputEmail">Email address</label>
-                        <input type="email" className="form-control" id="InputEmail" name="email" />
+                        <input type="email" className="form-control" id="InputEmail" name="email" placeholder="Optional"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputPassword">Password</label>
-                        <input name="password" type="password" className="form-control" id="password" />
+                        <input name="password" type="password" className="form-control" id="password" placeholder="Create a password"/>
                     </div>
                     <Button type="submit" className="btn btn-primary">Submit</Button>
                     {

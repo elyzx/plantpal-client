@@ -6,7 +6,6 @@ import './App.css';
 
 // Components
 import Nav from './components/Nav';
-// import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
 import Signup from './components/Signup';
 import Login from './components/Login';
@@ -22,9 +21,7 @@ import Page404 from './components/Page404';
 // Material UI theme
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { green, blue } from '@material-ui/core/colors';
 // import { makeStyles } from '@material-ui/core/styles';
-
 const theme = createTheme({
     palette: {
       primary: {
@@ -35,12 +32,7 @@ const theme = createTheme({
         main: '#D1F2FF',
         dark: '#05297A',
       },
-      // Used by `getContrastText()` to maximize the contrast between
-      // the background and the text.
       contrastThreshold: 3,
-      // Used by the functions below to shift a color's luminance by approximately
-      // two indexes within its tonal palette.
-      // E.g., shift from Red 500 to Red 300 or Red 700.
       tonalOffset: 0.2,
     },
   });
@@ -172,7 +164,7 @@ const handleWeather = async () => {
         };
         try {
             await axios.post('http://localhost:5005/api/signup', newUser, {withCredentials: true});
-            
+            updateError(null)
             props.history.push('/login');
         }
         catch (err) {
@@ -196,6 +188,7 @@ const handleWeather = async () => {
             setUser(response.data);
             console.log('login function', response.data)
             setIsLoggedIn(true);
+            updateError(null)
             props.history.push('/dashboard');
         }
         catch (err) {
@@ -212,7 +205,7 @@ const handleWeather = async () => {
             await axios.post(`http://localhost:5005/api/logout`, {}, {withCredentials: true});
             setUser(null);
             setIsLoggedIn(false);
-            console.log('sign out succesfull')
+            console.log('Logout succesful')
           
         }
         catch (err) {
@@ -220,6 +213,24 @@ const handleWeather = async () => {
         };
     };
 
+//----------------------------------------------------------
+//----------------------   EDIT USER PROFILE       ---------
+//----------------------------------------------------------
+const handleEditProfile = (event) => {
+    event.preventDefault()
+    let name = event.target.name.value;
+    let username = event.target.username.value;
+    let email = event.target.email.value;
+
+    axios.patch(`http://localhost:5005/api/profile/${event._id}`, {name, username, email}, {withCredentials: true})
+    .then((response) => {
+        setUser(response.data);
+        props.history.push('/dashboard');
+    })
+    .catch((err) => {
+        console.log('handling edit profile error', err)
+    })
+};
 //----------------------------------------------------------
 //------------------------   DELETE USER    ----------------
 //----------------------------------------------------------
@@ -342,28 +353,6 @@ const handleReminder = async (reminderId) => {
     };
 }
 
-//----------------------------------------------------------
-//----------------------   EDIT USER PROFILE       ---------
-//----------------------------------------------------------
-const handleEditProfile = async (event, profile) => {
-    event.preventDefault()
-    try {
-        await axios.patch(`http://localhost:5005/api/profile/${profile._id}`, profile, {withCredentials: true})
-        let updateProfile = user.map((singleUser) => {
-            if (singleUser._id === profile._id) {
-                singleUser.name = profile.name
-                singleUser.username = profile.username
-            }
-            return singleUser
-        })
-        setUser(updateProfile);
-        props.history.push('/');
-    }
-    catch(err){
-        console.log('handling edit profile error', err)
-    }
-}
-
 
 //------------------------   FETCH USER        ----------------
 if (fetchingUser) {
@@ -393,7 +382,7 @@ if (fetchingUser) {
                 }} />
                 {/* Protected Pages */}
                 <Route path={'/profile'} render={(routeProps) => {
-                    return <Profile user={user} setUser={setUser} onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Profile user={user} onEdit={handleEditProfile} onDeleteUser={handleDeleteUser} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/dashboard'} render={(routeProps) => {
                     return <Dashboard user={user} plants={plants} reminders={reminders} onWatering={handleReminder} weather={handleWeather} temper={temper} {...routeProps}/>
@@ -420,7 +409,6 @@ if (fetchingUser) {
                 <Route component={Page404} />
             </Switch>
             </div>
-            {/* <Footer /> */}
             </ThemeProvider>
         </div>
     );

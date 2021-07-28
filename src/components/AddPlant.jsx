@@ -11,7 +11,7 @@ function AddPlant(props) {
         <Container>
             <>
                 <div className='space-between'>
-                    <Link to='/plants'><Button color='secondary'>Go Back</Button></Link>
+                    <Link to='/plants'><Button>Go Back</Button></Link>
                 </div>
 
                 <div className='flex-box'>
@@ -30,7 +30,7 @@ function AddPlant(props) {
                         </div>
                         <div className="form-group">
                             <label htmlFor="InputEmail">Reminder Frequency</label>
-                            <input type="number" name="waterFreq" placeholder="number of days" required/>
+                            <input type="number" name="waterFreq" placeholder="Number of days" required/>
                         </div>
                         {/* <div className="form-group">
                             <label htmlFor="InputPassword">Fertilizer Frequency</label>

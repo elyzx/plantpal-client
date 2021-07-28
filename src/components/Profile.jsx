@@ -7,37 +7,44 @@ import Button from '@material-ui/core/Button';
 
 function Profile(props) {
     const { onEdit, onDeleteUser, user} = props
-    const [profileDetails, setProfileDetails] = useState([]);
+    console.log('user', user)
+    // const [userDetails, updatedUserDetails] = useState(user)
+    const [profileDetails, setProfileDetails] = useState(user);
 
     useEffect(() => {
-        fetchProfileDetails();
+        setProfileDetails(user);
     }, []);
     
-    const fetchProfileDetails = async () => {
-        try {
-            let response = await axios.get(`http://localhost:5005/api/profile`, {withCredentials: true});
-            setProfileDetails(response.data);
+    // const fetchProfileDetails = async () => {
+    //     try {
+    //         let response = await axios.get(`http://localhost:5005/api/profile`, {withCredentials: true});
+    //         setProfileDetails(response.data);
+    //     }
+    //     catch (err) {
+    //         console.log('Profile details fetch failed', err)
+    //     }
+    // };
 
-        }
-        catch (err) {
-            console.log('Profile details fetch failed', err)
-        }
-    };
+    const handleChangeDetails = (event) => 
+        setProfileDetails({
+            ...profileDetails,
+            [event.target.name]: event.target.value,
+        });
 
-    const handleNameChange = (event) => {
-        let newName = event.target.value;
-        setProfileDetails({...profileDetails, name: newName});
-    }
+    // const handleNameChange = (event) => {
+    //     let newName = event.target.value;
+    //     setProfileDetails({...user, name: newName});
+    // }
 
-    const handleUsernameChange = (event) => {
-        let newUsername = event.target.value;
-        setProfileDetails({...profileDetails, username: newUsername})
-    }
+    // const handleUsernameChange = (event) => {
+    //     let newUsername = event.target.value;
+    //     setProfileDetails({...user, username: newUsername})
+    // }
 
-    const handleEmailChange = (event) => {
-        let newEmail = event.target.value;
-        setProfileDetails({...profileDetails, email: newEmail})
-    }
+    // const handleEmailChange = (event) => {
+    //     let newEmail = event.target.value;
+    //     setProfileDetails({...user, [event.target.name]: newEmail})
+    // }
 
     return (
         <Container>
@@ -53,27 +60,27 @@ function Profile(props) {
                 </div>
 
                 <div className='flex-box'>
-                    <form onSubmit={(event) => {onEdit(event, profileDetails)}}>
+                    <form onSubmit={onEdit}>
                         <div className="form-group">
                             <label htmlFor="InputName">Name</label>
-                            <input onChange={handleNameChange} value={profileDetails.name} type="text" className="form-control" id="InputName" name="name" />
+                            <input onChange={handleChangeDetails} value={profileDetails.name} type="text" className="form-control" id="InputName" name="name" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="InputUsername">Username</label>
-                            <input onChange={handleUsernameChange} value={profileDetails.username} type="text" className="form-control" id="InputUsername" name="username" />
+                            <input onChange={handleChangeDetails} value={profileDetails.username} type="text" className="form-control" id="InputUsername" name="username" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="InputEmail">Email address</label>
-                            <input onChange={handleEmailChange} value={profileDetails.email} type="email" className="form-control" id="InputEmail" name="email" />
+                            <input onChange={handleChangeDetails} value={profileDetails.email} type="email" className="form-control" id="InputEmail" name="email" />
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label htmlFor="InputPassword">Previous Password</label>
                             <input name="password" type="password" className="form-control" id="password" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="InputPassword">New Password</label>
                             <input name="password" type="password" className="form-control" id="password" />
-                        </div>
+                        </div> */}
                         <Button type="submit" className="btn btn-primary">Save</Button>
                     </form>
                 </div>
