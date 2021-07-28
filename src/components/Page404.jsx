@@ -12,7 +12,7 @@ import errorJson from '../animation/error.json';
 function Page404() {
     return (
         <Container>
-            <LottieControl animation={errorJson} width='50%'/>
+            <LottieControl animation={errorJson} width='55%'/>
             <div class="flex-box">
                 <Link to='/dashboard'><Button>Back to safety</Button></Link>
             </div>

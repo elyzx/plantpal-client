@@ -15,13 +15,11 @@ import MyPlants from './components/plants/MyPlants';
 import AddPlant from './components/plants/AddPlant';
 import PlantDetails from './components/plants/PlantDetails';
 import EditPlant from './components/plants/EditPlant';
-import Reminders from './components/Reminders';
+import Reminders from './components/reminders/RemindersPage';
 import Page404 from './components/Page404';
 
-// Material UI theme
-import { createTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/core/styles';
-// import { makeStyles } from '@material-ui/core/styles';
+// Material UI 
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createTheme({
     palette: {
