@@ -22,7 +22,31 @@ const useStyles = makeStyles((theme) => ({
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
-      color: theme.palette.text.secondary,
+      color: 'theme.palette.text.secondary',
+    },
+    paperGreen: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: 'theme.palette.text.secondary',
+        backgroundColor: '#C8FACC',
+    },
+    paperBlue: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: 'theme.palette.text.secondary',
+        backgroundColor: '#D1F2FF',
+    },
+    paperYellow: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: 'theme.palette.text.secondary',
+        backgroundColor: '#FFF6CE',
+    },
+    paperRed: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: 'theme.palette.text.secondary',
+        backgroundColor: '#FFE6D9',
     },
     gallery: {
         display: 'flex',
@@ -31,12 +55,10 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden',
         backgroundColor: theme.palette.background.paper,
     },
-    imageList: {
-        width: '100%',
-        height: '100%',
-      },
     image: {
-        objectFit: 'contain',
+        width: '100%',
+        height: 200,
+        objectFit: 'cover',
     }
   }));
 
@@ -99,16 +121,16 @@ function Dashboard(props) {
                 </div>
                 <Grid container spacing={3}>
                     <Grid item xs={6} sm={3}>
-                        <Paper className={classes.paper}>{<h3>Total Plants: {plantTotal()}</h3>}</Paper>
+                        <Paper className={classes.paperGreen}>{<h3>Total Plants: {plantTotal()}</h3>}</Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                        <Paper className={classes.paper}>{<h3>Alive Plants: {plantsAlive()}</h3>}</Paper>
+                        <Paper className={classes.paperBlue}>{<h3>Alive Plants: {plantsAlive()}</h3>}</Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                        <Paper className={classes.paper}><h3>Complete Reminders: {completedReminders()}</h3></Paper>
+                        <Paper className={classes.paperYellow}><h3>Complete Reminders: {completedReminders()}</h3></Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                        <Paper className={classes.paper}><h3>Deceased Plants: {plantsDead()}</h3></Paper>
+                        <Paper className={classes.paperRed}><h3>Deceased Plants: {plantsDead()}</h3></Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paper}>
@@ -123,7 +145,7 @@ function Dashboard(props) {
                         <Paper className={classes.paper}>
                             Plant Gallery
                             <div className={classes.gallery}>
-                            <ImageList rowHeight={'250'} className={classes.imageList} cols={3}>
+                            <ImageList rowHeight={'300'} className={classes.gallery} cols={3}>
                                 {plants.map((plant) => (
                                 <ImageListItem className={classes.image} key={plant.img} cols={plant.cols || 1}>
                                     <img src={plant.photo} alt={plant.title} />
