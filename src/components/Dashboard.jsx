@@ -9,6 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem from '@material-ui/core/ImageListItem';
 
 // Theme
 import { useTheme } from '@material-ui/core/styles';
@@ -22,6 +24,20 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    gallery: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+    },
+    imageList: {
+        width: '100%',
+        height: '100%',
+      },
+    image: {
+        objectFit: 'contain',
+    }
   }));
 
 function Dashboard(props) {
@@ -89,10 +105,10 @@ function Dashboard(props) {
                         <Paper className={classes.paper}>{<h3>Alive Plants: {plantsAlive()}</h3>}</Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                        <Paper className={classes.paper}><h3>Deceased Plants: {plantsDead()}</h3></Paper>
+                        <Paper className={classes.paper}><h3>Complete Reminders: {completedReminders()}</h3></Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                        <Paper className={classes.paper}><h3>Plant Waterings: {completedReminders()}</h3></Paper>
+                        <Paper className={classes.paper}><h3>Deceased Plants: {plantsDead()}</h3></Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paper}>
@@ -104,7 +120,18 @@ function Dashboard(props) {
                         <Paper className={classes.paper}>Weather Forecast</Paper>
                     </Grid>
                     <Grid item xs={12}>
-                        <Paper className={classes.paper}>Plant Gallery</Paper>
+                        <Paper className={classes.paper}>
+                            Plant Gallery
+                            <div className={classes.gallery}>
+                            <ImageList rowHeight={'250'} className={classes.imageList} cols={3}>
+                                {plants.map((plant) => (
+                                <ImageListItem className={classes.image} key={plant.img} cols={plant.cols || 1}>
+                                    <img src={plant.photo} alt={plant.title} />
+                                </ImageListItem>
+                                ))}
+                            </ImageList>
+                            </div>
+                        </Paper>
                     </Grid>
                 </Grid>
             </div>

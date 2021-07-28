@@ -39,7 +39,7 @@ function MyPlants(props) {
             return <h2>Alive</h2>
         }
         else {
-            return <h2>Not Alive</h2>
+            return <h2>Deceased</h2>
         }
     };
 
