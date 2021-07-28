@@ -36,7 +36,6 @@ const theme = createTheme({
     },
   });
 
-
 // It begins!
 function App(props) {
 
@@ -135,17 +134,20 @@ const handleWeather = async () => {
 //----------------------------------------------------------
 //--------------------   FETCH ALL REMINDERS----------------
 //----------------------------------------------------------
+    const handleDatesInReminders = (reminders) => {
+        reminders.map((reminder) => {
+            if (reminder.nextWatering) {
+                reminder.nextWatering = Date.parse(reminder.nextWatering)
+            }
+            if (reminder.wateredAt) {
+                reminder.wateredAt = Date.parse(reminder.wateredAt)
+            }
+        })
+    }
     const fetchReminders = async () => {
         try {
             let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
-            response.data.map((reminder) => {
-                if (reminder.nextWatering) {
-                    reminder.nextWatering = Date.parse(reminder.nextWatering)
-                }
-                if (reminder.wateredAt) {
-                    reminder.wateredAt = Date.parse(reminder.wateredAt)
-                }
-            })
+            handleDatesInReminders(response.data)
             setReminders(response.data)
         }
         catch (err) {
@@ -349,6 +351,7 @@ const handleReminder = async (reminderId) => {
     try {
         await axios.patch(`http://localhost:5005/api/reminders/${reminderId}`, {}, {withCredentials: true});
         let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
+        handleDatesInReminders(response.data)
         setReminders(response.data)
     }
     catch (err) {

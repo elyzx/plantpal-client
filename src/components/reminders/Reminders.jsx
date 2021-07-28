@@ -1,4 +1,5 @@
 import React from 'react';
+import RemindersToDo from './RemindersToDo';
 
 // Material UI
 import Container from '@material-ui/core/Container';
@@ -10,8 +11,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
-import RemindersToDo from './RemindersToDo';
+// Animation
+import LottieControl from '../../animation/LottieControl.jsx'
+import smallPlant from '../../animation/smallPlant.json';
+import bigPlant from '../../animation/bigPlant.json';
 
 const useStyles = makeStyles({
     table: {
@@ -29,10 +34,12 @@ function Reminders(props) {
             <div>
                 <h1>Reminders</h1>
             </div>
+    <Grid spacing={2}>
+        <Grid>
             <h2>To Do</h2>
                 <RemindersToDo classes={classes} reminders={reminders} onWatering={onWatering} />
             <h2>Done</h2>
-                <div className="flex-box">
+                <div>
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
@@ -73,6 +80,11 @@ function Reminders(props) {
                     </Table>
                 </TableContainer>
             </div>
+            </Grid>
+            <Grid>
+                <LottieControl animation={bigPlant}/>
+            </Grid>
+            </Grid>
         </Container>
     )
 }
