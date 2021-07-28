@@ -245,7 +245,7 @@ const handleWeather = async () => {
             name: name.value,
             description: description.value,
             waterFreq: waterFreq.value,
-            fertiliseFreq: fertiliseFreq.value,
+            // fertiliseFreq: fertiliseFreq.value,
             photo: imgResponse.data.photo
         }
         try {
@@ -292,7 +292,7 @@ const handleWeather = async () => {
                     singleplant.name = plant.name
                     singleplant.description = plant.description
                     singleplant.waterFreq = plant.waterFreq
-                    singleplant.fertiliseFreq = plant.fertiliseFreq
+                    // singleplant.fertiliseFreq = plant.fertiliseFreq
                     singleplant.isAlive = plant.isAlive
                 }
                 return singleplant
