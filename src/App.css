@@ -69,6 +69,13 @@ input {
   padding: 20px;
 }
 
+.errorMsg {
+  padding: 10px;
+  border: 10px;
+  border-radius: 7px;
+  background-color :#FFE6D9;
+}
+
 .isAlive-margin {
   margin-top: -50px;
   padding: 0px;

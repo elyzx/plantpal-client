@@ -300,7 +300,7 @@ function Signup(props) {
                     <Button type="submit" className="btn btn-primary">Submit</Button>
                     {
                         myError ? (
-                             <p>{myError}</p>
+                             <p className='errorMsg'>{myError}</p>
                         ) : ''
                     }
                 </form>
