@@ -42,7 +42,7 @@ function PlantDetails(props) {
                 </div>
 
                 <div className='flex-box'>
-                    <h1>{plant.name}</h1>
+                        <h1>{plant.name}</h1>
                 </div>
 
                 <div className='flex-box'>
@@ -60,6 +60,9 @@ function PlantDetails(props) {
                 </div>
                 <div className='flex-box padded'>
                     <img src={plant.photo} alt='{plant.name}' height='500'/>
+                </div>
+                <div className='flex-box'>
+                    <p>{plant.description}</p>
                 </div>
             </>          
         </ Container>

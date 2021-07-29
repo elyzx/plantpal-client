@@ -60,10 +60,9 @@ function EditPlant(props) {
                         {/* <input onChange={handleFertiliseFreqChange} value={plantDetail.fertiliseFreq}  name="fertiliseFreq"  type="number"  placeholder="Enter name"/> */}
                         {/* <input onChange={handleIsAliveChange} value={plantDetail.isAlive}  name="isAlive"  type="text"  placeholder="Enter name"/> */}
 
-                        <label for="isAlive">Choose the status:</label>
-                        <select style={space} onChange={handleChangeDetails} id="plantDetail.isAlive" name="isAlive">
-                            <option value="">Is it alive or dead?</option>   
-                            <option  value="true">Alive</option>
+                        <label for="isAlive">Plant Status</label>
+                        <select style={space} onChange={handleChangeDetails} id="plantDetail.isAlive" name="isAlive"> 
+                            <option  value="true" selected>Alive</option>
                             <option  value="false">Dead</option>
                         </select>
                         
