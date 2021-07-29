@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 // Material UI
 import Table from '@material-ui/core/Table';
@@ -35,8 +36,9 @@ function RemindersToDo(props) {
                             return (
                                 <TableRow key={i}>
                                     <TableCell component="th" scope="row">
-                                        {reminder.plant.name}
-                                        {/* could we link to the plant details page? */}
+                                        <Link to={`/plants/${reminder.plant._id}`}>
+                                            <Button>{reminder.plant.name}</Button>
+                                        </Link>
                                     </TableCell>
                                     <TableCell>
                                         Water Me!

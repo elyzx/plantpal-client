@@ -1,5 +1,6 @@
 import React from 'react';
 import RemindersToDo from './RemindersToDo';
+import {Link} from 'react-router-dom';
 
 // Material UI
 import Container from '@material-ui/core/Container';
@@ -12,6 +13,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 // Animation
 import LottieControl from '../../animation/LottieControl.jsx'
@@ -57,8 +59,9 @@ function Reminders(props) {
                             return (
                                 <TableRow key={i}>
                                     <TableCell component="th" scope="row">
-                                        {reminder.plant.name}
-                                        {/* could we link to the plant details page? */}
+                                        <Link to={`/plants/${reminder.plant._id}`}>
+                                            <Button>{reminder.plant.name}</Button>
+                                        </Link>
                                     </TableCell>
                                     <TableCell>
                                         Water Me!
