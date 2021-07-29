@@ -81,6 +81,12 @@ input {
   padding: 0px;
 }
 
+.yellowBg {
+  background-color: #FFF6CE;
+  padding: 10px;
+  border-radius: 7px;
+}
+
 /* .result-message {
   line-height: 22px;
   font-size: 16px;

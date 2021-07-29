@@ -58,11 +58,11 @@ function Signup(props) {
                         <input style={space} name="password" type="password" className="form-control" id="password" placeholder="Create a password" required/>
                     </div>
 
-                    <div className=''>
-                        <label style={space}>Optional</label>
+                    <div className='yellowBg'>
+                        <label style={space}>☀️ Optional ☀️</label>
                         <br></br>
-                        <label style={space}>Enter location to see weather updates</label>
-        
+                        <label style={space}>Enter your location to see the weather forecast in your area</label>
+                    </div>
                         <div style={space} className="form-group">
                             <label style={space} htmlFor="InputUsername">Post Code</label>
                             <input style={space} type="text" className="form-control" id="InputPostal" name="postal" placeholder="Enter your post code"/>
@@ -70,7 +70,7 @@ function Signup(props) {
                         <div>
                             <label style={space} htmlFor="InputUsername">Country</label>
                             <select style={selectForm} className="form-control"  id="InputCountry" name="country">
-                                <option >Select your country</option>
+                                <option >Select from dropdown</option>
                                         <option value="AF">Afghanistan</option>
                                         <option value="AX">Aland Islands</option>
                                         <option value="AL">Albania</option>
@@ -324,9 +324,7 @@ function Signup(props) {
                                         <option value="ZM">Zambia</option>
                                         <option value="ZW">Zimbabwe</option>
                                 </select>
-
                         </div>
-                    </div>
                     <div className='flex-box'>
                         <Button style={style} type="submit" className="btn btn-primary">Submit</Button>
                     </div>
