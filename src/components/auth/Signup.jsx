@@ -9,27 +9,26 @@ function Signup(props) {
     const {onSignUp, isLoggedIn, myError} = props
 
     const style = {
-        background: 'linear-gradient(45deg, #6bfea1 30%, #6bfede 90%)',
+        background: 'linear-gradient(45deg, #C8FACC 30%, #FFF6CE 90%)',
         borderRadius: 3,
         border: 0,
         color: 'black',
-        height: 30,
+        height: 40,
         padding: '0 30px',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        marginTop: '20px'
+        boxShadow: '0 3px 5px 2px #FFF6CE',
+        marginTop: '20px',
       };
 
       const space = {
-        marginTop: '15px',
+        marginTop: '1vw',
     }
 
     const selectForm = {
-    
-  padding: '8px 16px',
-  border: '1px solid transparent',
-  borderColor: 'transparent transparent rgba(0, 0, 0, 0.1) transparent',
-  cursor: 'pointer',
-  marginBottom: '10px'
+        padding: '8px 16px',
+        border: '1px solid transparent',
+        borderColor: 'transparent transparent rgba(0, 0, 0, 0.1) transparent',
+        cursor: 'pointer',
+        marginBottom: '1vw'
     }
 
     if (isLoggedIn) {
@@ -52,11 +51,15 @@ function Signup(props) {
                     </div>
 
                     <div style={space} className="form-group">
-                        <label htmlFor="InputUsername">Postal Code</label>
-                        <input style={space} type="text" className="form-control" id="InputPostal" name="postal" placeholder="Enter your postal code" required/>
+                        <label style={space} htmlFor="InputEmail">Email address</label>
+                        <input style={space} type="email" className="form-control" id="InputEmail" name="email" placeholder="Enter your email address"/>
                     </div>
 
-                    
+                    <div style={space} className="form-group">
+                        <label htmlFor="InputUsername">Post Code</label>
+                        <input style={space} type="text" className="form-control" id="InputPostal" name="postal" placeholder="Enter your postal code" required/>
+                    </div>
+                        
                     <select style={selectForm} className="form-control"  id="InputCountry" name="country" required>
                         <option >Choose your country:</option>
                                 <option value="AF">Afghanistan</option>
@@ -313,16 +316,13 @@ function Signup(props) {
                                 <option value="ZW">Zimbabwe</option>
                         </select>
 
-
-                    <div style={space} className="form-group">
-                        <label style={space} htmlFor="InputEmail">Email address</label>
-                        <input style={space} type="email" className="form-control" id="InputEmail" name="email" placeholder="Enter your email address"/>
-                    </div>
                     <div style={space} className="form-group">
                         <label htmlFor="InputPassword">Password</label>
                         <input style={space} name="password" type="password" className="form-control" id="password" placeholder="Create a password"/>
                     </div>
-                    <Button style={style} type="submit" className="btn btn-primary">Submit</Button>
+                    <div className='flex-box'>
+                        <Button style={style} type="submit" className="btn btn-primary">Submit</Button>
+                    </div>
                     {
                         myError ? (
                              <p className='errorMsg'>{myError}</p>

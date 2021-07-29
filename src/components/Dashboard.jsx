@@ -11,6 +11,10 @@ import Button from '@material-ui/core/Button';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 
+// Animation
+import LottieControl from '../animation/LottieControl.jsx'
+import plantJson from '../animation/hangingPlant.json';
+
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -138,7 +142,7 @@ function Dashboard(props) {
                         <Paper className={classes.paperBlue}>{<h3>Alive Plants: {plantsAlive()}</h3>}</Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                        <Paper className={classes.paperYellow}><h3>Logged Waters: {completedReminders()}</h3></Paper>
+                        <Paper className={classes.paperYellow}><h3>Waters Logged: {completedReminders()}</h3></Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
                         <Paper className={classes.paperRed}><h3>Deceased Plants: {plantsDead()}</h3></Paper>
@@ -151,11 +155,13 @@ function Dashboard(props) {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paperBlueWithoutHeight}>
+                        <LottieControl animation={plantJson} width='50%'/>
                             <h4>Current Temperature ☀️</h4>
                             <h5>{ temper } °C</h5>
-                            </Paper>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12}>
+
                         <Paper className={classes.paperGreenWithoutHeight}>
                             <h4>Plant Gallery</h4>
                             <div className={classes.gallery}>
