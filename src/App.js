@@ -21,6 +21,7 @@ import config from './config'
 
 // Material UI 
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { SignalCellularNullRounded } from '@material-ui/icons';
 
 const theme = createTheme({
     palette: {
@@ -46,9 +47,8 @@ function App(props) {
     const [filteredPlants, updateFilteredPlants] = useState([]);
     const [reminders, setReminders] = useState([]);
     const [fetchingUser, updateFetchingUser] = useState(true);
-    //const [weather, updateWeather] = useState([]);
-    const [myError, updateError] = useState(null)
-
+    const [signupError, updateSignupError] = useState(null)
+    const [loginError, updateLoginError] = useState(null)
     const [temper, updateTempr] = useState(null)
 
     useEffect(() => {
@@ -75,18 +75,17 @@ function App(props) {
 //----------------------------------------------------------
 //------------------------   WEATHER API   ----------------
 //----------------------------------------------------------
-
-const handleWeather = async () => {
-    try{
-        let response = await axios.get(`${config.API_URL}/api/dashboard/test`, {withCredentials: true})  
-        console.log('temperatura', response.data.data[0].temp)
-        let temp = response.data.data[0].temp
-        updateTempr(temp)
+    const handleWeather = async () => {
+        try{
+            let response = await axios.get(`${config.API_URL}/api/dashboard/test`, {withCredentials: true})  
+            console.log('temperatura', response.data.data[0].temp)
+            let temp = response.data.data[0].temp
+            updateTempr(temp)
+        }
+        catch{
+            console.log('error weather')
+        }
     }
-    catch{
-        console.log('error weather')
-    }
-}
     
 
 //----------------------------------------------------------
@@ -137,6 +136,7 @@ const handleWeather = async () => {
 //----------------------------------------------------------
 //--------------------   FETCH ALL REMINDERS----------------
 //----------------------------------------------------------
+    // handle date type -> DB returns a string
     const handleDatesInReminders = (reminders) => {
         reminders.map((reminder) => {
             if (reminder.nextWatering) {
@@ -175,12 +175,12 @@ const handleWeather = async () => {
         };
         try {
             await axios.post(`${config.API_URL}/api/signup`, newUser, {withCredentials: true});
-            updateError(null);
+            updateSignupError(null);
             props.history.push('/login');
         }
         catch (err) {
             console.log('Signup failed', err);
-            updateError(err.response.data.errorMessage)
+            updateSignupError(err.response.data.errorMessage)
         };
     };
 
@@ -199,12 +199,12 @@ const handleWeather = async () => {
             setUser(response.data);
             console.log('login function', response.data)
             setIsLoggedIn(true);
-            updateError(null)
+            updateLoginError(null)
             props.history.push('/dashboard');
         }
         catch (err) {
             console.log('Login failed', err);
-            updateError(err.response.data.error)
+            updateLoginError(err.response.data.error)
         };
     };
 
@@ -385,10 +385,10 @@ if (fetchingUser) {
                     return <LandingPage user={user} isLoggedIn={isLoggedIn} {...routeProps} />
                 }} />
                 <Route path={'/signup'} render={(routeProps) => {
-                    return <Signup myError={myError} onSignUp={handleSignUp} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Signup myError={signupError} onSignUp={handleSignUp} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/login'} render={(routeProps) => {
-                    return <Login myError={myError} onLogIn={handleLogIn} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <Login myError={loginError} onLogIn={handleLogIn} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 {/* Protected Pages */}
                 <Route path={'/profile'} render={(routeProps) => {
