@@ -38,10 +38,10 @@ function LandingPage(props) {
                         <p>💀 Update the health status of each plant</p>
                       <div className='flex-box padded'>
                           {!user && (
-                            <div className='padded'>
+                            <>
                               <Link button component={RouterLink} to='/login' color='inherit'><Button className='padded'>Login</Button></Link>
                               <Link button component={RouterLink} to='/signup' color='inherit'><Button className='padded'>Signup</Button></Link>
-                            </div>
+                            </>
                           )}
                       </div>
                 </Grid>
