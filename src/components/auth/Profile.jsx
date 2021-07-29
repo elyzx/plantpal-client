@@ -3,6 +3,11 @@ import React, {useState, useEffect} from 'react';
 // Material UI
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 function Profile(props) {
     const { onEdit, onDeleteUser, user} = props
@@ -12,12 +17,22 @@ function Profile(props) {
         setProfileDetails(user);
     }, [user]);
 
+    // handle form value changes
     const handleChangeDetails = (event) => 
         setProfileDetails({
             ...profileDetails,
             [event.target.name]: event.target.value,
         });
+    
+    // handle pop up to confirm delete
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
 
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         <Container>
             { user && (
@@ -56,7 +71,28 @@ function Profile(props) {
                         </form>
                     </div>
                     <div className='flex-box padded'>
-                        <Button onClick={onDeleteUser}>Delete account</Button>
+                        <Button onClick={handleClickOpen}>Delete account</Button>
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Delete Account"}</DialogTitle>
+                            <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                Are you sure you want to delete your account?
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={handleClose}>
+                                Go Back
+                            </Button>
+                            <Button onClick={onDeleteUser} autoFocus>
+                                Delete Account
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
                     </div>
             </div>
             )}
