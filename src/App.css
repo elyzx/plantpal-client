@@ -69,6 +69,11 @@ input {
   padding: 20px;
 }
 
+.align-center {
+  display: flex;
+  align-items: center,
+}
+
 .errorMsg {
   padding: 10px;
   border: 10px;
