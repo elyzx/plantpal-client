@@ -203,6 +203,7 @@ function App(props) {
         }
         catch (err) {
             console.log('Login failed', err);
+            console.log('login error', err.response.data.error)
             updateLoginError(err.response.data.error)
         };
     };
