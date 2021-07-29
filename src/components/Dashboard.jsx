@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
+import { Typography } from '@material-ui/core';
 
 // Animation
 import LottieControl from '../animation/LottieControl.jsx'
@@ -18,6 +19,9 @@ import plantJson from '../animation/hangingPlant.json';
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
+    },
+    title: {
+        fontSize: '25px',
     },
     paper: {
       padding: theme.spacing(2),
@@ -131,7 +135,7 @@ function Dashboard(props) {
         <Container>
             <div className={classes.root}>
                 <div className="space-between">
-                    <h1>✨ Dashboard ✨</h1>
+                    <h1 className={classes.title}>✨ Dashboard ✨</h1>
                     <Link to='/plants/create'><Button>Add Plant</Button></Link>
                 </div>
                 <Grid container spacing={3}>

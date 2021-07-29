@@ -20,6 +20,12 @@ import LottieControl from '../../animation/LottieControl.jsx'
 import bigPlant from '../../animation/bigPlant.json';
 
 const useStyles = makeStyles({
+    title: {
+        fontSize: '25px',
+    },
+    subtitle: {
+        fontSize: '22px',
+    },
     table: {
       minWidth: 500,
     },
@@ -33,13 +39,13 @@ function Reminders(props) {
     return (
         <Container>
             <div>
-                <h1>🔔 Reminders 🔔 </h1>
+                <h1 className={classes.title}>🔔 Reminders 🔔 </h1>
             </div>
     <Grid spacing={2}>
         <Grid>
-            <h2>To Do</h2>
+            <h2 className={classes.subtitle}>To Do</h2>
                 <RemindersToDo classes={classes} reminders={reminders} onWatering={onWatering} />
-            <h2>Done</h2>
+            <h2 className={classes.subtitle}>Done</h2>
                 <div>
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
@@ -83,7 +89,7 @@ function Reminders(props) {
                 </TableContainer>
             </div>
             </Grid>
-            <Grid>
+            <Grid className='padded'>
                 <LottieControl animation={bigPlant} width='50%'/>
             </Grid>
             </Grid>

@@ -22,6 +22,9 @@ function MyPlants(props) {
             maxWidth: '100%',
             flexGrow: 1,
         },
+        title: {
+            fontSize: '25px',
+        },
         search: {
             minWidth: '350px',
             maxWidth: '500px',
@@ -51,7 +54,7 @@ function MyPlants(props) {
 
             <div className="space-between">
                     <div className='flex-start'>
-                        <h1>🪴 Plants 🪴</h1>
+                        <h1 className={classes.title}>🪴 Plants 🪴</h1>
                         <div className='padded'>
                             <Link to='/plants/create'><Button>Add Plant</Button></Link>
                         </div>
