@@ -14,6 +14,18 @@ import Button from '@material-ui/core/Button';
 function RemindersToDo(props) {
     const {reminders, onWatering, classes} = props
     const options = {month: 'short', day: 'numeric'};
+
+    const style = {
+        background: 'linear-gradient(45deg, #C8FACC 30%, #FFF6CE 90%)',
+        borderRadius: 3,
+        border: 0,
+        color: 'black',
+        height: 40,
+        padding: '0 30px',
+        boxShadow: '0 3px 5px 2px #FFF6CE',
+        marginTop: '20px',
+      };
+
     return (
         <>
             <div className="flex-box">
@@ -50,7 +62,7 @@ function RemindersToDo(props) {
                                         To Do
                                     </TableCell> */}
                                     <TableCell align="right">
-                                        <Button onClick={() => onWatering(reminder._id)}>Done</Button>
+                                        <Button style={style} onClick={() => onWatering(reminder._id)}>Done</Button>
                                     </TableCell>
                                 </TableRow>
                             )

@@ -7,6 +7,31 @@ import Button from '@material-ui/core/Button';
 
 function Signup(props) {
     const {onSignUp, isLoggedIn, myError} = props
+
+    const style = {
+        background: 'linear-gradient(45deg, #6bfea1 30%, #6bfede 90%)',
+        borderRadius: 3,
+        border: 0,
+        color: 'black',
+        height: 30,
+        padding: '0 30px',
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        marginTop: '20px'
+      };
+
+      const space = {
+        marginTop: '15px',
+    }
+
+    const selectForm = {
+    
+  padding: '8px 16px',
+  border: '1px solid transparent',
+  borderColor: 'transparent transparent rgba(0, 0, 0, 0.1) transparent',
+  cursor: 'pointer',
+  marginBottom: '10px'
+    }
+
     if (isLoggedIn) {
         return <Redirect to={'/dashboard'} />
     }
@@ -17,22 +42,22 @@ function Signup(props) {
             </div>
             <div className='flex-box'> 
                 <form onSubmit={onSignUp}>
-                    <div className="form-group">
+                    <div  style={space} className="form-group">
                         <label htmlFor="InputName">Name</label>
-                        <input type="text" className="form-control" id="InputName" name="name" placeholder="Enter your name"/>
+                        <input style={space} type="text" className="form-control" id="InputName" name="name" placeholder="Enter your name"/>
                     </div>
-                    <div className="form-group">
+                    <div style={space} className="form-group">
                         <label htmlFor="InputUsername">Username</label>
-                        <input type="text" className="form-control" id="InputUsername" name="username" placeholder="Create a case-sensitive username"/>
+                        <input style={space} type="text" className="form-control" id="InputUsername" name="username" placeholder="Create a case-sensitive username"/>
                     </div>
 
-                    <div className="form-group">
+                    <div style={space} className="form-group">
                         <label htmlFor="InputUsername">Postal Code</label>
-                        <input type="text" className="form-control" id="InputPostal" name="postal" />
+                        <input style={space} type="text" className="form-control" id="InputPostal" name="postal" placeholder="Enter your postal code" required/>
                     </div>
 
-                    <label for="country">Choose your country</label>
-                    <select  className="form-control"  id="InputCountry" name="country">
+                    
+                    <select style={selectForm} className="form-control"  id="InputCountry" name="country" required>
                         <option >Choose your country:</option>
                                 <option value="AF">Afghanistan</option>
                                 <option value="AX">Aland Islands</option>
@@ -289,15 +314,15 @@ function Signup(props) {
                         </select>
 
 
-                    <div className="form-group">
-                        <label htmlFor="InputEmail">Email address</label>
-                        <input type="email" className="form-control" id="InputEmail" name="email" placeholder="Enter your email address"/>
+                    <div style={space} className="form-group">
+                        <label style={space} htmlFor="InputEmail">Email address</label>
+                        <input style={space} type="email" className="form-control" id="InputEmail" name="email" placeholder="Enter your email address"/>
                     </div>
-                    <div className="form-group">
+                    <div style={space} className="form-group">
                         <label htmlFor="InputPassword">Password</label>
-                        <input name="password" type="password" className="form-control" id="password" placeholder="Create a password"/>
+                        <input style={space} name="password" type="password" className="form-control" id="password" placeholder="Create a password"/>
                     </div>
-                    <Button type="submit" className="btn btn-primary">Submit</Button>
+                    <Button style={style} type="submit" className="btn btn-primary">Submit</Button>
                     {
                         myError ? (
                              <p className='errorMsg'>{myError}</p>
