@@ -231,8 +231,10 @@ const handleEditProfile = (event) => {
     let name = event.target.name.value;
     let username = event.target.username.value;
     let email = event.target.email.value;
+    let country = event.target.country.value;
+    let postal = event.target.postal.value; 
 
-    axios.patch(`${config.API_URL}/api/profile`, {name, username, email}, {withCredentials: true})
+    axios.patch(`${config.API_URL}/api/profile`, {name, username, email, postal, country}, {withCredentials: true})
     .then((response) => {
         setUser(response.data);
         props.history.push('/dashboard');
