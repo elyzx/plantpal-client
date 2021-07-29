@@ -33,6 +33,11 @@ function Profile(props) {
     const handleClose = () => {
         setOpen(false);
     };
+
+    if (!user){
+        return 'Loading...'
+    }
+
     return (
         <Container>
             { user && (

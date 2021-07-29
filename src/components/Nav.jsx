@@ -19,9 +19,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
-
-// Theme
-import { useTheme } from '@material-ui/core/styles';
+import { green, blue } from '@material-ui/core/colors';
 
 // Icons
 import LocalFloristSharpIcon from '@material-ui/icons/LocalFloristSharp';
@@ -100,7 +98,7 @@ function Nav(props) {
                                 <List></List>
                                 <List>
                                     <ListItem button component={RouterLink} to='/'>
-                                        <ListItemIcon><HomeIcon color="secondary.dark"/> </ListItemIcon>
+                                        <ListItemIcon><HomeIcon style={{ color: blue[500]}}/> </ListItemIcon>
                                         <ListItemText>PlantPal</ListItemText>
                                     </ListItem>
                                 </List>
@@ -109,15 +107,15 @@ function Nav(props) {
                                 </List>
                                 <List>
                                     <ListItem button component={RouterLink} to='/dashboard'>
-                                        <ListItemIcon><BarChartSharpIcon color="primary.dark" /> </ListItemIcon>
+                                        <ListItemIcon><BarChartSharpIcon style={{ color: green[500]}} /> </ListItemIcon>
                                         <ListItemText>Dashboard</ListItemText>
                                     </ListItem>
                                     <ListItem button component={RouterLink} to='/plants'>
-                                        <ListItemIcon><LocalFloristSharpIcon color="primary.dark"/> </ListItemIcon>
+                                        <ListItemIcon><LocalFloristSharpIcon style={{ color: green[500]}}/> </ListItemIcon>
                                         <ListItemText>Plants</ListItemText>
                                     </ListItem>
                                     <ListItem button component={RouterLink} to='/reminders'>
-                                        <ListItemIcon><FormatListBulletedSharpIcon color="primary.dark" /> </ListItemIcon>
+                                        <ListItemIcon><FormatListBulletedSharpIcon style={{ color: green[500]}} /> </ListItemIcon>
                                         <ListItemText>Reminders</ListItemText>
                                     </ListItem>
                                 </List>
@@ -126,11 +124,11 @@ function Nav(props) {
                                 </List>
                                 <List>
                                     <ListItem button component={RouterLink} to={`/profile/${user._id}`}>
-                                        <ListItemIcon><AccountCircle color="secondary.dark"/> </ListItemIcon>
+                                        <ListItemIcon><AccountCircle style={{ color: blue[500]}}/> </ListItemIcon>
                                         <ListItemText> {user.username} </ListItemText>
                                     </ListItem>
                                     <ListItem button onClick={onLogoutAndClose}>
-                                        <ListItemIcon><ExitToAppIcon color="secondary.dark"/> </ListItemIcon>
+                                        <ListItemIcon><ExitToAppIcon style={{ color: blue[500]}}/> </ListItemIcon>
                                         <ListItemText>Sign out</ListItemText>
                                     </ListItem>
                                 </List>
