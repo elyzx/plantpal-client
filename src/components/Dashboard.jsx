@@ -162,7 +162,9 @@ function Dashboard(props) {
                         <LottieControl animation={plantJson} width='61%'/>
                             <h3>Current Temperature ☀️</h3>
                             <h3>{ temper } °C</h3>
-                        <Link to={`/profile/${user._id}`}><Button>Change Location</Button></Link>
+                            <div className='padded'>
+                                <Link to={`/profile/${user._id}`}><Button>Change Location</Button></Link>
+                            </div>
                         </Paper>
                     </Grid>
                     <Grid item xs={12}>
