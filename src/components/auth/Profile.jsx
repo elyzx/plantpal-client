@@ -61,7 +61,7 @@ function Profile(props) {
                     </div>
                 
                     <div className='flex-box'>
-                        <p>Edit your profile details using the form below.</p>
+                        <p>Edit your account details here.</p>
                     </div>
 
                     <div className='flex-box'>

@@ -34,7 +34,7 @@ function AddPlant(props) {
                     <h1>Add Plant</h1>
                 </div>
 
-                <div  className='flex-box'>
+                <div className='flex-box'>
                     <form  onSubmit={onAddPlant} action="/plants/create" encType="multipart/form-data">
                         <div style={space} className="form-group">
                             <label style={space}  htmlFor="InputName">Name</label>
@@ -45,8 +45,8 @@ function AddPlant(props) {
                             <input style={space} type="text" className="form-control"  placeholder="e.g. my beloved cheeseplant" maxlength="80" name="description" />
                         </div>
                         <div style={space} className="form-group">
-                            <label style={space} htmlFor="InputEmail">Reminder Frequency</label>
-                            <input style={space} type="number" name="waterFreq" placeholder="Number of days" min="0" max="30" required/>
+                            <label style={space} htmlFor="InputEmail">How often the plant needs watering</label>
+                            <input style={space} type="number" name="waterFreq" placeholder="Number of days" min="0" max="31" required/>
                         </div>
                         {/* <div className="form-group">
                             <label htmlFor="InputPassword">Fertilizer Frequency</label>

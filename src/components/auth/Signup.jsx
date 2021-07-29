@@ -15,7 +15,6 @@ function Signup(props) {
         color: 'black',
         height: 40,
         padding: '0 30px',
-        boxShadow: '0 3px 5px 2px #FFF6CE',
         marginTop: '20px',
       };
 
@@ -59,7 +58,7 @@ function Signup(props) {
                         <input style={space} name="password" type="password" className="form-control" id="password" placeholder="Create a password" required/>
                     </div>
 
-                    <div>
+                    <div className=''>
                         <label style={space}>Optional</label>
                         <br></br>
                         <label style={space}>Enter location to see weather updates</label>
