@@ -22,7 +22,6 @@ function RemindersToDo(props) {
         color: 'black',
         height: 40,
         padding: '0 30px',
-        boxShadow: '0 3px 5px 2px #FFF6CE',
       };
 
     return (
