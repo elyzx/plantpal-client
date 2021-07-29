@@ -10,7 +10,6 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
-import { Typography } from '@material-ui/core';
 
 // Animation
 import LottieControl from '../animation/LottieControl.jsx'

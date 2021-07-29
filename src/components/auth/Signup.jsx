@@ -4,7 +4,6 @@ import {Redirect} from 'react-router-dom';
 // Material UI
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import { Typography } from '@material-ui/core';
 
 function Signup(props) {
     const {onSignUp, isLoggedIn, myError} = props
