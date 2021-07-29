@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 // Material UI
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 
 // Animation
 import LottieControl from '../animation/LottieControl.jsx'
@@ -14,7 +14,9 @@ function Page404() {
         <Container>
             <LottieControl animation={errorJson} width='55%'/>
             <div className="flex-box">
-                <Link to={'/dashboard'}><Button>Back to safety</Button></Link>
+                <Link to={'/dashboard'}>
+                    <Button>Back to safety</Button>
+                </Link>
             </div>
         </ Container>
     )

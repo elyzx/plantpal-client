@@ -64,11 +64,11 @@ function App(props) {
         }
     }, [plants, filteredPlants]); 
 
-    useEffect(() =>{
-        if(!user){
-            props.history.push('/');
-        } 
-    }, [user])
+    // useEffect(() =>{
+    //     if(!user){
+    //         props.history.push('/');
+    //     } 
+    // }, [user])
 
 
 //----------------------------------------------------------
