@@ -39,9 +39,7 @@ function RemindersToDo(props) {
     };
     
     const incompleteReminders = reminders.filter((reminder) => !reminder.complete)
-
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, reminders.length - page * rowsPerPage);
-    console.log('reminders', reminders)
 
     return (
         <>

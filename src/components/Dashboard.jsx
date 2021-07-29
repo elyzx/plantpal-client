@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function Dashboard(props) {
-    const {plants, reminders, onWatering, weather, temper} = props;
+    const {user, plants, reminders, onWatering, weather, temper} = props;
     const classes = useStyles();
 
     useEffect(() => {
@@ -160,8 +160,9 @@ function Dashboard(props) {
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paperBlueWithoutHeight}>
                         <LottieControl animation={plantJson} width='61%'/>
-                            <h4>Current Temperature ☀️</h4>
-                            <h5>{ temper } °C</h5>
+                            <h3>Current Temperature ☀️</h3>
+                            <h3>{ temper } °C</h3>
+                        <Link to={`/profile/${user._id}`}><Button>Change Location</Button></Link>
                         </Paper>
                     </Grid>
                     <Grid item xs={12}>
@@ -175,6 +176,7 @@ function Dashboard(props) {
                                     <img src={plant.photo} alt={plant.title} />
                                 </ImageListItem>
                                 ))}
+                                
                             </ImageList>
                             </div>
                         </Paper>
