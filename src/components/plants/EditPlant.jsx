@@ -55,7 +55,7 @@ function EditPlant(props) {
                         <Button type="submit">Submit</Button>
                     </form>
                 </div>
-                <div className='flex-box'>
+                <div className='flex-box padded'>
                     <Link>
                         <Button onClick={() => {props.onDelete(plant._id)}}>Delete</Button>
                     </Link>
