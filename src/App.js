@@ -17,6 +17,7 @@ import PlantDetails from './components/plants/PlantDetails';
 import EditPlant from './components/plants/EditPlant';
 import Reminders from './components/reminders/Reminders';
 import Page404 from './components/Page404';
+import config from './config'
 
 // Material UI 
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -59,14 +60,16 @@ function App(props) {
     }, [isLoggedIn]); 
 
     useEffect(() => {
-        fetchReminders();
+        if (isLoggedIn) {
+            fetchReminders();
+        }
     }, [plants, filteredPlants]); 
 
-    // useEffect(() =>{
-    //     if(!user){
-    //         props.history.push('/');
-    //     } 
-    // }, [user])
+    useEffect(() =>{
+        if(!user){
+            props.history.push('/');
+        } 
+    }, [user])
 
 
 //----------------------------------------------------------
@@ -75,7 +78,7 @@ function App(props) {
 
 const handleWeather = async () => {
     try{
-        let response = await axios.get('http://localhost:5005/api/dashboard/test', {withCredentials: true})  
+        let response = await axios.get(`${config.API_URL}/api/dashboard/test`, {withCredentials: true})  
         console.log('temperatura', response.data.data[0].temp)
         let temp = response.data.data[0].temp
         updateTempr(temp)
@@ -91,7 +94,7 @@ const handleWeather = async () => {
 //----------------------------------------------------------
     const fetchUser = async () => {
         try {
-            let response = await axios.get('http://localhost:5005/api/user', {withCredentials: true});
+            let response = await axios.get(`${config.API_URL}/api/user`, {withCredentials: true});
             setUser(response.data);
             setIsLoggedIn(true);
             updateFetchingUser(false)
@@ -110,7 +113,7 @@ const handleWeather = async () => {
 //----------------------------------------------------------
     const fetchPlants = async () => {
         try {
-            let response = await axios.get(`http://localhost:5005/api/plants`, {withCredentials: true});
+            let response = await axios.get(`${config.API_URL}/api/plants`, {withCredentials: true});
             updatePlants(response.data);
         }
         catch (err) {
@@ -123,7 +126,7 @@ const handleWeather = async () => {
 //----------------------------------------------------------
     const fetchFilterPlants = async () => {
         try {
-            let response = await axios.get(`http://localhost:5005/api/plants`, {withCredentials: true});
+            let response = await axios.get(`${config.API_URL}/api/plants`, {withCredentials: true});
             updateFilteredPlants(response.data);
         }
         catch (err) {
@@ -148,7 +151,7 @@ const handleWeather = async () => {
 
     const fetchReminders = async () => {
         try {
-            let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
+            let response = await axios.get(`${config.API_URL}/api/reminders`, {withCredentials: true})
             setReminders(handleDatesInReminders(response.data))
         }
         catch (err) {
@@ -161,16 +164,18 @@ const handleWeather = async () => {
 //----------------------------------------------------------
     const handleSignUp = async (event) => {
         event.preventDefault();
-        const {name, username, email, password} = event.target;
+        const {name, username, email, password, country, postal} = event.target;
         let newUser = {
             name: name.value,
             username: username.value,
             email: email.value,
             password: password.value,
+            country: country.value,
+            postal: postal.value,
         };
         try {
-            await axios.post('http://localhost:5005/api/signup', newUser, {withCredentials: true});
-            updateError(null)
+            await axios.post(`${config.API_URL}/api/signup`, newUser, {withCredentials: true});
+            updateError(null);
             props.history.push('/login');
         }
         catch (err) {
@@ -190,7 +195,7 @@ const handleWeather = async () => {
             password: password.value,
         };
         try {
-            let response = await axios.post('http://localhost:5005/api/login', myUser, {withCredentials: true});
+            let response = await axios.post(`${config.API_URL}/api/login`, myUser, {withCredentials: true});
             setUser(response.data);
             console.log('login function', response.data)
             setIsLoggedIn(true);
@@ -208,7 +213,7 @@ const handleWeather = async () => {
 //----------------------------------------------------------
     const handleLogOut = async () => {
         try {
-            await axios.post(`http://localhost:5005/api/logout`, {}, {withCredentials: true});
+            await axios.post(`${config.API_URL}/api/logout`, {}, {withCredentials: true});
             setUser(null);
             setIsLoggedIn(false);
             console.log('Logout succesful')
@@ -228,7 +233,7 @@ const handleEditProfile = (event) => {
     let username = event.target.username.value;
     let email = event.target.email.value;
 
-    axios.patch(`http://localhost:5005/api/profile`, {name, username, email}, {withCredentials: true})
+    axios.patch(`${config.API_URL}/api/profile`, {name, username, email}, {withCredentials: true})
     .then((response) => {
         setUser(response.data);
         props.history.push('/dashboard');
@@ -242,7 +247,7 @@ const handleEditProfile = (event) => {
 //----------------------------------------------------------
     const handleDeleteUser = async (user) => {
         try {
-            await axios.delete('http://localhost:5005/api/profile', {withCredentials: true});
+            await axios.delete(`${config.API_URL}/api/profile`, {withCredentials: true});
             console.log('in the try', user)
             setUser(null);
             setIsLoggedIn(false);
@@ -262,7 +267,7 @@ const handleEditProfile = (event) => {
         let formData = new FormData()
         formData.append('imageUrl', event.target.photo.files[0])
 
-        let imgResponse = await axios.post('http://localhost:5005/api/upload', formData)
+        let imgResponse = await axios.post(`${config.API_URL}/api/upload`, formData)
 
         const { name, description, waterFreq} = event.target;
         let newPlant = {
@@ -272,7 +277,7 @@ const handleEditProfile = (event) => {
             photo: imgResponse.data.photo
         }
         try {
-            let response = await axios.post('http://localhost:5005/api/plants/create', newPlant , {withCredentials: true});
+            let response = await axios.post(`${config.API_URL}/api/plants/create`, newPlant , {withCredentials: true});
             newPlant = response.data
             console.log(plants, 'in add plant handler')
             updatePlants([newPlant, ...plants])
@@ -289,7 +294,7 @@ const handleEditProfile = (event) => {
 //----------------------------------------------------------
     const handleDeletePlant = async (plantId) => {
         try {
-            await axios.delete(`http://localhost:5005/api/plants/${plantId}`, {withCredentials: true})
+            await axios.delete(`${config.API_URL}/api/plants/${plantId}`, {withCredentials: true})
             let filteredPlants = plants.filter((plant) => {
                 return plant._id !== plantId
             })
@@ -314,14 +319,14 @@ const handleEditProfile = (event) => {
         let waterFreq = event.target.waterFreq.value;
         let isAlive = event.target.isAlive.value
 
-        axios.patch(`http://localhost:5005/api/plants/${plantId}/edit`, {name, description, waterFreq, isAlive}, {withCredentials: true})
+        axios.patch(`${config.API_URL}/api/plants/${plantId}/edit`, {name, description, waterFreq, isAlive}, {withCredentials: true})
         .then((response) => {
             let newPlant = response.data
             console.log("newplant", newPlant)
-            let p = plants.filter((p) => p._id != newPlant._id)
+            let p = plants.filter((p) => p._id !== newPlant._id)
             updatePlants([newPlant, ...p])
 
-            let fp = filteredPlants.filter((p) => p._id != newPlant._id)
+            let fp = filteredPlants.filter((p) => p._id !== newPlant._id)
             updateFilteredPlants([newPlant, ...fp])
             props.history.push('/plants')
         })
@@ -350,15 +355,14 @@ const handleEditProfile = (event) => {
 //----------------------------------------------------------
 const handleReminder = async (reminderId) => {
     try {
-        await axios.patch(`http://localhost:5005/api/reminders/${reminderId}`, {}, {withCredentials: true});
-        let response = await axios.get(`http://localhost:5005/api/reminders`, {withCredentials: true})
+        await axios.patch(`${config.API_URL}/api/reminders/${reminderId}`, {}, {withCredentials: true});
+        let response = await axios.get(`${config.API_URL}/api/reminders`, {withCredentials: true})
         setReminders(handleDatesInReminders(response.data))
     }
     catch (err) {
         console.log('handling the reminder failed', err);
     };
 }
-
 
 //------------------------   FETCH USER        ----------------
 if (fetchingUser) {

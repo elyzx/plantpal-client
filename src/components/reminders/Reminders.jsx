@@ -15,7 +15,6 @@ import Grid from '@material-ui/core/Grid';
 
 // Animation
 import LottieControl from '../../animation/LottieControl.jsx'
-import smallPlant from '../../animation/smallPlant.json';
 import bigPlant from '../../animation/bigPlant.json';
 
 const useStyles = makeStyles({
@@ -60,7 +59,7 @@ function Reminders(props) {
                                     <TableCell component="th" scope="row">
                                         {reminder.plant.name}
                                         {/* could we link to the plant details page? */}
-                                    </TableCell >
+                                    </TableCell>
                                     <TableCell>
                                         Water Me!
                                     </TableCell>
