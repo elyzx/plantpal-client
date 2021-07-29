@@ -53,17 +53,13 @@ function PlantDetails(props) {
                     <p>I need watering every {plant.waterFreq} days.</p>
                 </div>
 
-                <div className='flex-box padded'>
-                    <img src={plant.photo} alt='{plant.name}' height='500'/>
-                </div>
-
                 <div className='flex-box'>
                     <Link to={`/plants/${plant._id}/edit`}>
                         <Button>Edit</Button>
                     </Link>
-                    <Link>
-                        <Button onClick={() => {props.onDelete(plant._id)}}>Delete</Button>
-                    </Link>
+                </div>
+                <div className='flex-box padded'>
+                    <img src={plant.photo} alt='{plant.name}' height='500'/>
                 </div>
             </>          
         </ Container>

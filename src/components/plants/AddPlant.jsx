@@ -26,7 +26,7 @@ function AddPlant(props) {
                         </div>
                         <div className="form-group">
                             <label htmlFor="InputUsername">Description</label>
-                            <input type="text" name="form-control"  placeholder="e.g. my beloved cheeseplant" name="description" />
+                            <input type="text" className="form-control"  placeholder="e.g. my beloved cheeseplant" name="description" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="InputEmail">Reminder Frequency</label>

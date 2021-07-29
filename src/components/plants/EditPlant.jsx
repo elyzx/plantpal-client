@@ -55,6 +55,11 @@ function EditPlant(props) {
                         <Button type="submit">Submit</Button>
                     </form>
                 </div>
+                <div className='flex-box'>
+                    <Link>
+                        <Button onClick={() => {props.onDelete(plant._id)}}>Delete</Button>
+                    </Link>
+                </div>
             </>
         </Container>
     );

@@ -11,9 +11,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import { useTheme } from '@material-ui/core/styles';
 
 function MyPlants(props) {
     const {plants, onSearch} = props
+    const theme = useTheme();
 
     const useStyles = makeStyles({
         root: {

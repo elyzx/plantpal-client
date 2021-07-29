@@ -21,7 +21,6 @@ import config from './config'
 
 // Material UI 
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { SignalCellularNullRounded } from '@material-ui/icons';
 
 const theme = createTheme({
     palette: {
@@ -404,10 +403,10 @@ if (fetchingUser) {
                     return <AddPlant onAddPlant={handleAddPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/plants/:plantId'} render={(routeProps) => {
-                    return <PlantDetails plants={plants} onDelete={handleDeletePlant} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <PlantDetails plants={plants} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route path={'/plants/:plantId/edit'} render={(routeProps) => {
-                    return <EditPlant plants={plants} onEdit={handleEditPlant} isLoggedIn={isLoggedIn} {...routeProps}/>
+                    return <EditPlant plants={plants} onEdit={handleEditPlant} onDelete={handleDeletePlant} isLoggedIn={isLoggedIn} {...routeProps}/>
                 }} />
                 <Route exact path={'/reminders'} render={(routeProps) => {
                     return <Reminders onWatering={handleReminder} reminders={reminders} isLoggedIn={isLoggedIn} {...routeProps}/>
