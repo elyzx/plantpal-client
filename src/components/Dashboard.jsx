@@ -151,8 +151,8 @@ function Dashboard(props) {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paperBlueWithoutHeight}>
-                            <h4>Weather Forecast</h4>
-                            <p>{ temper } °C</p>
+                            <h4>Current Temperature ☀️</h4>
+                            <h5>{ temper } °C</h5>
                             </Paper>
                     </Grid>
                     <Grid item xs={12}>

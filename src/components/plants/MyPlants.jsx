@@ -20,6 +20,7 @@ function MyPlants(props) {
     const useStyles = makeStyles({
         root: {
             maxWidth: '100%',
+            flexGrow: 1,
         },
         search: {
             minWidth: '350px',
@@ -48,7 +49,7 @@ function MyPlants(props) {
         <Container>
             <div className={classes.root}>
 
-                <div className="space-between">
+            <div className="space-between">
                     <div className='flex-start'>
                         <h1>🪴 Plants 🪴</h1>
                         <div className='padded'>
