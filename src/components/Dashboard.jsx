@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: 'theme.palette.text.secondary',
         backgroundColor: '#D1F2FF',
-        minHeight: 115,
+        minHeight: '50.046772684752106vh',
     },
     paperYellow: {
         padding: theme.spacing(2),
@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: 'theme.palette.text.secondary',
         backgroundColor: '#FFF6CE',
+        minHeight: '50.046772684752106vh',
     },
     paperRed: {
         padding: theme.spacing(2),
@@ -158,7 +159,7 @@ function Dashboard(props) {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paperBlueWithoutHeight}>
-                        <LottieControl animation={plantJson} width='50%'/>
+                        <LottieControl animation={plantJson} width='61%'/>
                             <h4>Current Temperature ☀️</h4>
                             <h5>{ temper } °C</h5>
                         </Paper>

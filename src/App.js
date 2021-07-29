@@ -151,6 +151,7 @@ function App(props) {
     const fetchReminders = async () => {
         try {
             let response = await axios.get(`${config.API_URL}/api/reminders`, {withCredentials: true})
+           
             setReminders(handleDatesInReminders(response.data))
         }
         catch (err) {
