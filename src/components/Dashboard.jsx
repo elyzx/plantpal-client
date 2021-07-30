@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: 'theme.palette.text.secondary',
         backgroundColor: '#D1F2FF',
-        minHeight: '50.046772684752106vh',
+        minHeight: '52.546772684752106vh',
     },
     paperYellow: {
         padding: theme.spacing(2),
@@ -157,6 +157,7 @@ function Dashboard(props) {
                             <RemindersToDo classes={classes} reminders={reminders} onWatering={onWatering}/> 
                         </Paper>
                     </Grid>
+                    { user && (
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paperBlueWithoutHeight}>
                         <LottieControl animation={plantJson} width='61%'/>
@@ -167,8 +168,8 @@ function Dashboard(props) {
                             </div>
                         </Paper>
                     </Grid>
+                    )}
                     <Grid item xs={12}>
-
                         <Paper className={classes.paperGreenWithoutHeight}>
                             <h4>Plant Gallery</h4>
                             <div className={classes.gallery}>
@@ -177,8 +178,7 @@ function Dashboard(props) {
                                 <ImageListItem className={classes.image} key={plant.img} cols={plant.cols || 1}>
                                     <img src={plant.photo} alt={plant.title} />
                                 </ImageListItem>
-                                ))}
-                                
+                                ))}   
                             </ImageList>
                             </div>
                         </Paper>

@@ -64,11 +64,11 @@ function App(props) {
         }
     }, [plants, filteredPlants]); 
 
-    // useEffect(() =>{
-    //     if(!user){
-    //         props.history.push('/');
-    //     } 
-    // }, [user])
+    useEffect(() =>{
+        if(!user){
+            props.history.push('/');
+        } 
+    }, [user])
 
 
 //----------------------------------------------------------
@@ -218,7 +218,7 @@ function App(props) {
             setUser(null);
             setIsLoggedIn(false);
             console.log('Logout succesful')
-          
+            props.history.push('/')
         }
         catch (err) {
             console.log('Logout failed', err);

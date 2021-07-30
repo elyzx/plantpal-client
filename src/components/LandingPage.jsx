@@ -26,7 +26,6 @@ function LandingPage(props) {
         <Container className='align-center padded'>
               <Grid container spacing={3} className='padded'>
                 <Grid item xs={12} sm={6}>
-                    
                       <h1>🌱 Your plant's hydration pal</h1>
                       <p>Keep track of all your plant’s watering schedule with PlantPal.</p>
                       <h4>To get started:</h4>
