@@ -1,5 +1,6 @@
 # PlantPal
 Health tracking for houseplants
+Deployment link - https://plantpal1.herokuapp.com
 
 ## Description
 With PlantPal, caring for your houseplants has never been easier. Keep track of your plants and their care needs, so you never forget to water them again!
@@ -212,15 +213,12 @@ Reminders Model
 
 # Links
 ## Website Link
-TBD
+https://plantpal1.herokuapp.com
 
 ## Wireframes
 Model / States - https://whimsical.com/module-3-plantpal-model-AAwWf1dDaKD712XyCy78P8
 <br/>
 Pages / Wireframes - https://whimsical.com/module-3-wireframes-FnY9a3VvQ7h3NHBbHQS9ct
-
-## Project Status
-Trello Board - https://trello.com/b/SB0FF9tf
 
 ## Github
 Client-side code - https://github.com/elyzx/plantpal-client
